@@ -1,0 +1,65 @@
+create PROCEDURE storedListar as 
+SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, A.IdMarca, A.IdCategoria, C.Descripcion AS Categoria, A.Precio, IM.ImagenUrl
+FROM ARTICULOS A
+INNER JOIN (
+    SELECT IdArticulo, ImagenUrl, ROW_NUMBER() OVER (PARTITION BY IdArticulo ORDER BY Id) AS RowNum
+    FROM IMAGENES
+) IM ON A.Id = IM.IdArticulo AND IM.RowNum = 1
+INNER JOIN MARCAS M ON A.IdMarca = M.Id
+LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id;
+
+=======================================================================================
+
+CREATE PROCEDURE storedListarPorIdArticulo
+    @IdArticulo INT
+AS 
+BEGIN
+    SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, A.IdMarca, A.IdCategoria, C.Descripcion AS Categoria, A.Precio, IM.ImagenUrl
+    FROM ARTICULOS A
+    INNER JOIN (
+        SELECT IdArticulo, ImagenUrl, ROW_NUMBER() OVER (PARTITION BY IdArticulo ORDER BY Id) AS RowNum
+        FROM IMAGENES
+    ) IM ON A.Id = IM.IdArticulo AND IM.RowNum = 1
+    INNER JOIN MARCAS M ON A.IdMarca = M.Id
+    LEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id
+    WHERE A.Id = @IdArticulo;
+END
+
+=======================================================================================
+
+create PROCEDURE storedListarImagenes as
+select  IdArticulo, ImagenUrl from IMAGENES
+
+=======================================================================================
+
+CREATE PROCEDURE ObtenerImagenesxId
+    @IdArticulo INT
+AS
+BEGIN 
+SELECT ImagenUrl
+FROM IMAGENES
+WHERE IdArticulo = @IdArticulo;
+END;
+
+=======================================================================================
+
+CREATE PROCEDURE ObtenerArticuloPorId
+    @IdArticulo INT
+AS
+BEGIN
+    SELECT
+        A.Codigo AS CodigoArticulo,
+        A.Nombre AS NombreArticulo,
+        A.Descripcion AS DescripcionArticulo,
+        M.Descripcion AS Marca,
+        C.Descripcion AS Categoria,
+        A.Precio
+    FROM
+        ARTICULOS AS A
+    INNER JOIN
+        MARCAS AS M ON A.IdMarca = M.Id
+    INNER JOIN
+        CATEGORIAS AS C ON A.IdCategoria = C.Id
+    WHERE
+        A.Id = @IdArticulo;
+END;
