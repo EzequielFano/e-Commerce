@@ -327,8 +327,7 @@ namespace Negocio
                 
                 
                 aux.Precio = (int)datos.Lector.GetSqlMoney(5);
-                aux.URLImagen = new Imagen();
-                aux.URLImagen.URL = " ";
+          
                 articulos.Add(aux);
             }
             return articulos;

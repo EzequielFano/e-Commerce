@@ -14,6 +14,7 @@ namespace ArticleManager_Web
     public partial class Detalles : System.Web.UI.Page
     {
         public List<Imagen> ListaImagenes { get; set; }
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,12 +23,7 @@ namespace ArticleManager_Web
             string id = Request.QueryString["id"];
             rpDetalles.DataSource = negocio.verDetallesArticulo(int.Parse(id));
             rpDetalles.DataBind();
-        
-
             ListaImagenes = negocio.verImagenesArticulo(int.Parse(id));
-            rpRepetidorImg.DataSource = ListaImagenes;
-            rpRepetidorImg.DataBind();
-            
         }
     }
 }
