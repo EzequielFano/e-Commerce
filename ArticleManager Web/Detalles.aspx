@@ -30,9 +30,23 @@
            width:50px;
            color:#fff;
            font-size:12px;
-           font-weight:bold;
-           
+           font-weight:bold;           
        }
+       .price{
+           color:rebeccapurple;
+           font-size:26px;
+           font-weight:bold;
+           padding-top:20px;
+       }
+       #lblcantidad{
+           border:1px solid #ccc;
+           font-weight:bold;
+           height: 33px;
+           text-align:center;
+           width: 30px;
+       }
+       
+       
     </style>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <div class="container">
@@ -71,13 +85,15 @@
                                  <i class="fa fa-star"></i>
                                  <i class="fa fa-star"></i>
                                  <i class="fa fa-star"></i>                                 
-                                 <i style="border:2px black;" class="fa fa-star"></i>
-                                 <br></br>
+                                 <i class="fa fa-star"></i>
                                  <p class="price"><b>$ <%#Eval("Precio") %></b></p>
                                  <p class="card-text"><b>Descripcion: <%#Eval("Descripcion")%></b></p>
                                  <p class="card-text"><b>
                                      <medium class="text-body-secondary">Marca: <%#Eval("Marca")%></medium></b>
                                  </p>
+                                 <label>Cantidad: </label>
+                                 <input id="lblcantidad" type="text" value="1"/> &nbsp &nbsp &nbsp
+                                 <asp:Button Text="Agregar al Carrito" runat="server" CssClass="btn btn-primary" BackColor="MediumPurple" BorderColor="MediumPurple"/>
                              </div>
                          </div>
                          
