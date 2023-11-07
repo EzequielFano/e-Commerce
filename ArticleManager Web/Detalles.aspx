@@ -13,44 +13,83 @@
 
         /* Establece un tamaño máximo para las imágenes en el carrusel */
         .carousel-img {
-            max-width: 100%; /* Ancho máximo al 100% del carrusel */
-            max-height: 100%; /* Altura máxima al 100% del carrusel */
+           max-width: 100%;  /*Ancho máximo al 100% del carrusel*/
+           max-height: 100%; /*Altura máxima al 100% del carrusel*/     
             
         }
+        .fa-star{
+            color:rebeccapurple;
+            border-inline-color:black;
+            
+        }
+       #TituloArticulo{
+           color:#555;
+       }
+       .new-arrival{
+           background:green;
+           width:50px;
+           color:#fff;
+           font-size:12px;
+           font-weight:bold;
+           
+       }
     </style>
-
-    <div id="carouselExample" class="carousel slide">
-        <div class="carousel-inner">
-            <% for (int i = 0; i < ListaImagenes.Count(); i++)
-                { %>
-            <div class="carousel-item<% if (i == 0)
-                { %> active<% } %>">
-                <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%= i + 1 %>">
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <div class="container">
+        <div class="row">
+            
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <% for (int i = 0; i < ListaImagenes.Count(); i++)
+                            { %>
+                        <div class="carousel-item<% if (i == 0)
+                            { %> active<% } %>">
+                            <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%= i + 1 %>">
+                        </div>
+                        <% } %>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>            
+            <div class="col -8">
+                &nbsp
+                &nbsp
+                &nbsp
+                 <asp:Repeater ID="rpDetalles" runat="server">
+                     <ItemTemplate>
+                         <div class="card mb-3">
+                             <div class="card-body">
+                                 <p class="new-arrival text-center">NEW</p>
+                                 <h5 id="TituloArticulo" class="card-title"><%#Eval("NombreArticulo") %></h5>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>
+                                 <i class="fa fa-star"></i>                                 
+                                 <i style="border:2px black;" class="fa fa-star"></i>
+                                 <br></br>
+                                 <p class="price"><b>$ <%#Eval("Precio") %></b></p>
+                                 <p class="card-text"><b>Descripcion: <%#Eval("Descripcion")%></b></p>
+                                 <p class="card-text"><b>
+                                     <medium class="text-body-secondary">Marca: <%#Eval("Marca")%></medium></b>
+                                 </p>
+                             </div>
+                         </div>
+                         
+                     </ItemTemplate>
+                 </asp:Repeater>
             </div>
-            <% } %>
+            <div class="row">
+                <h1>asdasdsadasd</h1>
+            </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
     </div>
+    
 
-    <asp:Repeater ID="rpDetalles" runat="server">
-        <ItemTemplate>
-            <div class="card mb-3">
-                <div class="card-body">
-                    <h5 class="card-title"><%#Eval("NombreArticulo") %></h5>
-                    <h4>$ <%#Eval("Precio") %></h4>
-                    <p class="card-text">Descripcion: <%#Eval("Descripcion")%></p>
-                    <p class="card-text">
-                        <medium class="text-body-secondary">Marca: <%#Eval("Marca")%></medium>
-                    </p>
-                </div>
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
+   
 </asp:Content>
