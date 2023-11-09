@@ -50,6 +50,7 @@ namespace ArticleManager_Web
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
+            Session.Add("articulosCarrito", articulosCarrito);
             Response.Redirect("Pago.aspx");
         }
     }

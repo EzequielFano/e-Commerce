@@ -25,5 +25,5 @@
             </div>
         </ItemTemplate>
     </asp:Repeater>
-    <asp:Button Text="Comprar" CssClass="btn btn-success" ID="btnComprar" runat="server" OnClick="btnComprar_Click" />
+    <asp:Button Text="Comprar" CssClass="btn btn-success" ID="btnComprar" runat="server" OnClick="btnComprar_Click"/>
 </asp:Content>
