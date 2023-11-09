@@ -416,6 +416,21 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public bool revisarRepetidos (List<Articulo> articulos, int Id)
+        {
+            bool esRepetido = false;
+            int cantidad = articulos.Count();
+            for (int i = 0; i<cantidad; i++)
+            {
+                if (articulos[i].IdArticulo == Id)
+                {
+                    esRepetido=true;
+                }
+            }
+
+            return esRepetido;
+        }
     }
 
 }

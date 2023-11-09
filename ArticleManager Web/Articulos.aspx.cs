@@ -57,18 +57,25 @@ namespace ArticleManager_Web
             {
                 ArticulosCarrito = new List<Articulo>();
             }
-            ArticulosCarrito.Add(auxArticulo[0]);
-
-            if (idArticulo == null)
+            if (!negocio.revisarRepetidos(ArticulosCarrito, int.Parse(valor)))
             {
-                idArticulo = new List<int>();
+                ArticulosCarrito.Add(auxArticulo[0]);
+                if (idArticulo == null)
+                {
+                    idArticulo = new List<int>();
+                }
+                idArticulo.Add(int.Parse(valor));
+                cantidad = ArticulosCarrito.Count();
+                Session.Add("ArticulosCarrito", ArticulosCarrito);
+                Session.Add("idArticulo", idArticulo);
+                Session.Add("cantidad", cantidad);
+                Response.Redirect("Articulos.aspx", false);
             }
-            idArticulo.Add(int.Parse(valor));
-            cantidad = ArticulosCarrito.Count();
-            Session.Add("ArticulosCarrito", ArticulosCarrito);
-            Session.Add("idArticulo", idArticulo);
-            Session.Add("cantidad", cantidad);
-            Response.Redirect("Articulos.aspx", false);
+            else
+            {
+
+            }
+
             
         }
 
