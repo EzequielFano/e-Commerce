@@ -26,7 +26,7 @@ namespace ArticleManager_Web
                 rpRepetidor.DataSource = articulosCarrito;
                 rpRepetidor.DataBind();
             }
-
+           
         }
 
         protected void btnEliminarCarrito_Click(object sender, EventArgs e)

@@ -16,15 +16,14 @@ namespace ArticleManager_Web
         public List<Articulo> ListaArticulos { get; set; }
         static public List<Articulo> ArticulosCarrito { get; set; }
         static public int cantidad { get; set; }
-        
+        public int cantidadAComprar { get; set; }
         public List<Imagen> ListaImagenes { get; set; }
 
         public List<int> idArticulo { get; set; }
         public bool filtrado { get; set; }
-
         public bool session { get; set; }
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {   
             filtrado=Session["Filtrado"] != null ? true : false;
             ListaArticulos = (List<Articulo>)Session["ListaArticulos"];
             session = Session["session"] != null ? (bool)Session["session"] : false;
@@ -49,15 +48,18 @@ namespace ArticleManager_Web
         {
 
             string valor = ((Button)sender).CommandArgument;
-           
+            TextBox txtCantidad = (TextBox)((Button)sender).NamingContainer.FindControl("txtCantidad");
+     
+            cantidadAComprar = int.Parse(txtCantidad.Text);
             ArticulosNegocio negocio = new ArticulosNegocio();
-
+            
             List<Articulo> auxArticulo = negocio.TraerListadoCompletoxId(int.Parse(valor));
             if (ArticulosCarrito == null)
             {
                 ArticulosCarrito = new List<Articulo>();
             }
-            if (!negocio.revisarRepetidos(ArticulosCarrito, int.Parse(valor)))
+           
+            if (!negocio.revisarRepetidos(ArticulosCarrito, int.Parse(valor)) && cantidadAComprar < auxArticulo[0].Cantidad)
             {
                 ArticulosCarrito.Add(auxArticulo[0]);
                 if (idArticulo == null)
@@ -65,18 +67,14 @@ namespace ArticleManager_Web
                     idArticulo = new List<int>();
                 }
                 idArticulo.Add(int.Parse(valor));
-                cantidad = ArticulosCarrito.Count();
+                cantidad++;
+                
                 Session.Add("ArticulosCarrito", ArticulosCarrito);
                 Session.Add("idArticulo", idArticulo);
                 Session.Add("cantidad", cantidad);
                 Response.Redirect("Articulos.aspx", false);
             }
-            else
-            {
-
-            }
-
-            
+        
         }
 
         protected void btnLogueate_Click(object sender, EventArgs e)

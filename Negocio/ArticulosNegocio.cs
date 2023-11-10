@@ -107,6 +107,7 @@ namespace Negocio
                         }
                         auximg++;
                     }
+                    aux.Cantidad = (int)datos.Lector["Cantidad"];
                     articulos.Add(aux);
 
                 }
@@ -164,6 +165,7 @@ namespace Negocio
                         }
                         auximg++;
                     }
+                    aux.Cantidad = (int)datos.Lector["Cantidad"];
                     articulos.Add(aux);
 
                 }
@@ -327,7 +329,8 @@ namespace Negocio
                 
                 
                 aux.Precio = (int)datos.Lector.GetSqlMoney(5);
-          
+                aux.Cantidad = (int)datos.Lector["Cantidad"];
+
                 articulos.Add(aux);
             }
             return articulos;

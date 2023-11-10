@@ -16,5 +16,6 @@ namespace Dominio
         public Categoria Categoria { get; set; }
         public Imagen URLImagen { get; set; }
         public float Precio { get; set; }
+        public int Cantidad { get; set; }
     }
 }
