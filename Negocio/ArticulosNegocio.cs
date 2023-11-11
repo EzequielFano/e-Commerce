@@ -434,6 +434,51 @@ namespace Negocio
 
             return esRepetido;
         }
+
+        public void restarStock(int cantidad, int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Articulo articulo = new Articulo();
+
+            try
+            {
+                datos.setearProcedura("RestarCantidadArticulo");
+                datos.setearParametro("@IdArticulo", Id);
+                datos.setearParametro("@CantidadARestar", cantidad);
+                datos.ejecutarLectura();          
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void sumarStock(int cantidad, int Id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Articulo articulo = new Articulo();
+
+            try
+            {
+                datos.setearProcedura("SumarCantidadArticulo");
+                datos.setearParametro("@IdArticulo", Id);
+                datos.setearParametro("@CantidadARestar", cantidad);
+                datos.ejecutarLectura();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
     }
 
 }

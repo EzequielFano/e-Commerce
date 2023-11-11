@@ -48,7 +48,7 @@
                                 {%>
                             <p>
                                 <label>Cantidad:</label>
-                                <asp:TextBox ID="txtCantidad" runat="server" onkeypress="return soloNumeros(event)"/>
+                                <asp:TextBox ID="txtCantidad" runat="server" onkeypress="return soloNumeros(event)" Text="1"/>
                                
 
                                 <asp:Button ID="btnCarrito" runat="server" CssClass="btn btn-success" Text="Agregar al carrito" CommandArgument='<%#Eval("IdArticulo")%>' CommandName="IdArticulo" OnClick="btnCarrito_Click" />

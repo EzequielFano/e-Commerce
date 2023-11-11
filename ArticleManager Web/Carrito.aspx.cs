@@ -17,10 +17,12 @@ namespace ArticleManager_Web
         public bool borroCarrito { get; set; }
         public List<int> idArticulo { get; set; }
         public List<Imagen> ListaImagenes { get; set; }
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             articulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
             cantidad = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
+
             if (!IsPostBack)
             {
                 rpRepetidor.DataSource = articulosCarrito;
@@ -32,12 +34,14 @@ namespace ArticleManager_Web
         protected void btnEliminarCarrito_Click(object sender, EventArgs e)
         {
             string valor = ((Button)sender).CommandArgument;
+            ArticulosNegocio negocio = new ArticulosNegocio();
 
             foreach (Articulo aux in articulosCarrito)
             {
                 if (aux.IdArticulo == int.Parse(valor))
                 {
                     articulosCarrito.Remove(aux);
+                    negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
                     cantidad--;
                     Session["cantidad"] = cantidad;
                     Response.Redirect("Carrito.aspx");

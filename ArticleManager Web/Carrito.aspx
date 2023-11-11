@@ -15,9 +15,12 @@
                     <div class="col-md-8">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("NombreArticulo") %></h5>
-                            <h4 class="card-title"><%#Eval("Precio") %></h4>
+                            <h4 class="card-title">Total $<%# Convert.ToDecimal(Eval("Cantidad")) * Convert.ToDecimal(Eval("Precio")) %></h4>
                             <p class="card-text">Marca: <%#Eval("Marca")%></p>
                             <p class="card-text"><small class="text-body-secondary">Descripcion: <%#Eval("Descripcion")%></small></p>
+                            <p>
+                                <h6 class="card-title">Total: <%#Eval("Cantidad")%></h6>
+                            </p>
                             <asp:Button ID="btnEliminarCarrito" runat="server"  CssClass="btn btn-danger" Text="Eliminar del carrito" CommandArgument='<%#Eval("IdArticulo")%>' CommandName="IdArticulo" OnClick="btnEliminarCarrito_Click" />
                         </div>
                     </div>
