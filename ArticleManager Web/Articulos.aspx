@@ -21,7 +21,7 @@
         </div>
     </div>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:20px;margin-left:180px;">
+    <div class="row row-cols-1 row-cols-md-3 g-4" style="margin-top:20px;margin-left:120px;">
         <asp:Repeater ID="rpRepetidor" runat="server">
             <ItemTemplate>
                 <div class="col">
