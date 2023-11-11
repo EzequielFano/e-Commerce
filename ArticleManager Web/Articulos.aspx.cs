@@ -85,8 +85,8 @@ namespace ArticleManager_Web
                 }
                 else
                 {
-                Session.Add("error", "La cantidad seleccionada es incorrecta o el producto seleccionado ya esta en tu carrito.");
-                Response.Redirect("Error.aspx", false);    
+                    Session.Add("error", "La cantidad seleccionada es incorrecta o el producto seleccionado ya esta en tu carrito.");
+                    Response.Redirect("Error.aspx", false);
                 }
 
             }
@@ -103,43 +103,8 @@ namespace ArticleManager_Web
             Response.Redirect("Login.aspx", false);
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            ArticulosNegocio negocio = new ArticulosNegocio();
-            List<Articulo> lista = new List<Articulo>();
-            List<Articulo> auxArticulo = negocio.TraerListadoSP();
-            string busqueda = txtBuscador.Text;
-            if (busqueda.Length > 0)
-            {
-                lista = auxArticulo.FindAll(x => x.NombreArticulo.ToUpper().Contains(busqueda.ToUpper())
-                || x.CodigoArticulo.ToUpper().Contains(busqueda.ToUpper())
-                || x.Descripcion.ToUpper().Contains(busqueda.ToUpper())
-                || x.Marca.Descripcion.ToUpper().Contains(busqueda.ToUpper())
-                || x.Categoria.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
-            }
-            else
-            {
-                lista = auxArticulo;
-            }
-            filtrado = true;
-            ListaArticulos = lista;
-            Session.Add("Filtrado", filtrado);
-            Session.Add("ListaArticulos", ListaArticulos);
-            Response.Redirect("Articulos.aspx");
-        }
 
-        protected void btnReset_Click(object sender, EventArgs e)
-        {
-            ArticulosNegocio negocio = new ArticulosNegocio();
-            List<Articulo> lista = new List<Articulo>();
-            List<Articulo> auxArticulo = negocio.TraerListadoSP();
-            lista = auxArticulo;
-            filtrado = false;
-            ListaArticulos = lista;
-            Session.Add("Filtrado", filtrado);
-            Session.Add("ListaArticulos", ListaArticulos);
-            Response.Redirect("Articulos.aspx");
 
-        }
+        
     }
 }
