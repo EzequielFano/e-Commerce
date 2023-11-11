@@ -10,8 +10,22 @@
             <asp:BoundField HeaderText="Nombre" DataField="NombreArticulo" />
             <asp:BoundField HeaderText="Categoria" DataField="Categoria.Descripcion" />
             <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+            <asp:BoundField HeaderText="Precio unitario" DataField="Precio" />
+            <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
         </Columns>
     </asp:GridView>
-    <asp:Button Text="Ir a pagar" CssClass="btn btn-success" ID="btnPagar" runat="server" OnClick="btnPagar_Click"/>
+    <h4>El total a pagar es de $<%= PrecioTotal%></h4>
+
+    <asp:Repeater id="rpRepeater" runat="server">
+        <ItemTemplate>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">
+                    Default radio
+                </label>
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+    <asp:Button Text="Ir a pagar" CssClass="btn btn-success" ID="btnPagar" runat="server" OnClick="btnPagar_Click" />
     <a href="Carrito.aspx">Volver</a>
 </asp:Content>

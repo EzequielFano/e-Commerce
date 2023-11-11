@@ -13,12 +13,17 @@ namespace ArticleManager_Web
     public partial class Pago : System.Web.UI.Page
     {
         public List<Articulo> articulosComprados { get; set; }
+        public float PrecioTotal { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
-
+            PrecioTotal = 0;
             articulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
+            foreach(Articulo aux in articulosComprados)
+            {
+                PrecioTotal += (aux.Precio * aux.Cantidad);
+            }
             dgvArticulosComprados.DataSource = articulosComprados;
             dgvArticulosComprados.DataBind();
             
