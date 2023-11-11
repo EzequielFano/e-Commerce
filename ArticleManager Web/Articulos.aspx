@@ -3,6 +3,14 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <style>
+        .buttoncolor{
+            color:rebeccapurple;
+            border:2px solid;
+            border-color:rebeccapurple;
+            background-color:black;
+        }
+    </style>
 
     <div class="container mt-4">
        
@@ -15,7 +23,7 @@
             <div class="d-flex  justify-content-center mt-2">
                 <h3 style="color: forestgreen">No olvides loguearte para realizar tu compra --> </h3>
                 &nbsp
-            <asp:Button BorderColor="DarkGray" Text="Loguate aqui" ID="btnLogueate" CssClass="btn btn-success" runat="server" OnClick="btnLogueate_Click" />
+            <asp:Button Text="Loguate aqui" ID="btnLogueate" CssClass="btn btn-outline-success buttoncolor" runat="server" OnClick="btnLogueate_Click" />
             </div>
             <%} %>
         </div>
@@ -25,7 +33,7 @@
         <asp:Repeater ID="rpRepetidor" runat="server">
             <ItemTemplate>
                 <div class="col">
-                    <div class="card text-bg-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card text-bg-secondary mb-3" style="max-width: 18rem;border:6px ridge;border-color:rebeccapurple">
                         <img src="<%#Eval("URLImagen.URL")%>" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("NombreArticulo") %></h5>
@@ -53,7 +61,7 @@
                                         return true;
                                     }
                                 </script>
-                                <label>(<%#Eval("cantidad")%> disponibles)</label>
+                                <label>(<%#Eval("cantidad")%>disponibles)</label>
                             </p>
                             &nbsp &nbsp &nbsp
                             <%} %>
