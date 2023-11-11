@@ -43,7 +43,7 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            
+
                             <li class="nav-item">
                                 <a class="nav-link" href="AboutUs.aspx">About Us</a>
                             </li>
@@ -53,14 +53,16 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-4 align-self-start" style="">
+                <div class="col-4 align-self-start">
                     <form class="d-flex " role="search">
                         <asp:TextBox ID="txtBuscador" CssClass="form-control" placeholder="Filtro" runat="server"></asp:TextBox>
                 </div>
-                <div class="col-1" style="margin-left: 10px;">
+                <div class="col" style="margin-left: 10px;">
                     <asp:Button Text="Buscar" ID="btnBuscar" CssClass="btn btn-outline-success" runat="server" OnClick="btnBuscar_Click1" />
-                       <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
                 </div>
+                <div class="col" style="margin-left: 10px;">
+                    <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
+               </div>
     </form>
     <div class="col-1">
         <div>

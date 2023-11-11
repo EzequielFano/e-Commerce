@@ -35,8 +35,7 @@ namespace ArticleManager_Web
                 || x.CodigoArticulo.ToUpper().Contains(busqueda.ToUpper())
                 || x.Descripcion.ToUpper().Contains(busqueda.ToUpper())
                 || x.Marca.Descripcion.ToUpper().Contains(busqueda.ToUpper())
-                || x.Categoria.Descripcion.ToUpper().Contains(busqueda.ToUpper())
-                || x.Cantidad.ToString().Contains(busqueda.ToUpper()));
+                || x.Categoria.Descripcion.ToUpper().Contains(busqueda.ToUpper()));
             }
             else
             {
