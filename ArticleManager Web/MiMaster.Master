@@ -25,19 +25,20 @@
             border-color: rebeccapurple;
         }
 
+        }
+
         body {
             background-color: black;
             font-family: TradeGothic, sans-serif;
             position: center;
-            margin-left:40px;
-            margin-right:40px;
+            margin-left: 40px;
+            margin-right: 40px;
         }
-            
     </style>
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <section class="banner bg-white" style="background: url(https://images.alphacoders.com/116/1169862.jpg)">
         <div class="container">
-            <div class="row align-items-center">
+            <div class="row align-items-center" style="margin-top: 20px;">
                 <div class="col"></div>
                 <div class="col align-self-center text-center">
                     <h1 id="txttitulo" style="text-transform: uppercase">TechnoGeek</h1>
