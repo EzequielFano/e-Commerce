@@ -88,17 +88,11 @@
                 <span class="badge bg-danger"><%= cantidadCarrito%></span>
             </a>
         </div>
-
-
         <%} %>
     </div>
     </nav>
-
-           
-
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
-
     </div>
     </form>
     <footer class="bg-dark text-white pt-5 pb-4">

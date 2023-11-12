@@ -42,6 +42,7 @@ namespace ArticleManager_Web
                 lista = auxArticulo;
             }
             filtrado = true;
+            
             ListaArticulos = lista;
             Session.Add("Filtrado", filtrado);
             Session.Add("ListaArticulos", ListaArticulos);

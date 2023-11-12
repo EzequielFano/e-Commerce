@@ -8,7 +8,7 @@
         /* Establece un tamaño fijo para el carrusel */
         #carouselExample {
             width: 300px; /* Ancho deseado del carrusel */
-            height: 500px; /* Altura deseada del carrusel */
+            height: 300px; /* Altura deseada del carrusel */
         }
 
         /* Establece un tamaño máximo para las imágenes en el carrusel */
@@ -100,9 +100,7 @@
                      </ItemTemplate>
                  </asp:Repeater>
             </div>
-            <div class="row">
-                <h1>asdasdsadasd</h1>
-            </div>
+          
         </div>
     </div>
     

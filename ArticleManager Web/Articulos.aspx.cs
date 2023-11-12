@@ -16,7 +16,7 @@ namespace ArticleManager_Web
         public List<Articulo> ListaArticulos { get; set; }
         static public List<Articulo> ArticulosCarrito { get; set; }
         static public int cantidad { get; set; }
-        public int cantidadAComprar { get; set; }
+        static public int cantidadAComprar { get; set ; }
         public List<Imagen> ListaImagenes { get; set; }
 
         public List<int> idArticulo { get; set; }
@@ -25,8 +25,7 @@ namespace ArticleManager_Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-
+            {              
                 filtrado = Session["Filtrado"] != null ? true : false;
                 ListaArticulos = (List<Articulo>)Session["ListaArticulos"];
                 session = Session["session"] != null ? (bool)Session["session"] : false;
@@ -42,7 +41,7 @@ namespace ArticleManager_Web
                     }
                 }
                 else
-                {
+                { 
                     rpRepetidor.DataSource = ListaArticulos;
                     rpRepetidor.DataBind();
                 }
@@ -55,10 +54,9 @@ namespace ArticleManager_Web
             {
                 string valor = ((Button)sender).CommandArgument;
                 TextBox txtCantidad = (TextBox)((Button)sender).NamingContainer.FindControl("txtCantidad");
-
                 cantidadAComprar = int.Parse(txtCantidad.Text);
                 ArticulosNegocio negocio = new ArticulosNegocio();
-
+                
                 List<Articulo> auxArticulo = negocio.TraerListadoCompletoxId(int.Parse(valor));
                 if (ArticulosCarrito == null)
                 {
@@ -68,6 +66,7 @@ namespace ArticleManager_Web
                 if (!negocio.revisarRepetidos(ArticulosCarrito, int.Parse(valor)) && cantidadAComprar <= auxArticulo[0].Cantidad)
                 {
                     auxArticulo[0].Cantidad = cantidadAComprar;
+                    
                     ArticulosCarrito.Add(auxArticulo[0]);
 
                     if (idArticulo == null)
@@ -77,7 +76,8 @@ namespace ArticleManager_Web
                     idArticulo.Add(int.Parse(valor));
                     cantidad++;
                     negocio.restarStock(cantidadAComprar, int.Parse(valor));
-                    Session.Add("ArticulosCarrito", ArticulosCarrito);
+                
+                    Session.Add("ArticulosCarrito", ArticulosCarrito);    
                     Session.Add("idArticulo", idArticulo);
                     Session.Add("cantidad", cantidad);
                     Session.Add("cantidadAComprar", cantidadAComprar);
