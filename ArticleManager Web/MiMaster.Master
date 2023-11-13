@@ -84,7 +84,7 @@
             <%if (session)
                 {%>
 
-            <a class="nav-link" href="Carrito.aspx">
+            <a class="nav-link text-center" href="Carrito.aspx">
                 <i class="bi bi-minecart text-white col"></i>
                 <span class="badge bg-danger"><%= cantidadCarrito%></span>
             </a>
