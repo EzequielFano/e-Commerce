@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
+    public enum TipoUsuario
+    {
+        NORMAL = 1,
+        ADMIN = 2
+    }
     public class Usuario
     {
         public int IdUsuario { get; set; }
@@ -13,7 +18,7 @@ namespace Dominio
         public string Apellido { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public int TipoUsuario { get; set; }
+        public TipoUsuario TipoUsuario { get; set; }
         public Direccion Direcciones { get; set; }
 
     }
