@@ -1,24 +1,30 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="ManipularArticulo.aspx.cs" Inherits="ArticleManager_Web.ManipularArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <style>
+        /* Estilo para las etiquetas label */
+        .form-label {
+            color: violet;
+            font-weight: bold;
+        }
+
+        /* Ajuste de margen superior para el formulario */
+        .custom-form {
+            margin-top: 200px; /* Puedes ajustar este valor según tus necesidades */
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form class="row g-3">
+    <form class="row g-3 custom-form">
         <div class="col-6 mb-3">
             <label for="inputNombre" class="form-label">Nombre</label>
             <div class="input-group">
+                <span class="input-group-text">ID </span>
                 <asp:TextBox type="text" placeholder="Nombre" CssClass="form-control" ID="txtNombre" runat="server" />
                 <asp:TextBox type="text" placeholder="Codigo" CssClass="form-control" ID="txtCodigo" runat="server" />
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="inputDescripcion" class="form-label">Codigo:</label>
-            <asp:TextBox type="text" placeholder="Ingresar precio.." CssClass="form-control" ID="TextBox1" runat="server" />
-        </div>
-        <div class="col-6 mb-3">
-            <label for="inputAddress" class="form-label">Descripcion:</label>
-            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-        </div>
+
         <div class="col-6 mb-3">
             <label for="inputAddress2" class="form-label">Precio:</label>
             <div class="input-group">
@@ -26,10 +32,11 @@
                 <asp:TextBox type="text" placeholder="Ingresar precio.." CssClass="form-control" ID="txtPrecio" runat="server" />
             </div>
         </div>
-        <div class="col-md-6 mb-3">
-            <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control" id="inputCity">
+        <div class="col-6 mb-3">
+            <label for="inputAddress" class="form-label">Descripcion:</label>
+            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" Columns="50"></asp:TextBox>
         </div>
+
         <div class="col-md-3 mb-3">
             <label for="inputStatee" class="form-label">State</label>
             <select id="inputStatee" class="form-select">
