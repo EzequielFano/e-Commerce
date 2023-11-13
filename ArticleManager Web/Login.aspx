@@ -58,9 +58,9 @@
                     <div class="col-md-6">
                     </div>
                 </div>
-                <br>
-                <asp:Button ID="btnIngresar" CssClass="btn btn-outline-success buttoncolor" runat="server" Text="Ingresar" OnClick="btnIngresar_Click" />
-                <br>
+                <br>                 
+                <asp:Button ID="btnIngresar" CssClass="btn btn-outline-success buttoncolor" runat="server" Text="Ingresar" Onclick="btnIngresar_Click" />
+                 <br>
                 <br>
             </form>
             <br>
