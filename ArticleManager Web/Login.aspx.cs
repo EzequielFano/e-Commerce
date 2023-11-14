@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services.Description;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
 
 namespace ArticleManager_Web
 {
@@ -9,16 +16,19 @@ namespace ArticleManager_Web
         public bool session { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                user = Session["user"] != null ? Session["user"].ToString() : "";
+                password = Session["password"] != null ? Session["password"].ToString() : "";
+                session = Session["session"] != null ? (bool)Session["session"] : false;
+                lblUser.Text = user;
 
-            user = Session["user"] != null ? Session["user"].ToString() : "";
-            password = Session["password"] != null ? Session["user"].ToString() : "";
-            session = Session["session"] != null ? (bool)Session["session"] : false;
-            lblUser.Text = user;
+            }
 
 
 
 
-        }        
+        }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
