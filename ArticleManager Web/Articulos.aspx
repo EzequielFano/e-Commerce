@@ -61,7 +61,7 @@
                                         return true;
                                     }
                                 </script>
-                                <label>(<%#Eval("cantidad")%>disponibles)</label>
+                                <label>(<%#Eval("cantidad")%> disponibles)</label>
                             </p>
                             &nbsp &nbsp &nbsp
                             <%} %>

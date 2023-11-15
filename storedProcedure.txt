@@ -63,3 +63,43 @@ BEGIN
     WHERE
         A.Id = @IdArticulo;
 END;
+
+=======================================================================================
+
+ CREATE PROCEDURE AgregarArticulo
+    @Codigo NVARCHAR(50),
+    @Nombre NVARCHAR(100),
+    @Descripcion NVARCHAR(MAX),
+    @IdMarca INT,
+    @IdCategoria INT,
+    @Precio DECIMAL(18, 2),
+    @Cantidad INT
+AS
+BEGIN
+    INSERT INTO ARTICULOS (Codigo, Nombre, Descripcion, IdMarca, IdCategoria, Precio, Cantidad)
+    VALUES (@Codigo, @Nombre, @Descripcion, @IdMarca, @IdCategoria, @Precio, @Cantidad);
+END;
+
+=======================================================================================
+
+CREATE PROCEDURE loguearUsuario 
+    @Email VARCHAR(100) = NULL, 
+    @Nombre VARCHAR(100) = NULL,
+    @Pass VARCHAR(100) 
+AS 
+BEGIN 
+    SELECT IdUsuario, TipoUsuario 
+    FROM USUARIO 
+    WHERE (Email = @Email OR Nombre = @Nombre) AND Pass = @Pass; 
+END;
+
+=======================================================================================
+
+CREATE PROCEDURE AgregarImagen
+    @IdArticulo INT,
+    @ImagenUrl NVARCHAR(MAX)
+AS
+BEGIN
+    INSERT INTO IMAGENES (IdArticulo, ImagenUrl)
+    VALUES (@IdArticulo, @ImagenUrl);
+END;

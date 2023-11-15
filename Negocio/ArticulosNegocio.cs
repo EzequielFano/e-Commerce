@@ -189,13 +189,14 @@ namespace Negocio
                 ImagenNegocio imagenNegocio = new ImagenNegocio();
                 Imagen imag = new Imagen();
 
-                datos.setearConsulta("insert into ARTICULOS (Codigo,Nombre,Descripcion,IdMarca,IdCategoria,Precio) values (@Codigo,@Nombre,@Descripcion,@IdMarca,@IdCategoria,@Precio)");
+                datos.setearProcedura("agregarArticulo");
                 datos.setearParametro("@Codigo", articulo.CodigoArticulo);
                 datos.setearParametro("@Nombre", articulo.NombreArticulo);
                 datos.setearParametro("@Descripcion", articulo.Descripcion);
                 datos.setearParametro("@IdMarca", articulo.Marca.Id);
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
+                datos.setearParametro("Cantidad", articulo.Cantidad);
                 datos.ejecutarAccion();
                 imag = imagenNegocio.ObtenerIDarticuloCargado();
                 datos.setearConsulta("INSERT INTO IMAGENES (IdArticulo,ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
