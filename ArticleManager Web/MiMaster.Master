@@ -65,15 +65,22 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Login.aspx">Login</a>
                             </li>
-                          <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.ADMIN) && session)
-                              {  %> 
-                            <li class="nav-item">
-                                <a class="nav-link" href="ListadoArticulos.aspx">Listado</a>
+                            <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.ADMIN) && session)
+                                {  %>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Back Office
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="ListadoArticulos.aspx">Listado de articulos</a></li>
+                                    <li><a class="dropdown-item" href="ManipularArticulo.aspx">Agregar articulos</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">Pedidos</a></li>
+                                </ul>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="ManipularArticulo.aspx">Modificar</a>
-                            </li>
-                           <%} %>
+                            <%} %>
                         </ul>
                     </div>
                 </div>
