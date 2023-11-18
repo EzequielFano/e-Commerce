@@ -66,11 +66,14 @@
     <div class="col-12 mb-3">
         <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" />
     </div>
+     <div class="col-12 mb-3">
+     <asp:Button Text="Modificar" CssClass="btn btn-success" ID="btnModificar" OnClick="btnModificar_Click" runat="server" />
+ </div>
     <%--  IMAGENES--%>
     <div id="carouselExample" class="carousel slide w-50">
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="..." class="d-block w-100" alt="...">
+                <img src="<%#Eval("URLImagen.URL")%>"" class="d-block w-100" alt="...">
             </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">

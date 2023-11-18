@@ -222,7 +222,7 @@ namespace Negocio
             Imagen imag = new Imagen();
             try
             {
-                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio WHERE Id = @IdArticulo");
+                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio , Cantidad = @Cantidad WHERE Id = @IdArticulo");
                 datos.setearParametro("IdArticulo", articulo.IdArticulo);
                 datos.setearParametro("@Codigo", articulo.CodigoArticulo);
                 datos.setearParametro("@Nombre", articulo.NombreArticulo);
@@ -230,6 +230,7 @@ namespace Negocio
                 datos.setearParametro("@IdMarca", articulo.Marca.Id);
                 datos.setearParametro("@IdCategoria", articulo.Categoria.Id);
                 datos.setearParametro("@Precio", articulo.Precio);
+                datos.setearParametro("@Cantidad", articulo.Cantidad);
                 datos.ejecutarAccion();
                
                 datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");

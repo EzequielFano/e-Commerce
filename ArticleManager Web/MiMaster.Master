@@ -66,6 +66,9 @@
                                 <a class="nav-link" href="Login.aspx">Login</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link" href="ListadoArticulos.aspx">Listado</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="ManipularArticulo.aspx">Modificar</a>
                             </li>
                         </ul>
