@@ -16,8 +16,8 @@ namespace ArticleManager_Web
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
 
-            articulos = negocio.TraerListadoSP();
-           
+            articulos = negocio.TraerListadoCompletoSP();
+
             dgvArticulos.DataSource = articulos;
             dgvArticulos.DataBind();
 
@@ -35,7 +35,19 @@ namespace ArticleManager_Web
 
                 throw ex;
             }
-     
+
         }
+        protected string GetStatusColor(object status)
+        {
+            if (status != null && status.ToString() == "1")
+            {
+                return "green-text"; // Clase de estilo para texto verde
+            }
+            else
+            {
+                return "red-text"; // Clase de estilo para texto rojo
+            }
+        }
+
     }
 }

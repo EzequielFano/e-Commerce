@@ -17,5 +17,6 @@ namespace Dominio
         public Imagen URLImagen { get; set; }
         public float Precio { get; set; }
         public int Cantidad { get; set; }
+        public bool Status { get; set; }
     }
 }
