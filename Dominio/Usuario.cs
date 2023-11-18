@@ -30,14 +30,6 @@ namespace Dominio
             TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
 
         }
-        public bool isAdmin (Usuario usuario)
-        {
-            if (usuario.TipoUsuario == TipoUsuario.ADMIN) {  return true; }
-            else
-            {
-            return false;
-            }
-        }
-      
+            
     }
 }

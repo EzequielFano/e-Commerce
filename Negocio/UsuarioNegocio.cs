@@ -40,6 +40,28 @@ namespace Negocio
 				throw ex;
 			}
 
-		}		
+		}
+		public bool crearUsuario(Usuario usuario)
+		{
+			AccesoDatos datos = new AccesoDatos();
+
+			try
+			{
+				datos.setearProcedura("CrearUsuario");
+				datos.setearParametro("@Nombre",usuario.Nombre);
+				datos.setearParametro("@Apellido", usuario.Apellido);
+				datos.setearParametro("@Email",usuario.Email);
+				datos.setearParametro("@Pass",usuario.Password);
+				datos.setearParametro("@TipoUsuario",'1');
+				datos.ejecutarAccion();
+
+			return true;
+			}
+			catch (Exception ex)
+			{
+
+				throw ex;
+			}
+		}
 	}
 }
