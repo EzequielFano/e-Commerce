@@ -68,6 +68,9 @@
                           <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.ADMIN) && session)
                               {  %> 
                             <li class="nav-item">
+                                <a class="nav-link" href="ListadoArticulos.aspx">Listado</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link" href="ManipularArticulo.aspx">Modificar</a>
                             </li>
                            <%} %>
