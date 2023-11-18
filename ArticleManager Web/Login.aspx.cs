@@ -1,6 +1,9 @@
-﻿using System;
+﻿using Dominio;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
@@ -31,12 +34,13 @@ namespace ArticleManager_Web
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
-        {
+        {   
 
             Session.Add("user", "");
             Session.Add("password", "");
             Session.Add("session", session);
             Session.Add("session", false);
+            Session.Add("TipoUsuario",1);
             Response.Redirect("Login.aspx", false);
         }
 
@@ -47,27 +51,50 @@ namespace ArticleManager_Web
 
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
-            if (txtUser.Text != "" && txtPassword.Text != "")
+
+                Usuario usuario;
+                UsuarioNegocio negocio = new UsuarioNegocio();
+            try
             {
-                user = txtUser.Text;
-                password = txtPassword.Text;
-                Session.Add("user", user);
-                Session.Add("password", password);
-                Session.Add("session", true);
-                Response.Redirect("Login.aspx", false);
-
+                usuario = new Usuario(txtUser.Text,txtUser.Text, txtPassword.Text, false);
+                if (negocio.Loguear(usuario))
+                {
+                    Session.Add("usuario", usuario);
+                    Session.Add("session", true);
+                    Response.Redirect("Login.aspx", false);
+                }
+                else
+                {
+                    Session.Add("error", "Email o contraseña incorrectos");
+                    Response.Redirect("Error.aspx");
+                    Session.Add("session", false);
+                }
             }
-            else
+            catch (Exception ex)
             {
 
-                user = "";
-                password = "";
-                Session.Add("user", user);
-                Session.Add("password", password);
-                Session.Add("session", false);
-                Response.Redirect("Login.aspx", false);
-
+                throw ex;
             }
+            //if (txtUser.Text != "" && txtPassword.Text != "")
+            //{
+            //    user = txtUser.Text;
+            //    password = txtPassword.Text;
+            //    Session.Add("user", user);
+            //    Session.Add("password", password);
+            //    Session.Add("session", true);
+
+            //}
+            //else
+            //{
+
+            //    user = "";
+            //    password = "";
+            //    Session.Add("user", user);
+            //    Session.Add("password", password);
+            //    Session.Add("session", false);
+            //    Response.Redirect("Login.aspx", false);
+
+            //}
         }
     }
 

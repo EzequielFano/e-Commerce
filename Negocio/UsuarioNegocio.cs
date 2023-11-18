@@ -1,6 +1,7 @@
 ﻿using Dominio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace Negocio
 {
     public class UsuarioNegocio
     {
-		public bool loguear(Usuario usuario)
+		public bool Loguear(Usuario usuario)
 		{
 			AccesoDatos datos = new AccesoDatos();
 			
@@ -18,10 +19,19 @@ namespace Negocio
 			{
 				datos.setearProcedura("loguearUsuario");
 				datos.setearParametro("@Email", usuario.Email);
-				datos.setearParametro("@Nombre", usuario.Name);
+				datos.setearParametro("@Nombre", usuario.Nombre);
 				datos.setearParametro("@Pass", usuario.Password);
+				datos.ejecutarLectura();
 
-				return true;
+				while (datos.Lector.Read())
+				{
+					usuario.IdUsuario = (int)datos.Lector["IdUsuario"];					
+					usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 2 ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
+											
+					return true;
+				}
+				return false;
+
 
 			}
 			catch (Exception ex)
@@ -30,6 +40,6 @@ namespace Negocio
 				throw ex;
 			}
 
-		}
+		}		
 	}
 }

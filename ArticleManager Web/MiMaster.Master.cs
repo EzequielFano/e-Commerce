@@ -12,17 +12,17 @@ namespace ArticleManager_Web
     public partial class MiMaster : System.Web.UI.MasterPage
     {
         public bool session { get; set; }
+        public bool admin { get; set; }
         public int cantidadCarrito { get; set; }
         public bool filtrado { get; set; }
         public List<Articulo> ListaArticulos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+
             session = Session["session"] != null ? (bool)Session["session"] : false;
             cantidadCarrito = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
         }
-
-
-
+      
         protected void btnBuscar_Click1(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
@@ -42,7 +42,7 @@ namespace ArticleManager_Web
                 lista = auxArticulo;
             }
             filtrado = true;
-            
+
             ListaArticulos = lista;
             Session.Add("Filtrado", filtrado);
             Session.Add("ListaArticulos", ListaArticulos);
@@ -60,6 +60,6 @@ namespace ArticleManager_Web
             Session.Add("Filtrado", filtrado);
             Session.Add("ListaArticulos", ListaArticulos);
             Response.Redirect("Articulos.aspx");
-        }
+        }        
     }
 }

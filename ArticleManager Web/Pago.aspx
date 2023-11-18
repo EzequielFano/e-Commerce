@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Aca vamos a configurar la parte del pago</h2>
+    <h2>Aca vamos a configurar la parte del pago</h2>   
     <asp:GridView ID="dgvArticulosComprados" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField HeaderText="Codigo Articulo" DataField="CodigoArticulo" />
@@ -14,7 +14,7 @@
             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
         </Columns>
     </asp:GridView>
-    <h4>El total a pagar es de $<%= PrecioTotal%></h4>
+    <h4 style="">El total a pagar es de $<%= PrecioTotal%></h4>
 
     <asp:Repeater id="rpRepeater" runat="server">
         <ItemTemplate>
