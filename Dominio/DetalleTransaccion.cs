@@ -8,11 +8,7 @@ namespace Dominio
 {
     public class DetalleTransaccion
     {
-        //        DETALLETRANSACCION
-        //float Precio
-        //int Cantidad
-        //Articulo artculo
-        //IdDetallTransaccion
+
         public float Precio { get; set; }
         public int Cantidad { get; set; }
         public Articulo Articulo { get; set; }

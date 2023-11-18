@@ -4,11 +4,13 @@ using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Net;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Dominio;
 using Microsoft.Win32;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Negocio
 {
@@ -50,7 +52,7 @@ namespace Negocio
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
                     {
                         aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
-                        if(aux.URLImagen.URL==" ")
+                        if (aux.URLImagen.URL == " ")
                         {
                             aux.URLImagen.URL = "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png";
                         }
@@ -115,6 +117,7 @@ namespace Negocio
                         auximg++;
                     }
                     aux.Cantidad = (int)datos.Lector["Cantidad"];
+                    aux.Status = (bool)datos.Lector["Status"];
                     articulos.Add(aux);
 
                 }
@@ -220,7 +223,7 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
-                         
+
         }
         public void modificarArticulo(Articulo articulo)
         {
@@ -239,13 +242,13 @@ namespace Negocio
                 datos.setearParametro("@Precio", articulo.Precio);
                 datos.setearParametro("@Cantidad", articulo.Cantidad);
                 datos.ejecutarAccion();
-               
+
                 datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");
                 datos.setearParametro("@Id", articulo.IdArticulo);
                 datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
                 datos.ejecutarAccion();
-                
-               
+
+
             }
             catch (Exception ex)
             {
@@ -260,7 +263,7 @@ namespace Negocio
         //{
         //    AccesoDatos datos = new AccesoDatos();
         //    Articulo articulo = new Articulo(); 
-          
+
         //    datos.setearConsulta("SELECT A.Codigo AS CodigoArticulo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.Precio FROM ARTICULOS AS A INNER JOIN MARCAS AS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS AS C ON A.IdCategoria = C.Id WHERE A.Id = @IdArticulo");
         //    datos.setearParametro("IdArticulo", Id);
         //    datos.ejecutarLectura();
@@ -273,7 +276,7 @@ namespace Negocio
             List<Imagen> listImg = new List<Imagen>();
             Articulo aux = new Articulo();
             int auximg = 0;
-      
+
 
             datos.setearProcedura("ObtenerImagenesxId");
             datos.setearParametro("IdArticulo", id);
@@ -287,7 +290,7 @@ namespace Negocio
                 {
                     aux.URLImagen.URL = (string)datos.Lector["ImagenUrl"];
                     aux.URLImagen.IdImagen = auxId;
-                    
+
                     if (aux.URLImagen.URL == " ")
                     {
                         aux.URLImagen.URL = "https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png";
@@ -299,12 +302,12 @@ namespace Negocio
             }
             return listImg;
         }
-        public List<Articulo> verDetallesArticulo (int Id)
+        public List<Articulo> verDetallesArticulo(int Id)
         {
             AccesoDatos datos = new AccesoDatos();
             Articulo aux = new Articulo();
             List<Articulo> articulos = new List<Articulo>();
-            
+
             datos.setearProcedura("ObtenerArticuloPorId");
             datos.setearParametro("IdArticulo", Id);
             datos.ejecutarLectura();
@@ -321,8 +324,8 @@ namespace Negocio
                 }
                 else
                 {
-                aux.Marca = new Marca();
-                aux.Marca.Descripcion = (string)datos.Lector["Marca"];
+                    aux.Marca = new Marca();
+                    aux.Marca.Descripcion = (string)datos.Lector["Marca"];
                 }
 
                 aux.Categoria = new Categoria();
@@ -335,8 +338,8 @@ namespace Negocio
                     aux.Categoria = new Categoria();
                     aux.Categoria.Descripcion = (string)datos.Lector["Categoria"];
                 }
-                
-                
+
+
                 aux.Precio = (int)datos.Lector.GetSqlMoney(5);
                 aux.Cantidad = (int)datos.Lector["Cantidad"];
 
@@ -345,9 +348,9 @@ namespace Negocio
             return articulos;
         }
 
-        public void eliminarArticulo (int id)
+        public void eliminarArticulo(int id)
         {
-            AccesoDatos datos= new AccesoDatos ();  
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("DELETE FROM ARTICULOS where id = @IdArticulo");
@@ -355,17 +358,17 @@ namespace Negocio
                 datos.ejecutarAccion();
 
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
 
                 throw ex;
             }
         }
 
-        public List <Articulo> filtrar(string campo, string criterio, string filtro)
+        public List<Articulo> filtrar(string campo, string criterio, string filtro)
         {
-            List <Articulo> lista = new List<Articulo> ();
-            AccesoDatos datos = new AccesoDatos ();
+            List<Articulo> lista = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 string consulta = "SELECT A.Id, A.Codigo, A.Nombre, A.Descripcion, M.Descripcion AS Marca, A.IdCategoria, A.IdMarca, C.Descripcion AS Categoria, A.Precio, IM.ImagenUrl\r\nFROM ARTICULOS A\r\nINNER JOIN IMAGENES IM ON A.Id = IM.IdArticulo\r\nINNER JOIN MARCAS M ON A.IdMarca = M.Id\r\nLEFT JOIN CATEGORIAS C ON A.IdCategoria = C.Id\r\nWHERE ";
@@ -373,11 +376,11 @@ namespace Negocio
                 {
                     consulta += "C.Descripcion = '" + criterio + "'";
                 }
-                else if(campo == "Marca")
+                else if (campo == "Marca")
                 {
                     consulta += "M.Descripcion = '" + criterio + "'";
                 }
-                else 
+                else
                 {
                     switch (criterio)
                     {
@@ -420,7 +423,7 @@ namespace Negocio
                     lista.Add(aux);
 
                 }
-                return lista; 
+                return lista;
             }
             catch (Exception ex)
             {
@@ -429,15 +432,15 @@ namespace Negocio
             }
         }
 
-        public bool revisarRepetidos (List<Articulo> articulos, int Id)
+        public bool revisarRepetidos(List<Articulo> articulos, int Id)
         {
             bool esRepetido = false;
             int cantidad = articulos.Count();
-            for (int i = 0; i<cantidad; i++)
+            for (int i = 0; i < cantidad; i++)
             {
                 if (articulos[i].IdArticulo == Id)
                 {
-                    esRepetido=true;
+                    esRepetido = true;
                 }
             }
 
@@ -454,7 +457,7 @@ namespace Negocio
                 datos.setearProcedura("RestarCantidadArticulo");
                 datos.setearParametro("@IdArticulo", Id);
                 datos.setearParametro("@CantidadARestar", cantidad);
-                datos.ejecutarLectura();          
+                datos.ejecutarLectura();
             }
             catch (Exception)
             {
@@ -476,6 +479,28 @@ namespace Negocio
                 datos.setearProcedura("SumarCantidadArticulo");
                 datos.setearParametro("@IdArticulo", Id);
                 datos.setearParametro("@CantidadARestar", cantidad);
+                datos.ejecutarLectura();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+        public void UpdateStatus(bool status, int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            
+
+            try
+            {
+                datos.setearProcedura("UpdateStatus");
+                datos.setearParametro("@ArticuloId", id);
+                datos.setearParametro("@NuevoStatus", status);
                 datos.ejecutarLectura();
             }
             catch (Exception)

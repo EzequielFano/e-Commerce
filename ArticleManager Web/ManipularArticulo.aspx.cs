@@ -108,9 +108,6 @@ namespace ArticleManager_Web
             }
         }
 
-        protected void btnInactivar_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }

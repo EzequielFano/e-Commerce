@@ -14,12 +14,15 @@ namespace ArticleManager_Web
         List<Articulo> articulos = new List<Articulo>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticulosNegocio negocio = new ArticulosNegocio();
+            if (!IsPostBack)
+            {
+                ArticulosNegocio negocio = new ArticulosNegocio();
 
-            articulos = negocio.TraerListadoCompletoSP();
+                articulos = negocio.TraerListadoCompletoSP();
+                dgvArticulos.DataSource = articulos;
+                dgvArticulos.DataBind();
 
-            dgvArticulos.DataSource = articulos;
-            dgvArticulos.DataBind();
+            }
 
         }
 
@@ -37,17 +40,18 @@ namespace ArticleManager_Web
             }
 
         }
-        protected string GetStatusColor(object status)
-        {
-            if (status != null && status.ToString() == "1")
-            {
-                return "green-text"; // Clase de estilo para texto verde
-            }
-            else
-            {
-                return "red-text"; // Clase de estilo para texto rojo
-            }
-        }
 
+
+        protected void chkStatus_CheckedChanged(object sender, EventArgs e)
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            CheckBox chkStatus = (CheckBox)sender;
+            bool newStatus = chkStatus.Checked;
+            GridViewRow row = (GridViewRow)chkStatus.NamingContainer;
+          
+            int idArticulo = Convert.ToInt32(dgvArticulos.DataKeys[row.RowIndex].Value);
+            negocio.UpdateStatus(newStatus, idArticulo);
+            Response.Redirect("ListadoArticulos.aspx");
+        }
     }
 }
