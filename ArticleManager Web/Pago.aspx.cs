@@ -31,7 +31,7 @@ namespace ArticleManager_Web
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("Envio.aspx");
         }
     }
 }

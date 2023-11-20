@@ -39,14 +39,11 @@
             border-color: rebeccapurple;
             background-color: black;
         }
-        
-    .form-select:focus {
-        border-color:rebeccapurple;
-        box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); /* Cambia este color también */
-    } 
-  
 
-
+        .form-select:focus {
+            border-color: rebeccapurple;
+            box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); /* Cambia este color también */
+        }
     </style>
 
 
@@ -59,14 +56,15 @@
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <label for="metodoPago" class="form-label">Método de Pago</label>
-                            <select class="form-select" id="metodoPago" name="metodoPago" required>
-                                <option style="color: rebeccapurple" value="transferencia">Transferencia Bancaria</option>
-                                <option value="mp">Mercado Pago</option>
-                            </select>
+                            <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
+                            <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                                <asp:ListItem Text="-- Selecciona una opción --" Value="" />
+                                <asp:ListItem Text="Transferencia bancaria" Value="1" />
+                                <asp:ListItem Text="Mercado Pago" Value="2" />
+                            </asp:DropDownList>
                         </div>
                         <div class="mb-3">
-                            <label for="tipoEnvio" class="form-label">Tipo de Entrega</label>
+                            <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega</label>
                             <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                                 <asp:ListItem Text="-- Selecciona una opción --" Value="" />
                                 <asp:ListItem Text="Entrega a domicilio" Value="1" />
