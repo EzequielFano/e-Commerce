@@ -43,36 +43,36 @@
                     </div>
                     <div class="card-body">
 
-                        
-                            <div class="mb-3">
-                                <label class="form-label">Nombre:</label>
-                                <asp:TextBox CssClass="form-control textboxcrear" ID="txtNombre" runat="server" />                                
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre:</label>
+                            <asp:TextBox CssClass="form-control textboxcrear" ID="txtNombre" runat="server" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Apellido:</label>
+                            <asp:TextBox CssClass="form-control textboxcrear" ID="txtApellido" runat="server" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email:</label>
+                            <asp:TextBox CssClass="form-control textboxcrear" ID="txtEmail" runat="server" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contraseña:</label>
+                            <asp:TextBox type="password" CssClass="form-control textboxcrear" ID="txtContra" runat="server" />
+                        </div>
+                        <div class="row">
+                            <div class="col -5">
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Apellido:</label>
-                                <asp:TextBox CssClass="form-control textboxcrear" ID="txtApellido" runat="server" />                               
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email:</label>
-                                <asp:TextBox CssClass="form-control textboxcrear" ID="txtEmail" runat="server" />                               
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Contraseña:</label>
-                                <asp:TextBox CssClass="form-control textboxcrear" ID="txtContra" runat="server" />                              
-                            </div>
-                            <div class="row">
-                                <div class="col -5">
-                                </div>
-                            </div>
-                        
+                        </div>
+
                         <div class="text-center">
 
-                    <asp:Button ID="btnCrearCuenta" Text="Crear Cuenta" CssClass="btn btn-outline-success buttoncolor" runat="server" OnClick="btnCrearCuenta_Click"/>
+                            <asp:Button ID="btnCrearCuenta" Text="Crear Cuenta" CssClass="btn btn-outline-success buttoncolor" runat="server" OnClick="btnCrearCuenta_Click" />
+                            <asp:Button Text="Volver" ID="btnVolver" CssClass="btn btn-outline-success buttoncolor" OnClick="btnVolver_Click" runat="server" />
                         </div>
-                    
+
                     </div>
                     <br>
-                    
                 </div>
 
             </div>
