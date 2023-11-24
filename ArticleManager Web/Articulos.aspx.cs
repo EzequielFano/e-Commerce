@@ -15,7 +15,7 @@ namespace ArticleManager_Web
     {
         public List<Articulo> ListaArticulos { get; set; }
         static public List<Articulo> ArticulosCarrito { get; set; }
-        static public int cantidad { get; set; }
+        static public int CantidadEnCarrito { get; set; }
         static public int cantidadAComprar { get; set ; }
         public List<Imagen> ListaImagenes { get; set; }
 
@@ -29,7 +29,7 @@ namespace ArticleManager_Web
                 filtrado = Session["Filtrado"] != null ? true : false;
                 ListaArticulos = (List<Articulo>)Session["ListaArticulos"];
                 session = Session["session"] != null ? (bool)Session["session"] : false;
-                cantidad = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
+                CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
                 if (!filtrado)
                 {
                     ArticulosNegocio negocio = new ArticulosNegocio();
@@ -74,12 +74,12 @@ namespace ArticleManager_Web
                         idArticulo = new List<int>();
                     }
                     idArticulo.Add(int.Parse(valor));
-                    cantidad++;
+                    CantidadEnCarrito++;
                     negocio.restarStock(cantidadAComprar, int.Parse(valor));
                 
                     Session.Add("ArticulosCarrito", ArticulosCarrito);    
                     Session.Add("idArticulo", idArticulo);
-                    Session.Add("cantidad", cantidad);
+                    Session.Add("CantidadEnCarrito", CantidadEnCarrito);
                     Session.Add("cantidadAComprar", cantidadAComprar);
                     Response.Redirect("Articulos.aspx", false);
                 }
@@ -112,7 +112,7 @@ namespace ArticleManager_Web
                 ArticulosCarrito.Remove(aux);
                 negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
             }
-            cantidad = 0;
+            CantidadEnCarrito = 0;
         }
 
         

@@ -13,7 +13,7 @@ namespace ArticleManager_Web
     public partial class Carrito : System.Web.UI.Page
     {
         public static List<Articulo> ArticulosCarrito { get; set; }
-        public int cantidad { get; set; }
+        public int CantidadEnCarrito { get; set; }
         public bool borroCarrito { get; set; }
         public List<int> idArticulo { get; set; }
         public List<Imagen> ListaImagenes { get; set; }
@@ -21,7 +21,7 @@ namespace ArticleManager_Web
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
-            cantidad = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
+            CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
 
             if (!IsPostBack)
             {
@@ -42,8 +42,8 @@ namespace ArticleManager_Web
                 {
                     ArticulosCarrito.Remove(aux);
                     negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
-                    cantidad--;
-                    Session["cantidad"] = cantidad;
+                    CantidadEnCarrito--;
+                    Session["CantidadEnCarrito"] = CantidadEnCarrito;
                     Response.Redirect("Carrito.aspx");
 
                 }

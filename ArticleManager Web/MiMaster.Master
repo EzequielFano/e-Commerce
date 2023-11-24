@@ -98,7 +98,7 @@
 
             <a class="nav-link text-center" href="Carrito.aspx">
                 <i class="bi bi-minecart text-white col"></i>
-                <span class="badge bg-danger"><%= cantidadCarrito%></span>
+                <span class="badge bg-danger"><%= CantidadEnCarrito%></span>
             </a>
         </div>
         <%} %>

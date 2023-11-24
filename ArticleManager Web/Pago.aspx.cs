@@ -18,6 +18,9 @@ namespace ArticleManager_Web
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
+            
+
+
             PrecioTotal = 0;
             articulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
             foreach(Articulo aux in articulosComprados)
@@ -26,6 +29,7 @@ namespace ArticleManager_Web
             }
             dgvArticulosComprados.DataSource = articulosComprados;
             dgvArticulosComprados.DataBind();
+            
             
         }
 
