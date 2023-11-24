@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Aca vamos a configurar la parte del pago</h2>   
+    <h2>Detalles de la compra: </h2>   
     <asp:GridView ID="dgvArticulosComprados" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false">
         <Columns>
             <asp:BoundField HeaderText="Codigo Articulo" DataField="CodigoArticulo" />

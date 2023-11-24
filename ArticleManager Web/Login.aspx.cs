@@ -19,7 +19,7 @@ namespace ArticleManager_Web
         public string user { get; set; }
         public string password { get; set; }
         public bool session { get; set; }
-        static public int cantidad { get; set; }  
+        static public int cantidad { get; set; }
         static public List<Articulo> ArticulosCarrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -42,7 +42,11 @@ namespace ArticleManager_Web
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
-            //ArticulosCarrito = new List<Articulo>();
+            if (ArticulosCarrito == null)
+            {
+                ArticulosCarrito = new List<Articulo>();
+            }
+
             foreach (Articulo aux in ArticulosCarrito)
             {
                 negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
