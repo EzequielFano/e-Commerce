@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Services.Description;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using static ArticleManager_Web.Articulos1;
+
 
 
 namespace ArticleManager_Web
@@ -17,6 +19,8 @@ namespace ArticleManager_Web
         public string user { get; set; }
         public string password { get; set; }
         public bool session { get; set; }
+        static public int cantidad { get; set; }  
+        static public List<Articulo> ArticulosCarrito { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -24,6 +28,8 @@ namespace ArticleManager_Web
                 user = Session["user"] != null ? Session["user"].ToString() : "";
                 password = Session["password"] != null ? Session["password"].ToString() : "";
                 session = Session["session"] != null ? (bool)Session["session"] : false;
+                ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
+                cantidad = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
                 lblUser.Text = user;
 
             }
@@ -34,13 +40,21 @@ namespace ArticleManager_Web
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
-        {   
-
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            //ArticulosCarrito = new List<Articulo>();
+            foreach (Articulo aux in ArticulosCarrito)
+            {
+                negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
+            }
+            ArticulosCarrito.Clear();
+            cantidad = 0;
+            Session.Add("cantidad", cantidad);
             Session.Add("user", "");
             Session.Add("password", "");
             Session.Add("session", session);
             Session.Add("session", false);
-            Session.Add("TipoUsuario",1);
+            Session.Add("TipoUsuario", 1);
             Response.Redirect("Login.aspx", false);
         }
 
@@ -52,11 +66,11 @@ namespace ArticleManager_Web
         protected void btnIngresar_Click(object sender, EventArgs e)
         {
 
-                Usuario usuario;
-                UsuarioNegocio negocio = new UsuarioNegocio();
+            Usuario usuario;
+            UsuarioNegocio negocio = new UsuarioNegocio();
             try
             {
-                usuario = new Usuario(txtUser.Text,txtUser.Text, txtPassword.Text, false);
+                usuario = new Usuario(txtUser.Text, txtUser.Text, txtPassword.Text, false);
                 if (negocio.Loguear(usuario))
                 {
                     Session.Add("usuario", usuario);

@@ -103,7 +103,17 @@ namespace ArticleManager_Web
             Response.Redirect("Login.aspx", false);
         }
 
-
+        public void carritoEnCero()
+        {
+            ArticulosNegocio negocio = new ArticulosNegocio();
+            ArticulosCarrito = new List<Articulo>();
+            foreach(Articulo aux in ArticulosCarrito)
+            {
+                ArticulosCarrito.Remove(aux);
+                negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
+            }
+            cantidad = 0;
+        }
 
         
     }

@@ -12,7 +12,7 @@ namespace ArticleManager_Web
 {
     public partial class Carrito : System.Web.UI.Page
     {
-        public static List<Articulo> articulosCarrito { get; set; }
+        public static List<Articulo> ArticulosCarrito { get; set; }
         public int cantidad { get; set; }
         public bool borroCarrito { get; set; }
         public List<int> idArticulo { get; set; }
@@ -20,12 +20,12 @@ namespace ArticleManager_Web
        
         protected void Page_Load(object sender, EventArgs e)
         {
-            articulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
+            ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
             cantidad = Session["cantidad"] != null ? (int)Session["cantidad"] : 0;
 
             if (!IsPostBack)
             {
-                rpRepetidor.DataSource = articulosCarrito;
+                rpRepetidor.DataSource = ArticulosCarrito;
                 rpRepetidor.DataBind();
             }
            
@@ -36,11 +36,11 @@ namespace ArticleManager_Web
             string valor = ((Button)sender).CommandArgument;
             ArticulosNegocio negocio = new ArticulosNegocio();
 
-            foreach (Articulo aux in articulosCarrito)
+            foreach (Articulo aux in ArticulosCarrito)
             {
                 if (aux.IdArticulo == int.Parse(valor))
                 {
-                    articulosCarrito.Remove(aux);
+                    ArticulosCarrito.Remove(aux);
                     negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
                     cantidad--;
                     Session["cantidad"] = cantidad;
@@ -54,7 +54,7 @@ namespace ArticleManager_Web
 
         protected void btnComprar_Click(object sender, EventArgs e)
         {
-            Session.Add("articulosCarrito", articulosCarrito);
+            Session.Add("articulosCarrito", ArticulosCarrito);
             Response.Redirect("Pago.aspx");
         }
     }
