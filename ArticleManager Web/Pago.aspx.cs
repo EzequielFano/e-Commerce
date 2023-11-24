@@ -12,25 +12,27 @@ namespace ArticleManager_Web
 {
     public partial class Pago : System.Web.UI.Page
     {
-        public List<Articulo> articulosComprados { get; set; }
+        public List<Articulo> ArticulosComprados { get; set; }
         public float PrecioTotal { get; set; }
-
+        public Usuario Usuario { get; set; }
+        public Direccion Direccion { get; set; }
+        public List<DetalleTransaccion> Detalles { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            ArticulosNegocio negocio = new ArticulosNegocio();
-            
+            Usuario = (Usuario)Session["usuario"];
 
-
-            PrecioTotal = 0;
-            articulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
-            foreach(Articulo aux in articulosComprados)
+            if (!IsPostBack)
             {
-                PrecioTotal += (aux.Precio * aux.Cantidad);
+                PrecioTotal = 0;
+                ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
+                foreach (Articulo articulo in ArticulosComprados)
+                {
+                    PrecioTotal += (articulo.Precio * articulo.Cantidad);
+                }
+                dgvArticulosComprados.DataSource = ArticulosComprados;
+                dgvArticulosComprados.DataBind();
             }
-            dgvArticulosComprados.DataSource = articulosComprados;
-            dgvArticulosComprados.DataBind();
-            
-            
+
         }
 
         protected void btnPagar_Click(object sender, EventArgs e)

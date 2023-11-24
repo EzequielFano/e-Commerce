@@ -8,7 +8,7 @@ namespace Dominio
 {
     public class Direccion
     {
-        public int IdTransaccion { get; set; }
+        
         public Pais Pais { get; set; }
         public Provincia Provincia { get; set; }
         public Ciudad Ciudad { get; set; }       

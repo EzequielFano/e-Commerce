@@ -24,9 +24,7 @@ namespace ArticleManager_Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {
-                user = Session["user"] != null ? Session["user"].ToString() : "";
-                password = Session["password"] != null ? Session["password"].ToString() : "";
+            {             
                 session = Session["session"] != null ? (bool)Session["session"] : false;
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
@@ -54,8 +52,7 @@ namespace ArticleManager_Web
             ArticulosCarrito.Clear();
             CantidadEnCarrito = 0;
             Session.Add("CantidadEnCarrito", CantidadEnCarrito);
-            Session.Add("user", "");
-            Session.Add("password", "");
+            Session.Remove("usuario");
             Session.Add("session", session);
             Session.Add("session", false);
             Session.Add("TipoUsuario", 1);
@@ -93,26 +90,7 @@ namespace ArticleManager_Web
 
                 throw ex;
             }
-            //if (txtUser.Text != "" && txtPassword.Text != "")
-            //{
-            //    user = txtUser.Text;
-            //    password = txtPassword.Text;
-            //    Session.Add("user", user);
-            //    Session.Add("password", password);
-            //    Session.Add("session", true);
-
-            //}
-            //else
-            //{
-
-            //    user = "";
-            //    password = "";
-            //    Session.Add("user", user);
-            //    Session.Add("password", password);
-            //    Session.Add("session", false);
-            //    Response.Redirect("Login.aspx", false);
-
-            //}
+          
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
