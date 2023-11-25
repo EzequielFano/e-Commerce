@@ -63,8 +63,7 @@
             box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); /* Cambia este color también */
         }
     </style>
-
-
+    <asp:ScriptManager runat="server" ID="ScriptManager" />
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -72,36 +71,42 @@
                     <div class="card-header text-center">
                         <h3>Gestioná tu pedido</h3>
                     </div>
-                    <div class="card-body">
-                        <div class="mb-3">
-                            <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
-                            <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
-                                <asp:ListItem Text="-- Selecciona una opción --" Value="" />
-                                <asp:ListItem Text="Transferencia bancaria" Value="1" />
-                                <asp:ListItem Text="Mercado Pago" Value="2" />
-                            </asp:DropDownList>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega</label>
-                            <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
-                                <asp:ListItem Text="-- Selecciona una opción --" Value="" />
-                                <asp:ListItem Text="Entrega a domicilio" Value="1" />
-                                <asp:ListItem Text="Retiro en local" Value="2" />
-                            </asp:DropDownList>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ddlOpcionesProvincias" class="form-label">Provincia</label>
-                            <asp:DropDownList ID="ddlProvincia" placeholder="- Opciones -" runat="server" CssClass="form-select" AutoPostBack="true" AppendDataBoundItems="true"></asp:DropDownList>
-                        </div>
-                        <div class="mb-3">
-                            <label for="ddlOpcionesCiudades" class="form-label">Ciudad</label>
-                            <asp:DropDownList ID="ddlCiudad" placeholder="- Opciones -" runat="server" CssClass="form-select" AutoPostBack="true" AppendDataBoundItems="true"></asp:DropDownList>
-                        </div>
-                        <div class="mb-3">
-                            <label for="txtDireccion" class="form-label">Dirección de Envío</label>
-                            <asp:TextBox CssClass="form-control textboxcrear" ID="txtDireccion" runat="server" />
-                        </div>
-                    </div>
+                    <asp:UpdatePanel runat="server">
+                        <ContentTemplate>
+                            <div class="card-body">
+                                <div class="mb-3">
+                                    <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
+                                    <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                                        <asp:ListItem Text="-- Selecciona una opción --" Value="" />
+                                        <asp:ListItem Text="Transferencia bancaria" Value="1" />
+                                        <asp:ListItem Text="Mercado Pago" Value="2" />
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega</label>
+                                    <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                                        <asp:ListItem Text="-- Selecciona una opción --" Value="" />
+                                        <asp:ListItem Text="Entrega a domicilio" Value="1" />
+                                        <asp:ListItem Text="Retiro en local" Value="2" />
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ddlOpcionesProvincias" class="form-label">Provincia</label>
+                                    <asp:DropDownList ID="ddlProvincia" placeholder="- Opciones -" runat="server" CssClass="form-select" AutoPostBack="true"
+                                        OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
+                                    </asp:DropDownList>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="ddlOpcionesCiudades" class="form-label">Ciudad</label>
+                                    <asp:DropDownList ID="ddlCiudad" placeholder="- Opciones -" runat="server" CssClass="form-select"></asp:DropDownList>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="txtDireccion" class="form-label">Dirección de Envío</label>
+                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtDireccion" runat="server" />
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
                 </div>
             </div>
         </div>

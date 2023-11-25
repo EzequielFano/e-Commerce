@@ -19,18 +19,24 @@ namespace ArticleManager_Web
         public List<DetalleTransaccion> Detalles { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            Usuario = (Usuario)Session["usuario"];
-
+            ProvinciaNegocio negocio = new ProvinciaNegocio();
+            CiudadNegocio negocioCiudad = new CiudadNegocio();
+            List<Provincia> ListaProvincias = new List<Provincia>();
             if (!IsPostBack)
             {
-                PrecioTotal = 0;
                 ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
+                Usuario = (Usuario)Session["usuario"];
+                PrecioTotal = 0;
                 foreach (Articulo articulo in ArticulosComprados)
                 {
                     PrecioTotal += (articulo.Precio * articulo.Cantidad);
                 }
                 dgvArticulosComprados.DataSource = ArticulosComprados;
                 dgvArticulosComprados.DataBind();
+                ddlProvincia.DataSource = negocio.listarProvincias();
+                ddlProvincia.DataTextField = "Nombre";
+                ddlProvincia.DataValueField = "IdProvincia";
+                ddlProvincia.DataBind();
             }
 
         }
@@ -38,6 +44,15 @@ namespace ArticleManager_Web
         protected void btnPagar_Click(object sender, EventArgs e)
         {
             Response.Redirect("Envio.aspx");
+        }
+
+        protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            CiudadNegocio negocio = new CiudadNegocio();
+            ddlCiudad.DataSource = negocio.listarXIdDeProvincia(int.Parse(ddlProvincia.SelectedItem.Value));
+            ddlProvincia.DataTextField = "Nombre";
+            ddlProvincia.DataValueField = "IdCiudad";
+            ddlCiudad.DataBind();
         }
     }
 }

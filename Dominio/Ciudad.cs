@@ -8,7 +8,8 @@ namespace Dominio
 {
     public class Ciudad
     {
-        public int IdCuidad { get; set; }
+        public int IdCiudad { get; set; }
+        public Provincia IdProvincia { get; set; }
         public string Nombre { get; set; }
         public override string ToString()
         {
