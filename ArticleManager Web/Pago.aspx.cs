@@ -18,6 +18,7 @@ namespace ArticleManager_Web
         public Direccion Direccion { get; set; }
         public List<DetalleTransaccion> Detalles { get; set; }
         public Transaccion Transaccion { get; set; }
+        public int TipoPago { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ProvinciaNegocio negocio = new ProvinciaNegocio();
@@ -45,15 +46,22 @@ namespace ArticleManager_Web
         {
             DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
             TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
+
             int IdTransaccion = negocioTransaccion.cantidadTransacciones();
 
             foreach (Articulo aux in ArticulosComprados)
             {
                 negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
             }
-
-
-
+            Direccion = new Direccion();
+            Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
+            Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
+            Direccion.Calle = txtCalle.Text;
+            Direccion.Numero = int.Parse(txtNumero.Text);
+            Direccion.Departamento = txtDepartamento.Text;
+            Direccion.Piso = int.Parse(txtPiso.Text);
+            TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
+            //Falta fecha
 
 
             //public int IdTransaccion { get; set; }

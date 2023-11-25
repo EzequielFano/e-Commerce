@@ -22,7 +22,6 @@ namespace Dominio
     {
         public int IdTransaccion { get; set; }
         public Usuario User { get; set; }
-        public List<DetalleTransaccion> DetalleTransacciones { get; set; }
         public DateTime FechaTransaccion { get; set; }
         public Direccion Direccion { get; set; }
         public float Importe { get; set; }

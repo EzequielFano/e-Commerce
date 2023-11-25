@@ -9,11 +9,21 @@ namespace Negocio
 {
     public class TransaccionNegocio
     {
-        public void generarTransaccion()
+        public void generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, TipoPago tipoPago)
         {
             AccesoDatos datos = new AccesoDatos();
+           
             try
             {
+                datos.setearProcedura("IngresarTransaccion");
+                datos.setearParametro("@idCliente", user.IdUsuario) ;
+                datos.setearParametro("@FechaTransaccion", fecha);
+                datos.setearParametro("@IdDomicilio", direccion.IdDireccion);
+                datos.setearParametro("@Estado", 1);
+                datos.setearParametro("@IdTipoPago", tipoPago);
+                datos.setearParametro("@NroEnvio", cantidadTransacciones()+1);
+          
+              
                 //public int IdTransaccion { get; set; }
                 //public Usuario User { get; set; }
                 //public List<DetalleTransaccion> DetalleTransacciones { get; set; }
