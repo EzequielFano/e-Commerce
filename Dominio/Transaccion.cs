@@ -12,6 +12,12 @@ namespace Dominio
         TRANSFERENCIA = 2,
         MERCADOPAGO =3
     }
+    public enum EstadoEnvio
+    {
+        ENPROCESO = 1,
+        ENVIADO = 2,
+        RECIBIDO = 3
+    }
     public class Transaccion
     {
         public int IdTransaccion { get; set; }
@@ -20,9 +26,8 @@ namespace Dominio
         public DateTime FechaTransaccion { get; set; }
         public Direccion Direccion { get; set; }
         public float Importe { get; set; }
-        public string NroSeguimiento { get; set; }
-        public int MyProperty { get; set; }
-        public int Estado { get; set; }
+        public int NroSeguimiento { get; set; }
+        public EstadoEnvio Estado { get; set; }
         public TipoPago TipoPago { get; set; }
        
 

@@ -63,6 +63,18 @@
             box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); /* Cambia este color también */
         }
     </style>
+    <script>
+        function soloNumeros(event) {
+            const charCode = (event.which) ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                event.preventDefault();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
     <asp:ScriptManager runat="server" ID="ScriptManager" />
     <div class="container">
         <div class="row justify-content-center">
@@ -71,9 +83,9 @@
                     <div class="card-header text-center">
                         <h3>Gestioná tu pedido</h3>
                     </div>
-                    <asp:UpdatePanel runat="server">
-                        <ContentTemplate>
-                            <div class="card-body">
+                    <div class="card-body">
+                        <asp:UpdatePanel runat="server">
+                            <ContentTemplate>
                                 <div class="mb-3">
                                     <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
                                     <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
@@ -101,12 +113,24 @@
                                     <asp:DropDownList ID="ddlCiudad" placeholder="- Opciones -" runat="server" CssClass="form-select"></asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="txtDireccion" class="form-label">Dirección de Envío</label>
-                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtDireccion" runat="server" />
+                                    <label for="txtDireccion" class="form-label">Calle</label>
+                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtCalle" runat="server" />
                                 </div>
-                            </div>
-                        </ContentTemplate>
-                    </asp:UpdatePanel>
+                                <div class="mb-3">
+                                    <label for="txtDireccion" class="form-label">Numero</label>
+                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtNumero" onkeypress="return soloNumeros(event)" runat="server" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="txtDireccion" class="form-label">Piso</label>
+                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtPiso" onkeypress="return soloNumeros(event)" runat="server" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="txtDireccion" class="form-label">Departamento</label>
+                                    <asp:TextBox CssClass="form-control textboxcrear" ID="txtDepartamento" runat="server" />
+                                </div>
+                            </ContentTemplate>
+                        </asp:UpdatePanel>
+                    </div>
                 </div>
             </div>
         </div>

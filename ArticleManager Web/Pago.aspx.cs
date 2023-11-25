@@ -17,11 +17,11 @@ namespace ArticleManager_Web
         public Usuario Usuario { get; set; }
         public Direccion Direccion { get; set; }
         public List<DetalleTransaccion> Detalles { get; set; }
+        public Transaccion Transaccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ProvinciaNegocio negocio = new ProvinciaNegocio();
-            CiudadNegocio negocioCiudad = new CiudadNegocio();
-            List<Provincia> ListaProvincias = new List<Provincia>();
+
             if (!IsPostBack)
             {
                 ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
@@ -43,6 +43,34 @@ namespace ArticleManager_Web
 
         protected void btnPagar_Click(object sender, EventArgs e)
         {
+            DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
+            TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
+            int IdTransaccion = negocioTransaccion.cantidadTransacciones();
+
+            foreach (Articulo aux in ArticulosComprados)
+            {
+                negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
+            }
+
+
+
+
+
+            //public int IdTransaccion { get; set; }
+            //public Usuario User { get; set; }
+            //public List<DetalleTransaccion> DetalleTransacciones { get; set; }
+            //public DateTime FechaTransaccion { get; set; }
+            //public Direccion Direccion { get; set; }
+            //public float Importe { get; set; }
+            //public string NroSeguimiento { get; set; }
+            //public int MyProperty { get; set; }
+            //public int Estado { get; set; }
+            //public TipoPago TipoPago { get; set; }
+
+
+
+
+
             Response.Redirect("Envio.aspx");
         }
 
