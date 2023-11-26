@@ -51,6 +51,7 @@
     <Compile Include="CategoriaNegocio.cs" />
     <Compile Include="CiudadNegocio.cs" />
     <Compile Include="DetalleTransaccionNegocio.cs" />
+    <Compile Include="DireccionNegocio.cs" />
     <Compile Include="ImagenNegocio.cs" />
     <Compile Include="MarcaNegocio.cs" />
     <Compile Include="TransaccionNegocio.cs" />

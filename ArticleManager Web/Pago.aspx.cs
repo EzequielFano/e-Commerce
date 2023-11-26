@@ -12,13 +12,15 @@ namespace ArticleManager_Web
 {
     public partial class Pago : System.Web.UI.Page
     {
-        public List<Articulo> ArticulosComprados { get; set; }
-        public float PrecioTotal { get; set; }
-        public Usuario Usuario { get; set; }
-        public Direccion Direccion { get; set; }
-        public List<DetalleTransaccion> Detalles { get; set; }
-        public Transaccion Transaccion { get; set; }
-        public int TipoPago { get; set; }
+        static public List<Articulo> ArticulosComprados { get; set; }
+        static public float PrecioTotal { get; set; }
+        static public Usuario Usuario { get; set; }
+        static public Direccion Direccion { get; set; }
+        public Provincia Provincia { get; set; }
+        public Ciudad Ciudad { get; set; }
+        static public List<DetalleTransaccion> Detalles { get; set; }
+        static public Transaccion Transaccion { get; set; }
+        static public int TipoPago { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ProvinciaNegocio negocio = new ProvinciaNegocio();
@@ -46,38 +48,35 @@ namespace ArticleManager_Web
         {
             DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
             TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
-
-            int IdTransaccion = negocioTransaccion.cantidadTransacciones();
-
-            foreach (Articulo aux in ArticulosComprados)
+            int IdTransaccion = 0;
+            try
             {
-                negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
+                if (negocioTransaccion.cantidadTransacciones() != 0)
+                {
+                    IdTransaccion = negocioTransaccion.cantidadTransacciones();
+                }
+                
+                foreach (Articulo aux in ArticulosComprados)
+                {
+                    negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
+                }
+                Direccion = new Direccion();
+                Direccion.Provincia = new Provincia();
+                Direccion.Ciudad = new Ciudad();   
+                Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
+                Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
+                Direccion.Calle = txtCalle.Text;
+                Direccion.Numero = int.Parse(txtNumero.Text);
+                Direccion.Departamento = txtDepartamento.Text;
+                Direccion.Piso = int.Parse(txtPiso.Text);
+                TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
+                negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago);
             }
-            Direccion = new Direccion();
-            Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
-            Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
-            Direccion.Calle = txtCalle.Text;
-            Direccion.Numero = int.Parse(txtNumero.Text);
-            Direccion.Departamento = txtDepartamento.Text;
-            Direccion.Piso = int.Parse(txtPiso.Text);
-            TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
-            //Falta fecha
+            catch (Exception)
+            {
 
-
-            //public int IdTransaccion { get; set; }
-            //public Usuario User { get; set; }
-            //public List<DetalleTransaccion> DetalleTransacciones { get; set; }
-            //public DateTime FechaTransaccion { get; set; }
-            //public Direccion Direccion { get; set; }
-            //public float Importe { get; set; }
-            //public string NroSeguimiento { get; set; }
-            //public int MyProperty { get; set; }
-            //public int Estado { get; set; }
-            //public TipoPago TipoPago { get; set; }
-
-
-
-
+                throw;
+            }
 
             Response.Redirect("Envio.aspx");
         }
@@ -86,8 +85,8 @@ namespace ArticleManager_Web
         {
             CiudadNegocio negocio = new CiudadNegocio();
             ddlCiudad.DataSource = negocio.listarXIdDeProvincia(int.Parse(ddlProvincia.SelectedItem.Value));
-            ddlProvincia.DataTextField = "Nombre";
-            ddlProvincia.DataValueField = "IdCiudad";
+            ddlCiudad.DataTextField = "Nombre";
+            ddlCiudad.DataValueField = "IdCiudad";
             ddlCiudad.DataBind();
         }
     }
