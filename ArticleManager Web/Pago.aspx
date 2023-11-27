@@ -3,8 +3,56 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h2>Detalles de la compra: </h2>
-    <asp:GridView ID="dgvArticulosComprados" runat="server" CssClass="table table-dark table-striped" AutoGenerateColumns="false">
+  <style>
+   
+    .container {
+        margin-top: 50px;
+    }
+
+    .table-title {
+        text-align: center;
+        font-size: 24px;
+        color: white;
+        margin-bottom: 20px;
+        background-color: rebeccapurple; 
+        padding: 10px;
+        border: 1px solid white;
+        font-weight:bold;
+    }
+
+   
+    .table th {
+        background-color: rebeccapurple !important;
+        color: white !important;
+    }
+      .precio {
+        text-align: center;
+        font-size: 40px;
+        color: white;
+        margin-bottom: 10px;
+        background-color:rebeccapurple;
+        border:1px solid white;
+        font-weight:bold;
+    }
+
+   
+    .table tbody tr:nth-of-type(even) {
+        background-color: white;
+    }
+
+  
+    .table tbody tr:nth-of-type(odd) {
+        background-color: #f8f9fa;
+    }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<div class="container">
+    <div class="table-title">
+        Resumen de compra
+    </div>
+
+    <asp:GridView ID="dgvArticulosComprados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped">
         <Columns>
             <asp:BoundField HeaderText="Codigo Articulo" DataField="CodigoArticulo" />
             <asp:BoundField HeaderText="Nombre" DataField="NombreArticulo" />
@@ -14,18 +62,17 @@
             <asp:BoundField HeaderText="Cantidad" DataField="Cantidad" />
         </Columns>
     </asp:GridView>
-    <br />
+</div>
+    
+    <div class="container">
 
-    <h4 style="">El total a pagar es de $<%= PrecioTotal%></h4>
-
-    <br />
-
+    <h1 class="precio"> Total a abonar: $<%= PrecioTotal%></h1>
+    </div>
 
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Bootstrap CSS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" />
-    <!-- Estilo personalizado -->
+  
     <style>
         body {
             background-color: rebeccapurple;
@@ -60,7 +107,7 @@
 
         .form-select:focus {
             border-color: rebeccapurple;
-            box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25); /* Cambia este color también */
+            box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25);
         }
     </style>
     <script>
@@ -136,7 +183,7 @@
         </div>
     </div>
 
-    <!-- Bootstrap JS (opcional, si necesitas funcionalidades específicas de Bootstrap) -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
 

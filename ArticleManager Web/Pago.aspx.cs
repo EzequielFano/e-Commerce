@@ -33,7 +33,7 @@ namespace ArticleManager_Web
                 foreach (Articulo articulo in ArticulosComprados)
                 {
                     PrecioTotal += (articulo.Precio * articulo.Cantidad);
-                }
+                }               
                 dgvArticulosComprados.DataSource = ArticulosComprados;
                 dgvArticulosComprados.DataBind();
                 ddlProvincia.DataSource = negocio.listarProvincias();
