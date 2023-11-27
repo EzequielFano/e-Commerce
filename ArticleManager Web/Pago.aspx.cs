@@ -48,18 +48,10 @@ namespace ArticleManager_Web
         {
             DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
             TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
-            int IdTransaccion = 0;
+            DireccionNegocio negocioDireccion = new DireccionNegocio();
+            //int IdTransaccion = 0;
             try
             {
-                if (negocioTransaccion.cantidadTransacciones() != 0)
-                {
-                    IdTransaccion = negocioTransaccion.cantidadTransacciones();
-                }
-                
-                foreach (Articulo aux in ArticulosComprados)
-                {
-                    negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
-                }
                 Direccion = new Direccion();
                 Direccion.Provincia = new Provincia();
                 Direccion.Ciudad = new Ciudad();   
@@ -70,7 +62,13 @@ namespace ArticleManager_Web
                 Direccion.Departamento = txtDepartamento.Text;
                 Direccion.Piso = int.Parse(txtPiso.Text);
                 TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
-                negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago);
+                int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago);
+                foreach (Articulo aux in ArticulosComprados)
+                {
+                    negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
+                }
+                negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+
             }
             catch (Exception)
             {

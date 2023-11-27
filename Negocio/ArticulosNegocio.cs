@@ -259,17 +259,6 @@ namespace Negocio
         }
 
 
-        //public Articulo verDetallesArticulo(string Id)
-        //{
-        //    AccesoDatos datos = new AccesoDatos();
-        //    Articulo articulo = new Articulo(); 
-
-        //    datos.setearConsulta("SELECT A.Codigo AS CodigoArticulo, A.Nombre AS NombreArticulo, A.Descripcion AS DescripcionArticulo, M.Descripcion AS Marca, C.Descripcion AS Categoria, A.Precio FROM ARTICULOS AS A INNER JOIN MARCAS AS M ON A.IdMarca = M.Id INNER JOIN CATEGORIAS AS C ON A.IdCategoria = C.Id WHERE A.Id = @IdArticulo");
-        //    datos.setearParametro("IdArticulo", Id);
-        //    datos.ejecutarLectura();
-        //    datos.cerrarConexion();
-        //    return articulo;
-        //}
         public List<Imagen> verImagenesArticulo(int id)
         {
             AccesoDatos datos = new AccesoDatos();
