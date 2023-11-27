@@ -11,12 +11,13 @@ namespace Negocio
 {
     public class TransaccionNegocio
     {
-        public void generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, int tipoPago)
+        public int generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, int tipoPago)
         {
             AccesoDatos datos = new AccesoDatos();
             
             try
             {
+                Transaccion transaccion = new Transaccion();
                 datos.setearProcedura("IngresarTransaccion");
                 datos.setearParametro("@idCliente", user.IdUsuario);
                 datos.setearParametro("@FechaTransaccion", fecha);
@@ -25,6 +26,7 @@ namespace Negocio
                 datos.setearParametro("@IdTipoPago", tipoPago);
                 datos.setearParametro("@NroEnvio", cantidadTransacciones() + 1);
                 datos.ejecutarAccion();
+                transaccion = ObtenerIdTransaccionCargada();
                 //public int IdTransaccion { get; set; }
                 //public Usuario User { get; set; }
                 //public List<DetalleTransaccion> DetalleTransacciones { get; set; }
@@ -34,7 +36,7 @@ namespace Negocio
                 //public int NroSeguimiento { get; set; }
                 //public EstadoEnvio Estado { get; set; }
                 //public TipoPago TipoPago { get; set; }
-
+                return transaccion.IdTransaccion;
 
             }
             catch (Exception)
@@ -45,7 +47,33 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
 
         }
+        public Transaccion ObtenerIdTransaccionCargada()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Transaccion aux = new Transaccion();
 
+            try
+            {
+
+                datos.setearConsulta("SELECT IDENT_CURRENT('TRANSACCIONES') AS IdTransaccion");
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    aux.IdTransaccion = Convert.ToInt32(datos.Lector["IdTransaccion"]);
+
+                }
+
+                return aux;
+            }
+            catch (Exception Ex)
+            {
+                throw Ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
 
         public List<Transaccion> traerListado()
         {

@@ -90,8 +90,9 @@
                                     <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
                                     <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                                         <asp:ListItem Text="-- Selecciona una opción --" Value="" />
-                                        <asp:ListItem Text="Transferencia bancaria" Value="1" />
-                                        <asp:ListItem Text="Mercado Pago" Value="2" />
+                                        <asp:ListItem Text="Efectivo" Value="1" />
+                                        <asp:ListItem Text="Transferencia bancaria" Value="2" />
+                                        <asp:ListItem Text="Mercado Pago" Value="3" />
                                     </asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
