@@ -49,6 +49,7 @@ namespace ArticleManager_Web
             DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
             TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
             DireccionNegocio negocioDireccion = new DireccionNegocio();
+            EmailService emailService = new EmailService();
             //int IdTransaccion = 0;
             try
             {
@@ -68,7 +69,7 @@ namespace ArticleManager_Web
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
                 negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
-
+                emailService.EmailCompra(Usuario.Email);
             }
             catch (Exception)
             {
