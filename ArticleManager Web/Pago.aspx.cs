@@ -50,6 +50,7 @@ namespace ArticleManager_Web
             DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
             TransaccionNegocio negocioTransaccion = new TransaccionNegocio();
             DireccionNegocio negocioDireccion = new DireccionNegocio();
+            EmailService emailService = new EmailService();
             //int IdTransaccion = 0;
             try
             {
@@ -68,11 +69,16 @@ namespace ArticleManager_Web
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
+<<<<<<< HEAD
                 if (chkDireccion.Checked)
                 {
                     negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
                 }
 
+=======
+                negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+                emailService.EmailCompra(Usuario.Email);
+>>>>>>> 4b7b629776803b99931049f480de24523d74fafc
             }
             catch (Exception)
             {
