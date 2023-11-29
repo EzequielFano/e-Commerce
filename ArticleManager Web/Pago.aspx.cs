@@ -33,13 +33,14 @@ namespace ArticleManager_Web
                 foreach (Articulo articulo in ArticulosComprados)
                 {
                     PrecioTotal += (articulo.Precio * articulo.Cantidad);
-                }               
+                }
                 dgvArticulosComprados.DataSource = ArticulosComprados;
                 dgvArticulosComprados.DataBind();
                 ddlProvincia.DataSource = negocio.listarProvincias();
                 ddlProvincia.DataTextField = "Nombre";
                 ddlProvincia.DataValueField = "IdProvincia";
                 ddlProvincia.DataBind();
+                
             }
 
         }
@@ -54,7 +55,7 @@ namespace ArticleManager_Web
             {
                 Direccion = new Direccion();
                 Direccion.Provincia = new Provincia();
-                Direccion.Ciudad = new Ciudad();   
+                Direccion.Ciudad = new Ciudad();
                 Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
                 Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
                 Direccion.Calle = txtCalle.Text;
@@ -67,7 +68,10 @@ namespace ArticleManager_Web
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
-                negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+                if (chkDireccion.Checked)
+                {
+                    negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+                }
 
             }
             catch (Exception)
