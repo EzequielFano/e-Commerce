@@ -94,6 +94,7 @@
     <Content Include="Login.aspx" />
     <Content Include="ManipularArticulo.aspx" />
     <Content Include="Pago.aspx" />
+    <Content Include="Pedidos.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -196,6 +197,13 @@
     </Compile>
     <Compile Include="Pago.aspx.designer.cs">
       <DependentUpon>Pago.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pedidos.aspx.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pedidos.aspx.designer.cs">
+      <DependentUpon>Pedidos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
