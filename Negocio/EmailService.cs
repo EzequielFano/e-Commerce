@@ -16,7 +16,7 @@ namespace Negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("technogeekprog3@gmail.com", "usuario2023");
+            server.Credentials = new NetworkCredential("technogeekprog3@gmail.com", "hvkz vije imqz fdmu");
             server.EnableSsl = true;
             server.Port = 587;
             server.Host = "smtp.gmail.com";
@@ -30,11 +30,12 @@ namespace Negocio
             email.To.Add(toAddress);
             email.Subject = "Gracias por tu compra by TechnoGeek";
             email.IsBodyHtml = true;
-            email.Body = cuerpoHtml;          
+            email.Body = cuerpoHtml;
+            EnviarMail();
 
 
         }
-        public void EnviarMail()
+        private void EnviarMail()
         {
             try
             {
@@ -52,7 +53,7 @@ namespace Negocio
             <html>
                 <head>
                      <style>
-            /* Puedes agregar estilos personalizados aquí según tus preferencias */
+            
             body {
                 font-family: 'Arial', sans-serif;
                 background-color: #f4f4f4;
@@ -63,7 +64,7 @@ namespace Negocio
             .container {
                 max-width: 600px;
                 margin: 0 auto;
-                background-color: #fff;
+                background-color: rebeccapurple;
                 padding: 20px;
                 border-radius: 5px;
                 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -82,7 +83,9 @@ namespace Negocio
                     <div>
                         <p>Gracias por tu compra en TechnoGeek.</p>
                         <p>Estamos encantados de tenerte como cliente, pronto recibiras novedades sobre tu pedido </p>
-                        <!-- Agrega más contenido HTML según sea necesario -->
+                        <p>Te deseamos un buen dia. </p>
+                        <p>TechnoGeek ARG </p>
+                        
                     </div>
                 </body>
             </html>";
