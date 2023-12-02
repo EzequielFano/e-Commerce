@@ -64,21 +64,19 @@ namespace ArticleManager_Web
                 Direccion.Departamento = txtDepartamento.Text;
                 Direccion.Piso = int.Parse(txtPiso.Text);
                 TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
-                int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago);
+                int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago, PrecioTotal);
                 foreach (Articulo aux in ArticulosComprados)
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
-<<<<<<< HEAD
                 if (chkDireccion.Checked)
                 {
                     negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
                 }
 
-=======
                 negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
                 emailService.EmailCompra(Usuario.Email);
->>>>>>> 4b7b629776803b99931049f480de24523d74fafc
+
             }
             catch (Exception)
             {

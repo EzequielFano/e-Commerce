@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class TransaccionNegocio
     {
-        public int generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, int tipoPago)
+        public int generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, int tipoPago, float Importe)
         {
             AccesoDatos datos = new AccesoDatos();
             
@@ -24,18 +24,11 @@ namespace Negocio
                 datos.setearParametro("@IdDomicilio", direccion.IdDireccion + 1);
                 datos.setearParametro("@Estado", 1);
                 datos.setearParametro("@IdTipoPago", tipoPago);
-                datos.setearParametro("@NroEnvio", cantidadTransacciones() + 1);
-                datos.ejecutarAccion();
                 transaccion = ObtenerIdTransaccionCargada();
-                //public int IdTransaccion { get; set; }
-                //public Usuario User { get; set; }
-                //public List<DetalleTransaccion> DetalleTransacciones { get; set; }
-                //public DateTime FechaTransaccion { get; set; }
-                //public Direccion Direccion { get; set; }
-                //public float Importe { get; set; }
-                //public int NroSeguimiento { get; set; }
-                //public EstadoEnvio Estado { get; set; }
-                //public TipoPago TipoPago { get; set; }
+                datos.setearParametro("@NroEnvio", transaccion.IdTransaccion + 1);
+                datos.setearParametro("Importe", Importe);
+                datos.ejecutarAccion();
+                transaccion = ObtenerIdTransaccionCargada();            
                 return transaccion.IdTransaccion;
 
             }
@@ -83,18 +76,21 @@ namespace Negocio
             try
             {
 
-                datos.setearConsulta("Select * FROM TRANSACCION");
+                datos.setearConsulta("Select * FROM TRANSACCIONES");
                 datos.ejecutarLectura();
                 while (datos.Lector.Read())
                 {
                     Transaccion transaccion = new Transaccion();
-
-                    transaccion.User.IdUsuario = datos.Lector.GetInt32(0);
-                    DateTime time = DateTime.Parse(datos.Lector.ToString());
-                    transaccion.Direccion.IdDireccion = datos.Lector.GetInt32(2);
-                    transaccion.Estado = (EstadoEnvio)datos.Lector.GetInt32(3);
-                    transaccion.TipoPago = (TipoPago)datos.Lector.GetInt32(4);
-                    transaccion.NroSeguimiento = datos.Lector.GetInt32(5);
+                    transaccion.IdTransaccion = datos.Lector.GetInt32(0);
+                    transaccion.User = new Usuario();
+                    transaccion.User.IdUsuario = datos.Lector.GetInt32(1);
+                    transaccion.FechaTransaccion = datos.Lector.GetDateTime(2);
+                    transaccion.Direccion = new Direccion();
+                    transaccion.Direccion.IdDireccion = datos.Lector.GetInt32(3);
+                    transaccion.Estado = (EstadoEnvio)datos.Lector.GetInt32(4);
+                    transaccion.TipoPago = (TipoPago)datos.Lector.GetInt32(5);
+                    transaccion.NroSeguimiento = datos.Lector.GetInt32(6);
+                    transaccion.Importe = (int)datos.Lector.GetSqlMoney(7);
                     transaccions.Add(transaccion);
                 }
 

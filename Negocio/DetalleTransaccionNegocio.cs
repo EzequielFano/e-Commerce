@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,7 @@ namespace Negocio
     {
         public void generarDetallesTransaccion(Articulo articulo, int IdTransaccion)
         {
-            //public float Precio { get; set; }
-            //public int Cantidad { get; set; }
-            //public Articulo Articulo { get; set; }
-            //public int IdDetalleTransaccion { get; set; }
-
+            
             AccesoDatos datos = new AccesoDatos();
             try
             {
@@ -32,6 +29,38 @@ namespace Negocio
                 throw ex;
             }
             finally { datos.cerrarConexion(); }
+        }
+
+        public List<DetalleTransaccion> getDetalleTransaccionListXId(int IdTransaccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                List<DetalleTransaccion> DetallesTransaccion = new List<DetalleTransaccion>();
+                DetalleTransaccion aux = new DetalleTransaccion();
+
+                datos.setearProcedura("ListarDetallesPorTransaccion");
+                datos.setearParametro("@IdTransaccion", IdTransaccion);
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+                {
+                    
+                    aux.Articulo = new Articulo();
+                    aux.Articulo.IdArticulo = datos.Lector.GetInt32(1);
+                    aux.Cantidad = datos.Lector.GetInt32(2);
+                    aux.Precio = (int)datos.Lector.GetSqlMoney(3);
+                    aux.IdTransaccion = IdTransaccion;
+                    DetallesTransaccion.Add(aux);
+                }
+                return DetallesTransaccion;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+
         }
     }
 }

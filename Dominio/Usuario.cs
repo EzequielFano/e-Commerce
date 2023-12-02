@@ -30,6 +30,8 @@ namespace Dominio
             TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
 
         }
-            
+
+        public Usuario() { }
+        
     }
 }

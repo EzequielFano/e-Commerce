@@ -177,7 +177,7 @@
                                     <asp:TextBox CssClass="form-control textboxcrear" ID="txtDepartamento" runat="server" />
                                 </div>
                                 <div class="form-check">
-                                    
+
                                     <asp:CheckBox ID="chkDireccion" runat="server"></asp:CheckBox>
                                     <label class="form-check-label" for="flexCheckChecked">
                                         Guardar esta direccion para futuras compras

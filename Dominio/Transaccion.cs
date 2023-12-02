@@ -28,7 +28,5 @@ namespace Dominio
         public int NroSeguimiento { get; set; }
         public EstadoEnvio Estado { get; set; }
         public TipoPago TipoPago { get; set; }
-       
-
     }
 }
