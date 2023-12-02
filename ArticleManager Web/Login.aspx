@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="ArticleManager_Web.Login" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <style>
         #contenedorLogin {
@@ -10,6 +9,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            background-color: black;
+        }
+
+        #contenido-negro {
+            background-color: black;
         }
 
         #ppp {
@@ -33,9 +37,21 @@
             align-items: center;
         }
     </style>
+    <script>
+        function handleKeyPress(e) {
+            var keycode = (e.keyCode ? e.keyCode : e.which);
+            if (keycode == 13) {
+                document.getElementById('<%=btnIngresar.ClientID %>').click();
+                return false;
+            }
+        }
+    </script>
 
     <%if (!session)
         {%>
+    <br>
+    <br>
+    <br>
     <div class="container" id="contenedorLogin">
         <div class="col-md-4"></div>
         <div class="col-md-6" id="ppp">
@@ -45,7 +61,7 @@
 
 
             <div class="col text-center" style="font-size: 30px;">
-                <label id="lblUsuario" style="color: rebeccapurple" class="form-label text-start"><b>Usuario</b></label>
+                <label id="lblUsuario" style="color: rebeccapurple" class="form-label text-start"><b>Email</b></label>
             </div>
             <div class="row">
                 <div class="col-1"></div>
@@ -61,7 +77,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <asp:TextBox type="Password" CssClass="form-control textboxlogin" ID="txtPassword" runat="server" />
+                    <asp:TextBox type="Password" CssClass="form-control textboxlogin" ID="txtPassword" runat="server" onkeypress="return handleKeyPress(event)" />
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -76,7 +92,7 @@
             <br>
             <br>
             <div>
-                <p style="color:rebeccapurple">¿Aun no tenes tu cuenta?</p>
+                <p style="color: rebeccapurple">¿Aun no tenes tu cuenta?</p>
             </div>
             <asp:Button ID="btnCrearCuenta" CssClass="btn btn-outline-success buttoncolor" runat="server" Text="Crear Cuenta" OnClick="btnCrearCuenta_Click" />
 
@@ -86,6 +102,15 @@
         </div>
         <div class="col-md-4"></div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
 
 
@@ -110,6 +135,33 @@
             <asp:Button ID="btnVolver" runat="server" Text="Comenzar a comprar" CssClass="btn btn-success" OnClick="btnVolver_Click" />
         </div>
     </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
 
     <%}%>
 </asp:Content>

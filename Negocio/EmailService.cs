@@ -28,7 +28,7 @@ namespace Negocio
             email = new MailMessage();
             email.From = new MailAddress("noresponder@technogeek.com.ar");
             email.To.Add(toAddress);
-            email.Subject = "Gracias por tu compra by TechnoGeek";
+            email.Subject = "Gracias por tu compra en TechnoGeek";
             email.IsBodyHtml = true;
             email.Body = cuerpoHtml;
             EnviarMail();
@@ -82,7 +82,7 @@ namespace Negocio
                 <body>
                     <div>
                         <p>Gracias por tu compra en TechnoGeek.</p>
-                        <p>Estamos encantados de tenerte como cliente, pronto recibiras novedades sobre tu pedido </p>
+                        <p>Estamos encantados de tenerte como cliente, pronto nos pondremos en contacto contigo para contarte novedades sobre tu pedido </p>
                         <p>Te deseamos un buen dia. </p>
                         <p>TechnoGeek ARG </p>
                         
