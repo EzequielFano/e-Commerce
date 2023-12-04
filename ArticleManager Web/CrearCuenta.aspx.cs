@@ -19,11 +19,19 @@ namespace ArticleManager_Web
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
+            if (txtEmail.Text != "" && txtNombre.Text != "" && txtContra.Text != "" && txtApellido.Text != "")
+            {
             Usuario usuario = new Usuario(txtEmail.Text,txtNombre.Text,txtContra.Text,false);
             usuario.Apellido= txtApellido.Text;
-
             negocio.crearUsuario(usuario);
             Response.Redirect("Login.aspx");
+            }
+            else
+            {
+                Session.Add("error", "Debes ingresar todos los datos para registrarte");
+                Response.Redirect("Error.aspx", false);
+            }
+
 
         }
 

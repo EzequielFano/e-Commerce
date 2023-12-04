@@ -90,10 +90,11 @@ namespace ArticleManager_Web
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                Session.Add("error", ex);
+                Session.Add("error","Error al agregar articulo al carrito");
+                Response.Redirect("Error.aspx", false);
             }
 
         }

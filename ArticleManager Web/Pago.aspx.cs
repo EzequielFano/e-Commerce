@@ -40,7 +40,7 @@ namespace ArticleManager_Web
                 ddlProvincia.DataTextField = "Nombre";
                 ddlProvincia.DataValueField = "IdProvincia";
                 ddlProvincia.DataBind();
-                
+
             }
 
         }
@@ -81,7 +81,8 @@ namespace ArticleManager_Web
             catch (Exception)
             {
 
-                throw;
+                Session.Add("error", "Porque llega aca????");
+                Response.Redirect("Error.aspx", false);
             }
 
             Response.Redirect("Envio.aspx");
