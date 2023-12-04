@@ -134,7 +134,7 @@
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
                                 <div class="mb-3">
-                                    <label for="ddlMetodoPago" class="form-label">Método de Pago</label>
+                                    <label for="ddlMetodoPago" class="form-label">Método de Pago*</label>
                                     <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                                         <asp:ListItem Text="-- Selecciona una opción --" Value="" />
                                         <asp:ListItem Text="Efectivo" Value="1" />
@@ -143,7 +143,7 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega</label>
+                                    <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega*</label>
                                     <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
                                         <asp:ListItem Text="-- Selecciona una opción --" Value="" />
                                         <asp:ListItem Text="Entrega a domicilio" Value="1" />
@@ -151,21 +151,21 @@
                                     </asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ddlOpcionesProvincias" class="form-label">Provincia</label>
+                                    <label for="ddlOpcionesProvincias" class="form-label">Provincia*</label>
                                     <asp:DropDownList ID="ddlProvincia" placeholder="- Opciones -" runat="server" CssClass="form-select" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="ddlOpcionesCiudades" class="form-label">Ciudad</label>
+                                    <label for="ddlOpcionesCiudades" class="form-label">Ciudad*</label>
                                     <asp:DropDownList ID="ddlCiudad" placeholder="- Opciones -" runat="server" CssClass="form-select"></asp:DropDownList>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="txtDireccion" class="form-label">Calle</label>
+                                    <label for="txtDireccion" class="form-label">Calle*</label>
                                     <asp:TextBox CssClass="form-control textboxcrear" ID="txtCalle" runat="server" />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="txtDireccion" class="form-label">Numero</label>
+                                    <label for="txtDireccion" class="form-label">Numero*</label>
                                     <asp:TextBox CssClass="form-control textboxcrear" ID="txtNumero" onkeypress="return soloNumeros(event)" runat="server" />
                                 </div>
                                 <div class="mb-3">

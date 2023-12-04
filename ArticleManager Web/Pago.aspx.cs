@@ -57,12 +57,49 @@ namespace ArticleManager_Web
                 Direccion = new Direccion();
                 Direccion.Provincia = new Provincia();
                 Direccion.Ciudad = new Ciudad();
+                if (string.IsNullOrEmpty(ddlProvincia.SelectedValue))
+                {
+                    Session.Add("error", "Debe seleccionar una provincia, reintente realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
                 Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
+                if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
+                {
+                    Session.Add("error", "Debe seleccionar una ciudad, reintente realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
                 Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
+                if (txtCalle.Text == "")
+                {
+                    Session.Add("error", "Debe introducir una calle valida, reintente realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
                 Direccion.Calle = txtCalle.Text;
-                Direccion.Numero = int.Parse(txtNumero.Text);
+                if (txtNumero.Text == "")
+                {
+                    Session.Add("error", "Debe introducir una altura valida, reintente realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+                Direccion.Numero = int.Parse(txtNumero.Text);              
                 Direccion.Departamento = txtDepartamento.Text;
+                if(txtPiso.Text == "")
+                {
+                    Direccion.Piso = 0;
+                }
+                else
+                {
                 Direccion.Piso = int.Parse(txtPiso.Text);
+                }
+                if (string.IsNullOrEmpty(ddlMetodoPago.SelectedValue))
+                {
+                    Session.Add("error", "Por favor seleccione un metodo de pago, reintente realizar la compra");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
                 TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
                 int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago, PrecioTotal);
                 foreach (Articulo aux in ArticulosComprados)
@@ -81,8 +118,9 @@ namespace ArticleManager_Web
             catch (Exception)
             {
 
-                Session.Add("error", "Porque llega aca????");
+                Session.Add("error", "Error inesperado al intentar realizar la compra");
                 Response.Redirect("Error.aspx", false);
+                return;
             }
 
             Response.Redirect("Envio.aspx");
