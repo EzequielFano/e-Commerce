@@ -12,11 +12,26 @@ namespace ArticleManager_Web
     public partial class DetallesTransacciones : System.Web.UI.Page
     {
         public List<DetalleTransaccion> listaDetalles { get; set; }
+        public Articulo Articulo { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            int id = int.Parse(Request.QueryString["idTransaccion"].ToString());
-            DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
-            listaDetalles = negocioDetalles.getDetalleTransaccionListXId(id);
+            ArticulosNegocio negocioArticulos = new ArticulosNegocio();
+            if (!IsPostBack)
+            {
+                int id = int.Parse(Request.QueryString["idTransaccion"].ToString());
+                DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
+                listaDetalles = negocioDetalles.getDetalleTransaccionListXId(id);
+
+                foreach (DetalleTransaccion aux in listaDetalles)
+                {
+                    Articulo = new Articulo();
+                    aux.Articulo = negocioArticulos.TraerListadoCompletoxId(aux.Articulo.IdArticulo)[0];
+                }
+                dgvArticulosComprados.DataSource = listaDetalles;
+                dgvArticulosComprados.DataBind();
+
+            }
 
         }
     }
