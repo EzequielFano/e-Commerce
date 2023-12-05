@@ -117,24 +117,65 @@
     <%}
         else
         { %>
-    <div class="container">
-        <div class="d-flex justify-content-center mt-4">
-            <asp:Label ID="lblUser" CssClass="align-content-center " BackColor="white" BorderColor="Black" Font-Size="XX-Large" runat="server"></asp:Label>
-        </div>
-    </div>
-    <div class="container">
-        <div class="d-flex justify-content-center mt-4">
-            <h3 style="color: white">Te logueaste exitosamente a nuestro carrito de compras</h3>
+    <style>
+        body {
+            background-color: rebeccapurple;
+            color: white;
+        }
 
-        </div>
+        .container {
+            margin-top: 20px;
+        }
+
+        .label-style {
+            background-color: white;
+            border: 1px solid black;
+            font-size: large;
+        }
+
+        h3 {
+            color: rebeccapurple;
+            font-size: 3em;
+        }
+
+        .buttoncolor {
+            color: rebeccapurple;
+            border: 2px solid rebeccapurple;
+            background-color: black;
+            padding: 20px 30px; /* Ajusta el valor de padding según tus necesidades */
+            font-size: 32px; /* Ajusta el tamaño de fuente según tus necesidades */
+        }
+
+        .delicate-line {
+            border-top: 1px solid white;
+            width: 75%; /* Puedes ajustar el porcentaje según tus necesidades */
+            margin: 20px auto; /* Centra la línea horizontalmente */
+        }
+    </style>
+
+    <div class="container text-center">
+        <asp:Label ID="lblUser" CssClass="label-style" runat="server"></asp:Label>
     </div>
-    <br />
-    <div class="container">
+
+    <div class="container text-center mt-4">
+        <h3 style="color: green">¡¡Bienvenido a TechnoGeek!! <% %></h3>
+    </div>
+    <div class="container text-center mt-4">
+        <h3>Te has logueado exitosamente en nuestro carrito de compras</h3>
+    </div>
+    <div class="delicate-line"></div>
+    <br>
+
+    <div class="container mt-4">
         <div class="d-flex justify-content-lg-evenly">
-            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-success" Text="Cerrar sesion" OnClick="btnCerrarSesion_Click" />
-            <asp:Button ID="btnVolver" runat="server" Text="Comenzar a comprar" CssClass="btn btn-success" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-outline-danger buttoncolor" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Comenzar a comprar" CssClass="btn btn-outline-success buttoncolor" OnClick="btnVolver_Click" />
         </div>
     </div>
+
+
+
+
     <br>
     <br>
     <br>
