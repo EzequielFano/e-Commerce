@@ -81,8 +81,9 @@ namespace ArticleManager_Web
                 else
                 {
                     Session.Add("error", "Email o contraseña incorrectos");
-                    Response.Redirect("Error.aspx");
+                    Session.Add("ruta", "Login.aspx");
                     Session.Add("session", false);
+                    Response.Redirect("Error.aspx");
                 }
             }
             catch (Exception ex)

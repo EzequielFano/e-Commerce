@@ -39,10 +39,12 @@ namespace ArticleManager_Web
                 var id = dgvPedidos.SelectedRow.Cells[0].Text;
                 Response.Redirect("DetallesTransacciones.aspx?idTransaccion=" + id);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Session.Add("error", "Error al cargar los pedidos");
+                Session.Add("ruta", "Pedidos.aspx");
+                Response.Redirect("Error.aspx", false);
             }
         }
     }

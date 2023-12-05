@@ -29,6 +29,7 @@ namespace ArticleManager_Web
             else
             {
                 Session.Add("error", "Debes ingresar todos los datos para registrarte");
+                Session.Add("ruta", "CrearCuenta.aspx");
                 Response.Redirect("Error.aspx", false);
             }
 

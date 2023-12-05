@@ -60,6 +60,7 @@ namespace ArticleManager_Web
                 if (string.IsNullOrEmpty(ddlProvincia.SelectedValue))
                 {
                     Session.Add("error", "Debe seleccionar una provincia, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
@@ -67,6 +68,7 @@ namespace ArticleManager_Web
                 if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
                 {
                     Session.Add("error", "Debe seleccionar una ciudad, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
@@ -74,6 +76,7 @@ namespace ArticleManager_Web
                 if (txtCalle.Text == "")
                 {
                     Session.Add("error", "Debe introducir una calle valida, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
@@ -81,6 +84,7 @@ namespace ArticleManager_Web
                 if (txtNumero.Text == "")
                 {
                     Session.Add("error", "Debe introducir una altura valida, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
@@ -97,6 +101,7 @@ namespace ArticleManager_Web
                 if (string.IsNullOrEmpty(ddlMetodoPago.SelectedValue))
                 {
                     Session.Add("error", "Por favor seleccione un metodo de pago, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
@@ -119,6 +124,7 @@ namespace ArticleManager_Web
             {
 
                 Session.Add("error", "Error inesperado al intentar realizar la compra");
+                Session.Add("ruta", "Pago.aspx");
                 Response.Redirect("Error.aspx", false);
                 return;
             }

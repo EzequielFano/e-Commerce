@@ -20,7 +20,7 @@
             <div class="card-body text-center">
                 <h1 class="card-title text-danger">¡Ups! Hubo un problema</h1>
                 <asp:Label Text="text" ID="lblMensajeError" runat="server" ForeColor="White" Font-Size="XXLarge" />
-                <a href="Articulos.aspx" class="btn btn-outline-success buttoncolor">Volver a la Página de Inicio</a>
+                <a href="<%=Ruta %>" class="btn btn-outline-success buttoncolor">Volver</a>
             </div>
         </div>
     </div>

@@ -86,6 +86,7 @@ namespace ArticleManager_Web
                 else
                 {
                     Session.Add("error", "La cantidad seleccionada es incorrecta o el producto seleccionado ya esta en tu carrito.");
+                    Session.Add("ruta", "Articulos.aspx");
                     Response.Redirect("Error.aspx", false);
                 }
 
@@ -94,6 +95,7 @@ namespace ArticleManager_Web
             {
 
                 Session.Add("error","Error al agregar articulo al carrito");
+                Session.Add("ruta", "Articulos.aspx");
                 Response.Redirect("Error.aspx", false);
             }
 

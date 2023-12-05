@@ -33,10 +33,12 @@ namespace ArticleManager_Web
                 var id = dgvArticulos.SelectedRow.Cells[0].Text;
                 Response.Redirect("ManipularArticulo.aspx?id=" + id);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Session.Add("error", "error inesperado");
+                Session.Add("ruta", "ListadoArticulos.aspx");
+                Response.Redirect("Error.aspx");
             }
 
         }

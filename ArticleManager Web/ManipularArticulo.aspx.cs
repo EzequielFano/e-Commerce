@@ -47,10 +47,12 @@ namespace ArticleManager_Web
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
 
-                throw ex;
+                Session.Add("error","Error inesperado al cargar los articulos");
+                Session.Add("ruta", "ManipularArticulo.aspx");
+                Response.Redirect("Error.aspx");
             }
         }
 
