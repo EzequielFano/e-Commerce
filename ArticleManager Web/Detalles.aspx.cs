@@ -25,5 +25,12 @@ namespace ArticleManager_Web
             rpDetalles.DataBind();
             ListaImagenes = negocio.verImagenesArticulo(int.Parse(id));
         }
+
+       
+
+        protected void btnVolverDesdeDetalles_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Articulos.aspx", false);
+        }
     }
 }

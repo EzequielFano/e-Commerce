@@ -57,5 +57,10 @@ namespace ArticleManager_Web
             Session.Add("articulosCarrito", ArticulosCarrito);
             Response.Redirect("Pago.aspx");
         }
+
+        protected void btnVolverCarrito_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Articulos.aspx", false);
+        }
     }
 }

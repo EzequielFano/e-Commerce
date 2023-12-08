@@ -183,6 +183,10 @@
                                         Guardar esta direccion para futuras compras
                                     </label>
                                 </div>
+                                <br>
+                                <br>
+                                <asp:Button Text="Confirmar pedido" CssClass="btn btn-success" ID="btnPagar" runat="server" OnClick="btnPagar_Click" />
+                                <asp:Button Text="Volver" CssClass="btn btn-danger" ID="btnVolverPago" runat="server" OnClick="btnVolverPago_Click"/>
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -197,6 +201,5 @@
 
 
 
-    <asp:Button Text="Ir a pagar" CssClass="btn btn-success" ID="btnPagar" runat="server" OnClick="btnPagar_Click" />
-    <a href="Carrito.aspx">Volver</a>
+   
 </asp:Content>

@@ -136,14 +136,14 @@
         h3 {
             color: rebeccapurple;
             font-size: 3em;
-        }
+        }      
 
-        .buttoncolor {
+        .buttoncolor1 {
             color: rebeccapurple;
             border: 2px solid rebeccapurple;
             background-color: black;
-            padding: 20px 30px; 
-            font-size: 32px; 
+            padding: 20px 30px;
+            font-size: 32px;
         }
 
         .delicate-line {
@@ -168,8 +168,8 @@
 
     <div class="container mt-4">
         <div class="d-flex justify-content-lg-evenly">
-            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-outline-danger buttoncolor" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click" />
-            <asp:Button ID="btnVolver" runat="server" Text="Comenzar a comprar" CssClass="btn btn-outline-success buttoncolor" OnClick="btnVolver_Click" />
+            <asp:Button ID="btnCerrarSesion" runat="server" CssClass="btn btn-outline-danger buttoncolor1" Text="Cerrar sesión" OnClick="btnCerrarSesion_Click" />
+            <asp:Button ID="btnVolver" runat="server" Text="Comenzar a comprar" CssClass="btn btn-outline-success buttoncolor1" OnClick="btnVolver_Click" />
         </div>
     </div>
 

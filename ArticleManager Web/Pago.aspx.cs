@@ -140,5 +140,10 @@ namespace ArticleManager_Web
             ddlCiudad.DataValueField = "IdCiudad";
             ddlCiudad.DataBind();
         }
+
+        protected void btnVolverPago_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Carrito.aspx", false);
+        }
     }
 }
