@@ -117,7 +117,7 @@ namespace ArticleManager_Web
                 }
 
                 negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
-                emailService.EmailCompra(Usuario.Email);
+                emailService.EmailCompra(Usuario.Email,IdTransaccion,Usuario.Nombre);
 
             }
             catch (Exception)

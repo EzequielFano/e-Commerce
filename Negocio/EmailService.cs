@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -22,19 +23,41 @@ namespace Negocio
             server.Host = "smtp.gmail.com";
         }
 
-        public void EmailCompra(string toAddress)
+        public void EmailCompra(string toAddress, int idtransaccion,string nombreusuario)
         {
-            string cuerpoHtml = traercuerpoHTMLCompra();
             email = new MailMessage();
             email.From = new MailAddress("noresponder@technogeek.com.ar");
             email.To.Add(toAddress);
             email.Subject = "Gracias por tu compra en TechnoGeek";
             email.IsBodyHtml = true;
-            email.Body = cuerpoHtml;
+
+            string cuerpoCorreo = $@"
+        <div>
+            <h1>Hola {nombreusuario}! Gracias por tu compra en TechnoGeek.</h1>
+            <p>Estamos encantados de tenerte como cliente, pronto nos pondremos en contacto contigo para contarte novedades sobre tu pedido.</p>
+            <h3>{idtransaccion} <-- Este sera tu numero de pedido.</h3>
+            <p>Te deseamos un buen día.</p>
+            <p>TechnoGeek ARG</p>
+        </div>";
+
+            email.Body = cuerpoCorreo;
+            EnviarMail();
+            email.To.Clear();
+            email.To.Add("technogeekprog3@gmail.com");
+            email.Subject = "Has recibido una nueva compra";
+            email.IsBodyHtml = true;
+
+            cuerpoCorreo = $@"
+        <div>
+            <h1>Has recibido una nueva compra de {nombreusuario}, numero de transaccion: {idtransaccion}</h1>           
+            <p>TechnoGeek ARG</p>
+        </div>";
+
+            email.Body = cuerpoCorreo;
             EnviarMail();
 
-
         }
+
         private void EnviarMail()
         {
             try
@@ -47,51 +70,34 @@ namespace Negocio
                 throw ex;
             }
         }
-        private string traercuerpoHTMLCompra()
+        public void EmailConsulta(string nombreconsulta, string emailconsulta, string cuerpoconsulta)
         {
-            string aux = @"
-            <html>
-                <head>
-                     <style>
-            
-            body {
-                font-family: 'Arial', sans-serif;
-                background-color: #f4f4f4;
-                color: #333;
-                padding: 20px;
-            }
-
-            .container {
-                max-width: 600px;
-                margin: 0 auto;
-                background-color: rebeccapurple;
-                padding: 20px;
-                border-radius: 5px;
-                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            }
-
-            h1 {
-                color: #673ab7;
-            }
-
-            p {
-                line-height: 1.6;
-            }
-        </style>
-                </head>
-                <body>
+            email = new MailMessage();
+            email.From = new MailAddress("Clientes@technogeek.com");
+            email.To.Add("technogeekprog3@gmail.com");
+            email.Subject = "Haz recibido una consulta";
+            email.IsBodyHtml = true;
+            email.Body = $@" 
                     <div>
-                        <p>Gracias por tu compra en TechnoGeek.</p>
-                        <p>Estamos encantados de tenerte como cliente, pronto nos pondremos en contacto contigo para contarte novedades sobre tu pedido </p>
-                        <p>Te deseamos un buen dia. </p>
-                        <p>TechnoGeek ARG </p>
-                        
-                    </div>
-                </body>
-            </html>";
-
-            return aux;
+                        <h1>Tiene una consulta de {nombreconsulta}.</h1>
+                        <h2>Email del consultante: {emailconsulta}</h2>
+                        <h4>Consulta: {cuerpoconsulta}</h4>                        
+                    </div>";
+            EnviarMail();
+            email.To.Clear();
+            email.To.Add(emailconsulta);
+            email.Subject = "Hemos recibido tu consulta";
+            email.IsBodyHtml = true;
+            email.Body = $@" 
+                    <div>
+                        <h1>Hola {nombreconsulta}, ya recibimos tu consulta!</h1>
+                        <h4>Te estaremos enviando una respuesta a la brevedad al correo: {emailconsulta}.</h4>
+                        <h4>Gracias por tu consulta.</h4>                        
+                        <p>TechnoGeek ARG.</p>                        
+                    </div>";
+            EnviarMail();
         }
+
     }
 }
 

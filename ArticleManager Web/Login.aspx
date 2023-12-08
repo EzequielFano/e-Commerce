@@ -142,14 +142,14 @@
             color: rebeccapurple;
             border: 2px solid rebeccapurple;
             background-color: black;
-            padding: 20px 30px; /* Ajusta el valor de padding según tus necesidades */
-            font-size: 32px; /* Ajusta el tamaño de fuente según tus necesidades */
+            padding: 20px 30px; 
+            font-size: 32px; 
         }
 
         .delicate-line {
             border-top: 1px solid white;
-            width: 75%; /* Puedes ajustar el porcentaje según tus necesidades */
-            margin: 20px auto; /* Centra la línea horizontalmente */
+            width: 75%;
+            margin: 20px auto;
         }
     </style>
 
