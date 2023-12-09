@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="Pedidos.aspx.cs" Inherits="ArticleManager_Web.Pedidos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="PedidosEnviados.aspx.cs" Inherits="ArticleManager_Web.PedidosEnviados" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -63,10 +63,10 @@
 
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
+                <a class="nav-link" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">Enviados</a>
+                <a class="nav-link active" href="PedidosEnviados.aspx" onclick="toggleActive(1)">Enviados</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="PedidosEnLocal.aspx" onclick="toggleActive(2)">Retiro en el local</a>
@@ -76,21 +76,19 @@
             </li>
         </ul>
 
-    
 
     </body>
     </html>
 
     <div class="containerPedidos">
         <div class="table-title">
-            PEDIDOS INICIADOS
+            PEDIDOS ENVIADOS
         </div>
-        <asp:GridView ID="dgvPedidos" runat="server" OnSelectedIndexChanged="dgvPedidos_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
+        <asp:GridView ID="dgvPedidosEnviados" runat="server" OnSelectedIndexChanged="dgvPedidosEnviados_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>
                 <asp:BoundField HeaderText="ID Transaccion" DataField="IdTransaccion" />
                 <asp:BoundField HeaderText="ID Usuario" DataField="User.IdUsuario" />
                 <asp:BoundField HeaderText="Fecha de compra" DataField="FechaTransaccion" />
-                
                 <asp:BoundField HeaderText="Importe total" DataField="Importe" />
                 <asp:BoundField HeaderText="Numero de seguimiento" DataField="NroSeguimiento" />
                 <asp:BoundField HeaderText="Tipo de pago" DataField="TipoPago" />
@@ -100,3 +98,4 @@
         </asp:GridView>
     </div>
 </asp:Content>
+

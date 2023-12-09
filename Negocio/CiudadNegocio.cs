@@ -35,5 +35,32 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public string listarCiudadXId(int Id)
+        {
+            string CiudadNombre = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedura("ObtenerNombreCiudad");
+                datos.setearParametro("IdCiudad", Id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    Ciudad ciudad = new Ciudad();
+                    ciudad.Nombre = (string)datos.Lector["Nombre"];
+                    CiudadNombre = ciudad.Nombre;
+                    
+                }
+                return CiudadNombre;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

@@ -14,7 +14,7 @@ namespace Negocio
         public void generarDireccion(Direccion direccion, int IdTransaccion, int IdUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
-            
+
             try
             {
 
@@ -39,7 +39,51 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
         }
 
+        public Direccion DireccionSegunIdTransaccion(int IdTransaccion)
+        {
+            Direccion direccion = new Direccion();
+            AccesoDatos datos = new AccesoDatos();
+            CiudadNegocio ciudadNegocio = new CiudadNegocio();
+            ProvinciaNegocio negocioProvincia = new ProvinciaNegocio();
+            try
+            {
+                datos.setearProcedura("ObtenerDireccionPorTransaccion");
+                datos.setearParametro("@IdTransaccion", IdTransaccion);
+                datos.ejecutarLectura();
+                if(datos.Lector.Read())
+                {
+                    direccion.IdDireccion = datos.Lector.GetInt32(0);
+                    if (direccion.Pais == null)
+                    {
+                        direccion.Pais = new Pais();
+                    }
+                    direccion.Pais.IdPais = datos.Lector.GetInt32(2);
+                    direccion.Pais.Nombre = "Argentina";
+                    if (direccion.Provincia == null)
+                    {
+                        direccion.Provincia = new Provincia();
+                    }
+                    direccion.Provincia.IdProvincia = datos.Lector.GetInt32(3);
+                    direccion.Provincia.Nombre = negocioProvincia.listarProvinciaXId(direccion.Provincia.IdProvincia);
+                    if (direccion.Ciudad == null)
+                    {
+                        direccion.Ciudad = new Ciudad();
+                    }
+                    direccion.Ciudad.IdCiudad = datos.Lector.GetInt32(4);
+                    direccion.Ciudad.Nombre = ciudadNegocio.listarCiudadXId(direccion.Ciudad.IdCiudad);
+                    direccion.Calle = datos.Lector["Calle"].ToString();
+                    direccion.Numero = datos.Lector.GetInt32(6);
+                    direccion.Piso = datos.Lector.GetInt32(7);
+                    direccion.Departamento = datos.Lector["Departamento"].ToString();
+                }
+                return direccion;
+            }
+            catch (Exception)
+            {
 
+                throw;
+            }
+        }
 
         public int cantidadDirecciones()
         {

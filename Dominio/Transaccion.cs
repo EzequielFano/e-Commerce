@@ -14,9 +14,10 @@ namespace Dominio
     }
     public enum EstadoEnvio
     {
-        ENPROCESO = 1,
+        INICIADO = 1,
         ENVIADO = 2,
-        RECIBIDO = 3
+        RETIRO_EN_LOCAL = 3,
+        RECIBIDO = 4
     }
     public class Transaccion
     {

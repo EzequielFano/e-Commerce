@@ -36,5 +36,33 @@ namespace Negocio
             finally { datos.cerrarConexion(); }
 
         }
+
+
+        public string listarProvinciaXId(int Id)
+        {
+            string provinciaNombre = null;
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearProcedura("ObtenerNombreProvincia");
+                datos.setearParametro("IdProvincia", Id);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    Provincia provincia = new Provincia();
+                    
+                    provincia.Nombre = (string)datos.Lector["Nombre"];
+                    provinciaNombre = provincia.Nombre;
+                }
+                return provinciaNombre ;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

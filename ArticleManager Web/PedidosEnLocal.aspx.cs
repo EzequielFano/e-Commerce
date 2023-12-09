@@ -9,7 +9,7 @@ using System.Web.UI.WebControls;
 
 namespace ArticleManager_Web
 {
-    public partial class Pedidos : System.Web.UI.Page
+    public partial class PedidosEnLocal : System.Web.UI.Page
     {
         public List<Transaccion> Transacciones { get; set; }
         public List<Detalles> DetallesTransacciones { get; set; }
@@ -19,21 +19,19 @@ namespace ArticleManager_Web
             try
             {
                 TransaccionNegocio negocio = new TransaccionNegocio();
-                List<Transaccion> TransaccionesIniciadas = new List<Transaccion>();
-                DireccionNegocio negocioDireccion = new DireccionNegocio();
+                List<Transaccion> TransaccionesEnLocal = new List<Transaccion>();
                 if (!IsPostBack)
                 {
+
                     Transacciones = negocio.traerListado();
                     foreach (Transaccion aux in Transacciones)
                     {
-                        if (aux.Estado == EstadoEnvio.INICIADO)
-                        {
-                            TransaccionesIniciadas.Add(aux);
-                            //aux.Direccion = negocioDireccion.DireccionSegunIdTransaccion(aux.IdTransaccion);
-                        }
+                        if (aux.Estado == EstadoEnvio.RETIRO_EN_LOCAL)
+                            TransaccionesEnLocal.Add(aux);
                     }
-                    dgvPedidos.DataSource = TransaccionesIniciadas;
-                    dgvPedidos.DataBind();
+
+                    dgvPedidosEnLocal.DataSource = TransaccionesEnLocal;
+                    dgvPedidosEnLocal.DataBind();
                 }
             }
             catch (Exception ex)
@@ -42,13 +40,14 @@ namespace ArticleManager_Web
                 throw ex;
             }
         }
-        protected void dgvPedidos_SelectedIndexChanged(object sender, EventArgs e)
+
+
+        protected void dgvPedidosEnLocal_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                var idTransaccion = dgvPedidos.SelectedRow.Cells[0].Text;
-                var idUsuario = dgvPedidos.SelectedRow.Cells[1].Text;
-                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}", false);
+                var id = dgvPedidosEnLocal.SelectedRow.Cells[0].Text;
+                Response.Redirect("DetallesTransacciones.aspx?idTransaccion=" + id, false);
             }
             catch (Exception)
             {
@@ -59,6 +58,6 @@ namespace ArticleManager_Web
             }
         }
 
-      
+
     }
 }

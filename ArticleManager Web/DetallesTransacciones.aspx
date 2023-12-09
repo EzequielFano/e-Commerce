@@ -44,6 +44,20 @@
         .table tbody tr:nth-of-type(odd) {
             background-color: #f8f9fa;
         }
+
+        .card {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card-body {
+            text-align: left;
+        }
+
+        .card-header {
+            background-color: rebeccapurple !important;
+            color: #f8f9fa;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -63,6 +77,46 @@
             </Columns>
         </asp:GridView>
     </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-5 mb-3">
+            <div class="card text-center">
+                <div class="table-title mb-2">
+                    Informacion de envio
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title mb-2"><b>Direccion</b></h5>
+                    <p class="card-text mb-1"><b>Pais:</b> <%=Direccion.Pais%></p>
+                    <p class="card-text mb-1"><b>Provincia: </b><%=Direccion.Provincia %></p>
+                    <p class="card-text mb-1"><b>Ciudad: </b><%=Direccion.Ciudad%></p>
+                    <p class="card-text mb-1"><b>Calle: </b><%=Direccion.Calle%></p>
+                    <p class="card-text mb-1"><b>Numero: </b><%=Direccion.Numero%></p>
+                    <p class="card-text mb-1"><b>Piso: </b><%=Direccion.Piso%></p>
+                    <p class="card-text mb-0"><b>Departamento: </b><%=Direccion.Departamento%></p>
+                </div>
+                <div class="card-footer text-body-secondary">
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 mb-3">
+            <div class="card text-center">
+                <div class="table-title mb-2">
+                    Informacion del Usuario
+                </div>
+                <div class="card-body">
+                    <h5 class="card-text mb-2"><b>Usuario ID: </b><%=Usuario.IdUsuario %></h5>
+                    <p class="card-text mb-1"><b>Nombre: </b> <%=Usuario.Nombre%></p>
+                    <p class="card-text mb-1"><b>Apellido: </b><%=Usuario.Apellido %></p>
+                    <p class="card-text mb-0"><b>Email: </b><%=Usuario.Email%></p>
+                </div>
+                <div class="card-footer text-body-secondary">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 
 
 

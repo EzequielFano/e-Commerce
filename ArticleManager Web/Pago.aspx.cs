@@ -57,7 +57,7 @@ namespace ArticleManager_Web
                 Direccion = new Direccion();
                 Direccion.Provincia = new Provincia();
                 Direccion.Ciudad = new Ciudad();
-                if (string.IsNullOrEmpty(ddlProvincia.SelectedValue))
+                if (string.IsNullOrEmpty(ddlProvincia.SelectedItem.Value))
                 {
                     Session.Add("error", "Debe seleccionar una provincia, reintente realizar la compra");
                     Session.Add("ruta", "Pago.aspx");
@@ -65,7 +65,7 @@ namespace ArticleManager_Web
                     return;
                 }
                 Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
-                if (string.IsNullOrEmpty(ddlCiudad.SelectedValue))
+                if (string.IsNullOrEmpty(ddlCiudad.SelectedItem.Value))
                 {
                     Session.Add("error", "Debe seleccionar una ciudad, reintente realizar la compra");
                     Session.Add("ruta", "Pago.aspx");
