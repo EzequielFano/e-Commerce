@@ -45,6 +45,10 @@
                 return false;
             }
         }
+
+        window.onload = function () {
+            document.getElementById('txtUser').focus();
+        };
     </script>
 
     <%if (!session)
@@ -66,7 +70,7 @@
             <div class="row">
                 <div class="col-1"></div>
                 <div class="col-10">
-                    <asp:TextBox CssClass="form-control textboxlogin" ID="txtUser" runat="server" />
+                    <asp:TextBox CssClass="form-control textboxlogin" ID="txtUser" runat="server" ClientIDMode="Static" />
                 </div>
                 <div class="col-1"></div>
             </div>
@@ -136,7 +140,7 @@
         h3 {
             color: rebeccapurple;
             font-size: 3em;
-        }      
+        }
 
         .buttoncolor1 {
             color: rebeccapurple;
