@@ -59,12 +59,21 @@ namespace ArticleManager_Web
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
-
+            if(txtCodigo.Text.Length > 0 && txtNombre.Text.Length >0 && txtPrecio.Text.Length >0 && txtCantidad.Text.Length >0 && txtDescripcion.Text.Length>0)
+            {
             articulo.CodigoArticulo = txtCodigo.Text;
             articulo.NombreArticulo = txtNombre.Text;
             articulo.Precio = float.Parse(txtPrecio.Text);
             articulo.Cantidad = int.Parse(txtCantidad.Text);
             articulo.Descripcion = txtDescripcion.Text;
+            }
+            else
+            {
+                Session.Add("error", "Debe completar todos los datos necesarios");
+                Session.Add("ruta", "ManipularArticulo.aspx");
+                Response.Redirect("Error.aspx", false);
+                return;
+            }
             articulo.Marca = new Marca();
             articulo.Marca.Id = int.Parse(ddlMarca.SelectedItem.Value);
             articulo.Categoria = new Categoria();
