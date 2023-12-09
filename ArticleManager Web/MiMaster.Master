@@ -35,8 +35,6 @@
             margin-left: 40px;
             margin-right: 40px;
         }
-
-        
     </style>
 
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
@@ -94,6 +92,7 @@
                 <div class="col" style="margin-left: 10px;">
                     <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
                 </div>
+           
     </form>
     <div class="col-1">
         <div>
@@ -113,7 +112,7 @@
 
 
 
-    </div>
+
     </form>
     <footer class="bg-dark text-white pt-5 pb-4">
         <div class="container text-center text-md-left">
@@ -128,10 +127,7 @@
                 <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
                     <h5 style="color: rebeccapurple" class="text-uppercase mb-4 font-weight-bold">About US</h5>
                     <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Ezequiel Fano</a>
-                    </p>
-                    <p>
-                        <a href="#" class="text-white" style="text-decoration: none;">Franco Danelon</a>
+                        <a href="AboutUs.aspx" class="text-white" style="text-decoration: none;">Creadores</a>
                     </p>
                     <p>
                         <a href="https://www.frgp.utn.edu.ar" class="text-white" style="text-decoration: none;">UTN FRGP</a>
@@ -143,7 +139,7 @@
                     <h5 style="color: rebeccapurple" class="text-uppercase mb-4 font-weight-bold">¿Necesitas Ayuda?</h5>
                     <p>Envianos tu consulta a traves de nuestro formulario de consultas</p>
                     <p>
-                        <a href="#" style="color: rebeccapurple" class="link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="text-decoration: none;">!Consulte AQUI!</a>
+                        <a href="FormularioContacto.aspx" style="color: rebeccapurple" class="link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover" style="text-decoration: none;">!Consulte AQUI!</a>
                     </p>
                 </div>
                 <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">

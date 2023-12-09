@@ -29,7 +29,6 @@
             color: rebeccapurple;
             border: 2px solid rebeccapurple;
             background-color: black;
-           
         }
     </style>
 
@@ -45,7 +44,7 @@
         <asp:Label ID="lblConsulta" runat="server" AssociatedControlID="txtConsulta">Consulta:</asp:Label>
         <asp:TextBox ID="txtConsulta" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" Required="true"></asp:TextBox>
 
-        <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-outline-success buttoncolor" OnClick="btnEnviar_Click"/>       
+        <asp:Button ID="btnEnviar" runat="server" Text="Enviar" CssClass="btn btn-outline-success buttoncolor" OnClick="btnEnviar_Click" />
 
     </div>
     <br />

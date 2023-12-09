@@ -51,7 +51,6 @@
         <div class="table-title">
             Resumen de compra
         </div>
-
         <asp:GridView ID="dgvArticulosComprados" runat="server" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>
                 <asp:BoundField HeaderText="Codigo Articulo" DataField="CodigoArticulo" />
