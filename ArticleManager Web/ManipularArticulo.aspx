@@ -65,11 +65,9 @@
             </div>
         </div>
         <div class="col-12 mb-3">
-            <asp:Button Text="Agregar" CssClass="btn btn-success" ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" />
+            <asp:Button  CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
         </div>
-        <div class="col-12 mb-3">
-            <asp:Button Text="Modificar" CssClass="btn btn-danger" ID="btnModificar" OnClick="btnModificar_Click" runat="server" />
-        </div>
+        
 
         <!-- IMAGENES-->
         <div id="carouselExample" class="carousel slide">

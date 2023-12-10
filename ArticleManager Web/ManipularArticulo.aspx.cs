@@ -24,6 +24,7 @@ namespace ArticleManager_Web
                 {
                     if (Request.QueryString["id"] != null)
                     {
+                        btnAccion.Text = "Editar articulo";
                         int id = int.Parse(Request.QueryString["id"].ToString());
                         List<Articulo> modificacion = negocio.TraerListadoCompletoxId(id);
                         txtCodigo.Text = modificacion[0].CodigoArticulo.ToString();
@@ -36,64 +37,37 @@ namespace ArticleManager_Web
                         ddlMarca.SelectedValue = modificacion[0].Marca.Id.ToString();
 
                     }
-                    ddlCategoria.DataSource = categoria.listar();
-                    ddlCategoria.DataTextField = "Descripcion";
-                    ddlCategoria.DataValueField = "Id";
-                    ddlCategoria.DataBind();
-                    ddlMarca.DataSource = marca.listar();
-                    ddlMarca.DataTextField = "Descripcion";
-                    ddlMarca.DataValueField = "Id";
-                    ddlMarca.DataBind();
+                    else
+                    {
+                        btnAccion.Text = "Agregar articulo";
+                    }
+                        ddlCategoria.DataSource = categoria.listar();
+                        ddlCategoria.DataTextField = "Descripcion";
+                        ddlCategoria.DataValueField = "Id";
+                        ddlCategoria.DataBind();
+                        ddlMarca.DataSource = marca.listar();
+                        ddlMarca.DataTextField = "Descripcion";
+                        ddlMarca.DataValueField = "Id";
+                        ddlMarca.DataBind();
+
                 }
 
             }
             catch (Exception)
             {
 
-                Session.Add("error","Error inesperado al cargar los articulos");
+                Session.Add("error", "Error inesperado al cargar los articulos");
                 Session.Add("ruta", "ManipularArticulo.aspx");
                 Response.Redirect("Error.aspx");
             }
         }
 
-        protected void btnAgregar_Click(object sender, EventArgs e)
-        {
-            ArticulosNegocio negocio = new ArticulosNegocio();
-            if(txtCodigo.Text.Length > 0 && txtNombre.Text.Length >0 && txtPrecio.Text.Length >0 && txtCantidad.Text.Length >0 && txtDescripcion.Text.Length>0)
-            {
-            articulo.CodigoArticulo = txtCodigo.Text;
-            articulo.NombreArticulo = txtNombre.Text;
-            articulo.Precio = float.Parse(txtPrecio.Text);
-            articulo.Cantidad = int.Parse(txtCantidad.Text);
-            articulo.Descripcion = txtDescripcion.Text;
-            }
-            else
-            {
-                Session.Add("error", "Debe completar todos los datos necesarios");
-                Session.Add("ruta", "ManipularArticulo.aspx");
-                Response.Redirect("Error.aspx", false);
-                return;
-            }
-            articulo.Marca = new Marca();
-            articulo.Marca.Id = int.Parse(ddlMarca.SelectedItem.Value);
-            articulo.Categoria = new Categoria();
-            articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedItem.Value);
-            articulo.URLImagen = new Imagen();
-            if (txtURLImagen.Text == null)
-            {
-                articulo.URLImagen.URL = " ";
-            }
-            articulo.URLImagen.URL = txtURLImagen.Text;
 
-            negocio.agregarArticulo(articulo);
-            Response.Redirect("ListadoArticulos.aspx");
-
-        }
-
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void btnAccion_Click(object sender, EventArgs e)
         {
             if (Request.QueryString["id"] != null)
             {
+
                 int id = int.Parse(Request.QueryString["id"].ToString());
                 ArticulosNegocio negocio = new ArticulosNegocio();
                 articulo.IdArticulo = id;
@@ -117,8 +91,38 @@ namespace ArticleManager_Web
                 Response.Redirect("ListadoArticulos.aspx");
 
             }
+            else
+            {
+                ArticulosNegocio negocio = new ArticulosNegocio();
+                if (txtCodigo.Text.Length > 0 && txtNombre.Text.Length > 0 && txtPrecio.Text.Length > 0 && txtCantidad.Text.Length > 0 && txtDescripcion.Text.Length > 0)
+                {
+                    articulo.CodigoArticulo = txtCodigo.Text;
+                    articulo.NombreArticulo = txtNombre.Text;
+                    articulo.Precio = float.Parse(txtPrecio.Text);
+                    articulo.Cantidad = int.Parse(txtCantidad.Text);
+                    articulo.Descripcion = txtDescripcion.Text;
+                }
+                else
+                {
+                    Session.Add("error", "Debe completar todos los datos necesarios");
+                    Session.Add("ruta", "ManipularArticulo.aspx");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+                articulo.Marca = new Marca();
+                articulo.Marca.Id = int.Parse(ddlMarca.SelectedItem.Value);
+                articulo.Categoria = new Categoria();
+                articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedItem.Value);
+                articulo.URLImagen = new Imagen();
+                if (txtURLImagen.Text == null)
+                {
+                    articulo.URLImagen.URL = " ";
+                }
+                articulo.URLImagen.URL = txtURLImagen.Text;
+
+                negocio.agregarArticulo(articulo);
+                Response.Redirect("ListadoArticulos.aspx");
+            }
         }
-
-
     }
 }
