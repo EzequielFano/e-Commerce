@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="PedidosEnviados.aspx.cs" Inherits="ArticleManager_Web.PedidosEnviados" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="PedidosPagados.aspx.cs" Inherits="ArticleManager_Web.PedidosPagados" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -77,31 +77,28 @@
         </style>
     </head>
     <body>
-
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
+                <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
+                <a class="nav-link active" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Recibidos</a>
             </li>
         </ul>
-
-
     </body>
     </html>
 
     <div class="containerPedidos">
         <div class="table-title">
-            PEDIDOS EN PROCESO
+            PEDIDOS INICIADOS
         </div>
-        <asp:GridView ID="dgvPedidosEnviados" runat="server" OnSelectedIndexChanged="dgvPedidosEnviados_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
+        <asp:GridView ID="dgvPedidosPagados" runat="server" OnSelectedIndexChanged="dgvPedidosPagados_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>
                 <asp:BoundField HeaderText="ID Transaccion" DataField="IdTransaccion" />
                 <asp:BoundField HeaderText="ID Usuario" DataField="User.IdUsuario" />
@@ -116,4 +113,3 @@
         </asp:GridView>
     </div>
 </asp:Content>
-

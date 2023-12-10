@@ -51,7 +51,11 @@ namespace ArticleManager_Web
                 }
                 else if (estado == EstadoEnvio.EN_PROCESO)
                 {
-                    btnCambiarEstado.Text = "FINALIZAR TRANSACCION";
+                    btnCambiarEstado.Text = "CLIENTE PAGÓ";
+                }
+                else if (estado == EstadoEnvio.PAGADO)
+                {
+                    btnCambiarEstado.Text = "PEDIDO ENTREGADO";
                 }
 
 
@@ -73,6 +77,11 @@ namespace ArticleManager_Web
             {
                 negocioTransaccion.cambiarEstadoTransaccion(3, IdTransaccion);
                 Response.Redirect("PedidosEnviados.aspx", false);
+            }
+            else if (estado == EstadoEnvio.PAGADO)
+            {
+                negocioTransaccion.cambiarEstadoTransaccion(4, IdTransaccion);
+                Response.Redirect("PedidosPagados.aspx", false);
             }
 
         }

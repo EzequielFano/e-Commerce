@@ -67,7 +67,7 @@
                 display: flex;
                 justify-content: center;
                 box-sizing: border-box;
-                max-width: 18%;
+                max-width: 30%;
                 margin: 0 auto;
             }
 
@@ -83,6 +83,9 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Recibidos</a>
