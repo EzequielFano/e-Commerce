@@ -12,6 +12,7 @@ namespace ArticleManager_Web
     public partial class ManipularArticulo : System.Web.UI.Page
     {
         Articulo articulo = new Articulo();
+        public string Ruta { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
         {

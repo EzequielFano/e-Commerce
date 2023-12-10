@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="ManipularArticulo.aspx.cs" Inherits="ArticleManager_Web.ManipularArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <style>
+    <style>
         .form-label {
             color: rebeccapurple;
             font-weight: bold;
@@ -60,8 +60,13 @@
         <div class="col-12 mb-3">
             <asp:Button CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
         </div>
-
-
-
+        <div>
+            <%if (Request.QueryString["id"] != null)
+                { %>
+            <br />
+            <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 10%">Volver</a>
+            <br />
+            <%} %>
+        </div>
     </div>
 </asp:Content>

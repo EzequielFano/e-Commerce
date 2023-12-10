@@ -96,9 +96,6 @@ namespace ArticleManager_Web
             Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario,false);
         }
 
-        protected void btnVolverDetalles_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("Pedidos.aspx", false);
-        }
+
     }
 }
