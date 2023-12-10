@@ -128,14 +128,10 @@
         <%if (estado.ToString() != "RECIBIDO")
             { %>
         <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
-<<<<<<< HEAD
-=======
+
        <%} %>
     </div>
-    <div style="text-align:center;margin-top:10px;">
-        <asp:Button ID="btnVolverDetalles" CssClass="btn btn-custom" OnClick="btnVolverDetalles_Click" style="width: 200px; max-height: 40px;" Text="Volver" runat="server"  />
->>>>>>> 74383c43e48462a9968d33df62e046277febc30c
-    </div>
+  
         <br />
        
     <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 10%">Volver</a>
