@@ -37,46 +37,33 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
     <br />
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Toggle Active Class</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <style>
-            .oculto {
-                display: none;
-            }
+    <style>
+        .oculto {
+            display: none;
+        }
 
-            .nav-tabs {
-                background-color: black; /* Fondo oscuro */
-            }
+        .nav-tabs {
+            background-color: black; /* Fondo oscuro */
+        }
 
-            .nav-link {
-                color: #8a2be2 !important; /* Letras violetas */
+        .nav-link {
+            color: #8a2be2 !important; /* Letras violetas */
+        }
+            .nav-link.active {
+                background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
+                color: #fff !important; /* Letras blancas para la pestaña activa */
             }
-
-                .nav-link.active {
-                    background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
-                    color: #fff !important; /* Letras blancas para la pestaña activa */
-                }
-        </style>
-        <style>
-            #myTabs {
-                display: flex;
-                justify-content: center;
-                box-sizing: border-box;
-                max-width: 30%;
-                margin: 0 auto;
-            }
-
-            .nav-link {
-                padding: 8px 12px; /* Ajusta el espaciado interno de cada enlace según tus necesidades */
-            }
-        </style>
-    </head>
-    <body>
+        #myTabs {
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+            max-width: 30%;
+            margin: 0 auto;
+        }
+        .nav-link {
+            padding: 8px 12px; /* Ajusta el espaciado interno de cada enlace según tus necesidades */
+        }
+    </style>    
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
@@ -88,13 +75,10 @@
                 <a class="nav-link" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Recibidos</a>
+                <a class="nav-link" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
             </li>
         </ul>
-    </body>
-    </html>
-
-    <div class="containerPedidos">
+     <div class="containerPedidos">
         <div class="table-title">
             PEDIDOS INICIADOS
         </div>
