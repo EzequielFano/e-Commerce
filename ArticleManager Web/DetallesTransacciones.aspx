@@ -124,7 +124,8 @@
                 </div>
             </div>
         </div>
-    <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" />
+        <asp:Button ID="btnEnviarMail" Text="ENVIAR MAIL AL USUARIO" CssClass="btn btn-custom" OnClick="btnEnviarMail_Click" runat="server" style="margin-right: 10px;" />
+        <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
        
     </div>
     <br />
@@ -134,13 +135,12 @@
             background-color: #8a2be2;
             color: #ffffff;
             transition: background-color 0.3s ease; /* Transición suave */
-            max-width: 80%
+            max-width: 40%
         }
 
             .btn-custom:hover {
                 background-color: #a74dd1; /* Cambiar el color al pasar el ratón sobre el botón */
             }
-
     </style>
 
 

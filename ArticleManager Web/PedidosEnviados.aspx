@@ -99,7 +99,7 @@
 
     <div class="containerPedidos">
         <div class="table-title">
-            PEDIDOS EN PROCESO
+            PEDIDOS EN PROCESO Y A LA ESPERA DEL PAGO
         </div>
         <asp:GridView ID="dgvPedidosEnviados" runat="server" OnSelectedIndexChanged="dgvPedidosEnviados_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>

@@ -97,6 +97,7 @@
     <Content Include="ListadoArticulos.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ManipularArticulo.aspx" />
+    <Content Include="MiPerfil.aspx" />
     <Content Include="Pago.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="PedidosEnviados.aspx" />
@@ -211,6 +212,13 @@
     </Compile>
     <Compile Include="MiMaster.Master.designer.cs">
       <DependentUpon>MiMaster.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pago.aspx.cs">
       <DependentUpon>Pago.aspx</DependentUpon>

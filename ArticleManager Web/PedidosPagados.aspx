@@ -96,7 +96,7 @@
 
     <div class="containerPedidos">
         <div class="table-title">
-            PEDIDOS INICIADOS
+            PEDIDOS PAGADOS, PENDIENTES DE RECIBIR 
         </div>
         <asp:GridView ID="dgvPedidosPagados" runat="server" OnSelectedIndexChanged="dgvPedidosPagados_SelectedIndexChanged" DataKeyNames="IdTransaccion" AutoGenerateColumns="False" CssClass="table table-striped">
             <Columns>

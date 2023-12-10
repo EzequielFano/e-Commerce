@@ -85,5 +85,10 @@ namespace ArticleManager_Web
             }
 
         }
+
+        protected void btnEnviarMail_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario);
+        }
     }
 }
