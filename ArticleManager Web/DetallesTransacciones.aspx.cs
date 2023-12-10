@@ -19,12 +19,13 @@ namespace ArticleManager_Web
         static public int IdUsuario { get; set; }
         static public int OpcionEnvio { get; set; }
         static public EstadoEnvio estado { get; set; }
+        public string Ruta { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosNegocio negocioArticulos = new ArticulosNegocio();
             DireccionNegocio negocioDireccion = new DireccionNegocio();
             UsuarioNegocio negocioUsuario = new UsuarioNegocio();
-
+            Ruta = Session["ruta"].ToString();
             if (!IsPostBack)
             {
                 if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))

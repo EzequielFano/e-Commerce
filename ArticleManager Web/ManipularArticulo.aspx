@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MiMaster.Master" AutoEventWireup="true" CodeBehind="ManipularArticulo.aspx.cs" Inherits="ArticleManager_Web.ManipularArticulo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
+     <style>
         .form-label {
             color: rebeccapurple;
             font-weight: bold;
@@ -9,17 +9,10 @@
 
         .custom-form {
             margin-top: 50px;
-        }      
-
-        #carouselExample {
-            width: 50%;
-            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 600px; /* Ajusta según sea necesario */
         }
-
-            #carouselExample img {
-                width: 100%;
-                height: auto;
-            }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -65,25 +58,10 @@
             </div>
         </div>
         <div class="col-12 mb-3">
-            <asp:Button  CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
+            <asp:Button CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
         </div>
-        
 
-        <!-- IMAGENES-->
-        <div id="carouselExample" class="carousel slide">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="<%=txtURLImagen%>" class="d-block w-100" alt="...">
-                </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
+
+
     </div>
 </asp:Content>

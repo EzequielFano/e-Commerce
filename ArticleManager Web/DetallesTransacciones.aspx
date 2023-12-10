@@ -126,8 +126,11 @@
         </div>
         <asp:Button ID="btnEnviarMail" Text="ENVIAR MAIL AL USUARIO" CssClass="btn btn-custom" OnClick="btnEnviarMail_Click" runat="server" style="margin-right: 10px;" />
         <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
-       
     </div>
+        <br />
+       
+    <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 10%">Volver</a>
+
     <br />
     <br />
     <style>
