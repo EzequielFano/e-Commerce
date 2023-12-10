@@ -27,7 +27,18 @@ namespace ArticleManager_Web
 
         protected void dgvUsuarios_SelectedIndexChanged(object sender, EventArgs e)
         {
+            try
+            {
+                var id = dgvUsuarios.SelectedRow.Cells[0].Text;
+                Response.Redirect("FormularioContacto.aspx?idUsuario=" + id, false);
+            }
+            catch (Exception)
+            {
 
+                Session.Add("error", "error inesperado");
+                Session.Add("ruta", "ListadoArticulos.aspx");
+                Response.Redirect("Error.aspx");
+            }
         }
 
         protected void chkStatus_CheckedChanged(object sender, EventArgs e)

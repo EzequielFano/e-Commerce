@@ -26,7 +26,7 @@ namespace Negocio
                 while (datos.Lector.Read())
                 {
                     usuario.IdUsuario = (int)datos.Lector["IdUsuario"];
-                    usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 2 ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
+                    usuario.TipoUsuario = (int)(datos.Lector["TipoUsuario"]) == 2 ? TipoUsuario.Admin : TipoUsuario.Cliente;
 
                     return true;
                 }

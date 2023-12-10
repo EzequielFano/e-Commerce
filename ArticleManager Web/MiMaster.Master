@@ -63,7 +63,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="Login.aspx">Login</a>
                             </li>
-                            <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.ADMIN) && session)
+                            <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin) && session)
                                 {  %>
 
                             <li class="nav-item dropdown">

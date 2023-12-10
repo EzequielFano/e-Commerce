@@ -9,8 +9,8 @@ namespace Dominio
 {
     public enum TipoUsuario
     {
-        NORMAL = 1,
-        ADMIN = 2
+        Cliente = 1,
+        Admin = 2
     }
     public class Usuario
     {
@@ -28,7 +28,7 @@ namespace Dominio
             Email=email;
             Password = pass;
             Nombre=nombre;
-            TipoUsuario = admin ? TipoUsuario.ADMIN : TipoUsuario.NORMAL;
+            TipoUsuario = admin ? TipoUsuario.Admin : TipoUsuario.Cliente;
 
         }
 
