@@ -47,8 +47,9 @@ namespace ArticleManager_Web
             {
                 var idTransaccion = dgvPedidosEnviados.SelectedRow.Cells[0].Text;
                 var idUsuario = dgvPedidosEnviados.SelectedRow.Cells[1].Text;
-                var idDomicilio = dgvPedidosEnviados.SelectedRow.Cells[3].Text;
-                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idDomicilio={idDomicilio}", false);
+                var idOpcionEnvio = dgvPedidosEnviados.SelectedRow.Cells[3].Text;
+                var EstadoEnvio = dgvPedidosEnviados.SelectedRow.Cells[7].Text;
+                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idOpcionEnvio={idOpcionEnvio}&EstadoEnvio={EstadoEnvio}", false);
             }
             catch (Exception)
             {

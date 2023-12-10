@@ -19,7 +19,7 @@ namespace ArticleManager_Web
             try
             {
                 TransaccionNegocio negocio = new TransaccionNegocio();
-                List<Transaccion> TransaccionesRecibidas = new List<Transaccion>(); 
+                List<Transaccion> TransaccionesRecibidas = new List<Transaccion>();
                 if (!IsPostBack)
                 {
 
@@ -27,7 +27,7 @@ namespace ArticleManager_Web
                     foreach (Transaccion aux in Transacciones)
                     {
                         if (aux.Estado == EstadoEnvio.RECIBIDO)
-                        TransaccionesRecibidas.Add(aux);
+                            TransaccionesRecibidas.Add(aux);
                     }
                     dgvPedidosRecibidos.DataSource = TransaccionesRecibidas;
                     dgvPedidosRecibidos.DataBind();
@@ -40,7 +40,7 @@ namespace ArticleManager_Web
             }
         }
 
-        
+
 
         protected void dgvPedidosRecibidos_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -48,8 +48,9 @@ namespace ArticleManager_Web
             {
                 var idTransaccion = dgvPedidosRecibidos.SelectedRow.Cells[0].Text;
                 var idUsuario = dgvPedidosRecibidos.SelectedRow.Cells[1].Text;
-                var idDomicilio = dgvPedidosRecibidos.SelectedRow.Cells[3].Text;
-                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idDomicilio={idDomicilio}", false);
+                var idOpcionEnvio = dgvPedidosRecibidos.SelectedRow.Cells[3].Text;
+                var EstadoEnvio = dgvPedidosRecibidos.SelectedRow.Cells[7].Text;
+                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idOpcionEnvio={idOpcionEnvio}&EstadoEnvio={EstadoEnvio}", false);
             }
             catch (Exception)
             {
@@ -60,6 +61,6 @@ namespace ArticleManager_Web
             }
         }
 
-        
+
     }
 }

@@ -103,6 +103,23 @@ namespace Negocio
             }
 
         }
+        public void cambiarEstadoTransaccion(int EstadoTransaccion, int IdTransaccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedura("CambiarEstadoTransaccion");
+                datos.setearParametro("@IdTransaccion", IdTransaccion);
+                datos.setearParametro("@NuevoEstado", EstadoTransaccion);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+        }
         public int cantidadTransacciones()
         {
             AccesoDatos datos = new AccesoDatos();

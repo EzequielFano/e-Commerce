@@ -45,8 +45,12 @@
         <title>Toggle Active Class</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
+            .oculto {
+                display: none;
+            }
+
             .nav-tabs {
-                background-color: #333; /* Fondo oscuro */
+                background-color: black; /* Fondo oscuro */
             }
 
             .nav-link {
@@ -61,11 +65,9 @@
         <style>
             #myTabs {
                 display: flex;
-                justify-content: center; /* Centra la barra de navegación horizontalmente */
-                border: 1px solid #ffffff; /* Añade un borde blanco de 1 píxel */
-                border-radius: 5px; /* Opcional: agrega esquinas redondeadas */
+                justify-content: center;
                 box-sizing: border-box;
-                max-width: 26%;
+                max-width: 18%;
                 margin: 0 auto;
             }
 
@@ -83,7 +85,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
             </li>
-          
+
             <li class="nav-item">
                 <a class="nav-link active" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Recibidos</a>
             </li>
@@ -101,7 +103,7 @@
                 <asp:BoundField HeaderText="ID Transaccion" DataField="IdTransaccion" />
                 <asp:BoundField HeaderText="ID Usuario" DataField="User.IdUsuario" />
                 <asp:BoundField HeaderText="Fecha de compra" DataField="FechaTransaccion" />
-                <asp:BoundField HeaderText="Metodo de envio" DataField="Direccion.IdDireccion" />
+                <asp:BoundField HeaderText="Metodo de envio" DataField="Direccion.IdDireccion" HeaderStyle-CssClass="oculto" ItemStyle-CssClass="oculto" />
                 <asp:BoundField HeaderText="Importe total" DataField="Importe" />
                 <asp:BoundField HeaderText="Numero de seguimiento" DataField="NroSeguimiento" />
                 <asp:BoundField HeaderText="Tipo de pago" DataField="TipoPago" />

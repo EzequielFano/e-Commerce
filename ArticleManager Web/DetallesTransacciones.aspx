@@ -86,7 +86,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title mb-2"><b>Direccion</b></h5>
-                    <%if (IdDomicilio != 2)
+                    <%if (OpcionEnvio != 2)
                         { %>
                     <p class="card-text mb-1"><b>Pais:</b> <%=Direccion.Pais%></p>
                     <p class="card-text mb-1"><b>Provincia: </b><%=Direccion.Provincia %></p>
@@ -96,9 +96,10 @@
                     <p class="card-text mb-1"><b>Piso: </b><%=Direccion.Piso%></p>
                     <p class="card-text mb-0"><b>Departamento: </b><%=Direccion.Departamento%></p>
                     <%}
-                    else { %>
+                        else
+                        { %>
                     <br /> 
-                      <p class="card-text mb-1">EL CLIENTE RETIRA POR EL LOCAL.</p>
+                      <p class="card-text mb-1"<b>EL CLIENTE RETIRA POR EL LOCAL.</b></p>
                     
                     
                     <%}%>
@@ -123,9 +124,24 @@
                 </div>
             </div>
         </div>
+    <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" />
+       
     </div>
-    <asp:Button ID="btnCambiarEstado" OnClick="btnCambiarEstado_Click" runat="server" />
+    <br />
+    <br />
+    <style>
+        .btn-custom {
+            background-color: #8a2be2;
+            color: #ffffff;
+            transition: background-color 0.3s ease; /* Transición suave */
+            max-width: 80%
+        }
 
+            .btn-custom:hover {
+                background-color: #a74dd1; /* Cambiar el color al pasar el ratón sobre el botón */
+            }
+
+    </style>
 
 
 
