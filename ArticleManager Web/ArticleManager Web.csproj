@@ -95,6 +95,7 @@
     <Content Include="FormularioContacto.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListadoArticulos.aspx" />
+    <Content Include="ListadoUsuarios.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="ManipularArticulo.aspx" />
     <Content Include="MiPerfil.aspx" />
@@ -191,6 +192,13 @@
     </Compile>
     <Compile Include="ListadoArticulos.aspx.designer.cs">
       <DependentUpon>ListadoArticulos.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListadoUsuarios.aspx.designer.cs">
+      <DependentUpon>ListadoUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>

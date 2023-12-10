@@ -76,6 +76,10 @@
                                         <hr class="dropdown-divider">
                                     </li>
                                     <li><a class="dropdown-item" href="Pedidos.aspx">Pedidos</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="ListadoUsuarios.aspx">Administrar usuarios</a></li>      
                                 </ul>
                             </li>
                             <%} %>
@@ -92,7 +96,6 @@
                 <div class="col" style="margin-left: 10px;">
                     <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
                 </div>
-           
     </form>
     <div class="col-1">
         <div>
