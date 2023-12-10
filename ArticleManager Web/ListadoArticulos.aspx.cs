@@ -31,7 +31,7 @@ namespace ArticleManager_Web
             try
             {
                 var id = dgvArticulos.SelectedRow.Cells[0].Text;
-                Response.Redirect("ManipularArticulo.aspx?id=" + id);
+                Response.Redirect("ManipularArticulo.aspx?id=" + id, false);
             }
             catch (Exception)
             {

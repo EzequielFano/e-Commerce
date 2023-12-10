@@ -58,6 +58,7 @@ namespace Negocio
                     usuario.Email = datos.Lector["Email"].ToString();
                     usuario.Password = datos.Lector["Pass"].ToString();
                     usuario.TipoUsuario = (TipoUsuario)datos.Lector.GetInt32(5);
+                    usuario.Status = (bool)datos.Lector["Status"];
                     usuarios.Add(usuario);
                 }
 
@@ -118,6 +119,28 @@ namespace Negocio
                 throw;
             }
             finally { datos.cerrarConexion(); }
+        }
+        public void UpdateStatusUsuario(bool status, int id)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+
+            try
+            {
+                datos.setearProcedura("UpdateStatusUsuario");
+                datos.setearParametro("@IdUsuario", id);
+                datos.setearParametro("@NuevoStatus", status);
+                datos.ejecutarLectura();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
     }
 }

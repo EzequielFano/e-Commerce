@@ -32,7 +32,14 @@ namespace ArticleManager_Web
 
         protected void chkStatus_CheckedChanged(object sender, EventArgs e)
         {
+            UsuarioNegocio negocio = new UsuarioNegocio();
+            CheckBox chkStatus = (CheckBox)sender;
+            bool newStatus = chkStatus.Checked;
+            GridViewRow row = (GridViewRow)chkStatus.NamingContainer;
 
+            int idArticulo = Convert.ToInt32(dgvUsuarios.DataKeys[row.RowIndex].Value);
+            negocio.UpdateStatusUsuario(newStatus, idArticulo);
+            Response.Redirect("ListadoUsuarios.aspx");
         }
     }
 }

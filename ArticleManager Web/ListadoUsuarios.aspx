@@ -58,11 +58,11 @@
                 <asp:BoundField HeaderText="Email" DataField="Email" />
                 <asp:BoundField HeaderText="Password" DataField="Password" />
                 <asp:BoundField HeaderText="Tipo de usuario" DataField="TipoUsuario" />
-                <%--<asp:TemplateField HeaderText="Status">
+                <asp:TemplateField HeaderText="Status">
                     <ItemTemplate>
                         <asp:CheckBox ID="chkStatus" runat="server" OnCheckedChanged="chkStatus_CheckedChanged" Font-Names="IdUsuario" AutoPostBack="true" Checked='<%# Convert.ToBoolean(Eval("Status")) %>' Enabled="true" CssClass="largeCheckbox" />
                     </ItemTemplate>
-                </asp:TemplateField>--%>
+                </asp:TemplateField>
                 <asp:CommandField ShowSelectButton="true" ControlStyle-CssClass="btn btn-dark" SelectText="Enviar mail" HeaderText="Accion" />
             </Columns>
         </asp:GridView>

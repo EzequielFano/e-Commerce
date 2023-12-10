@@ -21,6 +21,7 @@ namespace Dominio
         public string Password { get; set; }
         public TipoUsuario TipoUsuario { get; set; }
         public Direccion Direcciones { get; set; }
+        public bool Status { get; set; }
 
         public Usuario(string email,string nombre, string pass, bool admin)
         {
