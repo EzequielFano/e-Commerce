@@ -14,6 +14,8 @@ namespace ArticleManager_Web
     public partial class Pago : System.Web.UI.Page
     {
         static public List<Articulo> ArticulosComprados { get; set; }
+        static public List<Articulo> ArticulosCarrito { get; set; }
+        static public int CantidadEnCarrito { get; set; }
         static public float PrecioTotal { get; set; }
         static public Usuario Usuario { get; set; }
         static public Direccion Direccion { get; set; }
@@ -28,6 +30,8 @@ namespace ArticleManager_Web
 
             if (!IsPostBack)
             {
+                ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
+                CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
                 ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
                 Usuario = (Usuario)Session["usuario"];
                 PrecioTotal = 0;
@@ -131,6 +135,9 @@ namespace ArticleManager_Web
                 }
 
                 emailService.EmailCompra(Usuario.Email, IdTransaccion, Usuario.Nombre);
+                ArticulosCarrito.Clear();
+                CantidadEnCarrito = 0;
+                Session.Add("CantidadEnCarrito", CantidadEnCarrito);
 
             }
             catch (Exception)
