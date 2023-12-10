@@ -32,70 +32,54 @@
         .table tbody tr:nth-of-type(odd) {
             background-color: #f8f9fa;
         }
+
+        .oculto {
+            display: none;
+        }
+
+        .nav-tabs {
+            background-color: black;
+        }
+
+        .nav-link.grilla {
+            color: #8a2be2 !important;
+        }
+
+            .nav-link.active {
+                background-color: #8a2be2 !important;
+                color: #fff !important;
+            }
+
+        #myTabs {
+            display: flex;
+            justify-content: center;
+            box-sizing: border-box;
+            max-width: 30%;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            padding: 8px 12px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
     <br />
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Toggle Active Class</title>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <style>
-            .oculto {
-                display: none;
-            }
-
-            .nav-tabs {
-                background-color: black; /* Fondo oscuro */
-            }
-
-            .nav-link {
-                color: #8a2be2 !important; /* Letras violetas */
-            }
-
-                .nav-link.active {
-                    background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
-                    color: #fff !important; /* Letras blancas para la pestaña activa */
-                }
-        </style>
-        <style>
-            #myTabs {
-                display: flex;
-                justify-content: center;
-                box-sizing: border-box;
-                max-width: 30%;
-                margin: 0 auto;
-            }
-
-            .nav-link {
-                padding: 8px 12px; /* Ajusta el espaciado interno de cada enlace según tus necesidades */
-            }
-        </style>
-    </head>
-    <body>
-
-        <ul class="nav nav-tabs" id="myTabs">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Recibidos</a>
-            </li>
-        </ul>
-
-    </body>
-    </html>
-
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link grilla" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link grilla" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link grilla" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link active" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
+        </li>
+    </ul>
     <div class="containerPedidos">
         <div class="table-title">
             PEDIDOS FINALIZADOS

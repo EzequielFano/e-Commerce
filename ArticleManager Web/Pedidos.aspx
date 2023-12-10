@@ -32,12 +32,6 @@
         .table tbody tr:nth-of-type(odd) {
             background-color: #f8f9fa;
         }
-    </style>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <br />
-    <br />
-    <style>
         .oculto {
             display: none;
         }
@@ -46,7 +40,7 @@
             background-color: black; /* Fondo oscuro */
         }
 
-        .nav-link {
+        .nav-link.grilla {
             color: #8a2be2 !important; /* Letras violetas */
         }
             .nav-link.active {
@@ -63,19 +57,23 @@
         .nav-link {
             padding: 8px 12px; /* Ajusta el espaciado interno de cada enlace según tus necesidades */
         }
-    </style>    
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
+    <br />    
         <ul class="nav nav-tabs" id="myTabs">
             <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
+                <a class="nav-link grilla" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
+                <a class="nav-link grilla" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
+                <a class="nav-link grilla" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
             </li>
         </ul>
      <div class="containerPedidos">
