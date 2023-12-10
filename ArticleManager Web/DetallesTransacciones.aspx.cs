@@ -93,7 +93,12 @@ namespace ArticleManager_Web
 
         protected void btnEnviarMail_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario);
+            Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario,false);
+        }
+
+        protected void btnVolverDetalles_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Pedidos.aspx", false);
         }
     }
 }

@@ -97,6 +97,21 @@ namespace Negocio
                     </div>";
             EnviarMail();
         }
+        public void EmailAlUsuario(string nombreusuario,string toAddress,string consulta)
+        {
+            email = new MailMessage();
+            email.From = new MailAddress("noresponder@technogeek.com.ar");
+            email.To.Add(toAddress);
+            email.Subject = "nuevo mensaje de TechnoGeek ARG";
+            email.IsBodyHtml = true;
+            string cuerpoCorreo = consulta;        
+            email.Body = $@" 
+                    <div>
+                        <h1>Hola,{nombreusuario}. Tienes un nuevo mensaje de TechnoGeek ARG.</h1>
+                        <h4> {consulta}</h4>                                                
+                    </div>";
+            EnviarMail();
+        }
 
     }
 }
