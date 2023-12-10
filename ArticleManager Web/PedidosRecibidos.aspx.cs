@@ -46,8 +46,10 @@ namespace ArticleManager_Web
         {
             try
             {
-                var id = dgvPedidosRecibidos.SelectedRow.Cells[0].Text;
-                Response.Redirect("DetallesTransacciones.aspx?idTransaccion=" + id, false);
+                var idTransaccion = dgvPedidosRecibidos.SelectedRow.Cells[0].Text;
+                var idUsuario = dgvPedidosRecibidos.SelectedRow.Cells[1].Text;
+                var idDomicilio = dgvPedidosRecibidos.SelectedRow.Cells[3].Text;
+                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idDomicilio={idDomicilio}", false);
             }
             catch (Exception)
             {

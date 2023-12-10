@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class TransaccionNegocio
     {
-        public int generarTransaccion(Usuario user, Direccion direccion, DateTime fecha, int tipoPago, float Importe)
+        public int generarTransaccion(Usuario user, int RetiroEnLocal, DateTime fecha, int tipoPago, float Importe)
         {
             AccesoDatos datos = new AccesoDatos();
             
@@ -21,7 +21,7 @@ namespace Negocio
                 datos.setearProcedura("IngresarTransaccion");
                 datos.setearParametro("@idCliente", user.IdUsuario);
                 datos.setearParametro("@FechaTransaccion", fecha);
-                datos.setearParametro("@IdDomicilio", direccion.IdDireccion + 1);
+                datos.setearParametro("@IdDomicilio", RetiroEnLocal);
                 datos.setearParametro("@Estado", 1);
                 datos.setearParametro("@IdTipoPago", tipoPago);
                 transaccion = ObtenerIdTransaccionCargada();

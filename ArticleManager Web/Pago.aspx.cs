@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -57,47 +58,6 @@ namespace ArticleManager_Web
                 Direccion = new Direccion();
                 Direccion.Provincia = new Provincia();
                 Direccion.Ciudad = new Ciudad();
-                if (string.IsNullOrEmpty(ddlProvincia.SelectedItem.Value))
-                {
-                    Session.Add("error", "Debe seleccionar una provincia, reintente realizar la compra");
-                    Session.Add("ruta", "Pago.aspx");
-                    Response.Redirect("Error.aspx", false);
-                    return;
-                }
-                Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
-                if (string.IsNullOrEmpty(ddlCiudad.SelectedItem.Value))
-                {
-                    Session.Add("error", "Debe seleccionar una ciudad, reintente realizar la compra");
-                    Session.Add("ruta", "Pago.aspx");
-                    Response.Redirect("Error.aspx", false);
-                    return;
-                }
-                Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
-                if (txtCalle.Text == "")
-                {
-                    Session.Add("error", "Debe introducir una calle valida, reintente realizar la compra");
-                    Session.Add("ruta", "Pago.aspx");
-                    Response.Redirect("Error.aspx", false);
-                    return;
-                }
-                Direccion.Calle = txtCalle.Text;
-                if (txtNumero.Text == "")
-                {
-                    Session.Add("error", "Debe introducir una altura valida, reintente realizar la compra");
-                    Session.Add("ruta", "Pago.aspx");
-                    Response.Redirect("Error.aspx", false);
-                    return;
-                }
-                Direccion.Numero = int.Parse(txtNumero.Text);              
-                Direccion.Departamento = txtDepartamento.Text;
-                if(txtPiso.Text == "")
-                {
-                    Direccion.Piso = 0;
-                }
-                else
-                {
-                Direccion.Piso = int.Parse(txtPiso.Text);
-                }
                 if (string.IsNullOrEmpty(ddlMetodoPago.SelectedValue))
                 {
                     Session.Add("error", "Por favor seleccione un metodo de pago, reintente realizar la compra");
@@ -106,18 +66,71 @@ namespace ArticleManager_Web
                     return;
                 }
                 TipoPago = int.Parse(ddlMetodoPago.SelectedItem.Value);
-                int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, Direccion, DateTime.Now, TipoPago, PrecioTotal);
+                if (string.IsNullOrEmpty(ddlOpcionesEnvio.SelectedItem.Value))
+                {
+                    Session.Add("error", "Por favor seleccione una opcion de envio, reintente realizar la compra");
+                    Session.Add("ruta", "Pago.aspx");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+                int RetiroEnLocal = int.Parse(ddlOpcionesEnvio.SelectedItem.Value);
+
+                if (RetiroEnLocal == 1)
+                {
+
+                    if (string.IsNullOrEmpty(ddlProvincia.SelectedItem.Value))
+                    {
+                        Session.Add("error", "Debe seleccionar una provincia, reintente realizar la compra");
+                        Session.Add("ruta", "Pago.aspx");
+                        Response.Redirect("Error.aspx", false);
+                        return;
+                    }
+                    Direccion.Provincia.IdProvincia = int.Parse(ddlProvincia.SelectedItem.Value);
+                    if (string.IsNullOrEmpty(ddlCiudad.SelectedItem.Value))
+                    {
+                        Session.Add("error", "Debe seleccionar una ciudad, reintente realizar la compra");
+                        Session.Add("ruta", "Pago.aspx");
+                        Response.Redirect("Error.aspx", false);
+                        return;
+                    }
+                    Direccion.Ciudad.IdCiudad = int.Parse(ddlCiudad.SelectedItem.Value);
+                    if (txtCalle.Text == "")
+                    {
+                        Session.Add("error", "Debe introducir una calle valida, reintente realizar la compra");
+                        Session.Add("ruta", "Pago.aspx");
+                        Response.Redirect("Error.aspx", false);
+                        return;
+                    }
+                    Direccion.Calle = txtCalle.Text;
+                    if (txtNumero.Text == "")
+                    {
+                        Session.Add("error", "Debe introducir una altura valida, reintente realizar la compra");
+                        Session.Add("ruta", "Pago.aspx");
+                        Response.Redirect("Error.aspx", false);
+                        return;
+                    }
+                    Direccion.Numero = int.Parse(txtNumero.Text);
+                    Direccion.Departamento = txtDepartamento.Text;
+                    if (txtPiso.Text == "")
+                    {
+                        Direccion.Piso = 0;
+                    }
+                    else
+                    {
+                        Direccion.Piso = int.Parse(txtPiso.Text);
+                    }
+                }
+                int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, RetiroEnLocal, DateTime.Now, TipoPago, PrecioTotal);
                 foreach (Articulo aux in ArticulosComprados)
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
-                if (chkDireccion.Checked)
+                if (chkDireccion.Checked || RetiroEnLocal != 2)
                 {
                     negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
                 }
 
-                negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
-                emailService.EmailCompra(Usuario.Email,IdTransaccion,Usuario.Nombre);
+                emailService.EmailCompra(Usuario.Email, IdTransaccion, Usuario.Nombre);
 
             }
             catch (Exception)
@@ -144,6 +157,30 @@ namespace ArticleManager_Web
         protected void btnVolverPago_Click(object sender, EventArgs e)
         {
             Response.Redirect("Carrito.aspx", false);
+        }
+
+        protected void ddlOpcionesEnvio_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (int.Parse(ddlOpcionesEnvio.SelectedItem.Value) == 2)
+            {
+                ddlProvincia.Enabled = false;
+                ddlCiudad.Enabled = false;
+                txtCalle.Enabled = false;
+                txtNumero.Enabled = false;
+                txtDepartamento.Enabled = false;
+                txtPiso.Enabled = false;
+                chkDireccion.Enabled = false;
+            }
+            else
+            {
+                ddlProvincia.Enabled = true;
+                ddlCiudad.Enabled = true;
+                txtCalle.Enabled = true;
+                txtNumero.Enabled = true;
+                txtDepartamento.Enabled = true;
+                txtPiso.Enabled = true;
+                chkDireccion.Enabled = true;
+            }
         }
     }
 }

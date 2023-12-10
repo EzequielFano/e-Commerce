@@ -16,7 +16,7 @@ namespace ArticleManager_Web
         public int IdTransaccion { get; set; }
         public Direccion Direccion { get; set; }
         public Usuario Usuario { get; set; }
-
+        public int IdDomicilio { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosNegocio negocioArticulos = new ArticulosNegocio();
@@ -27,6 +27,7 @@ namespace ArticleManager_Web
             {
                 int IdTransaccion = int.Parse(Request.QueryString["idTransaccion"].ToString());
                 int IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
+                IdDomicilio = int.Parse(Request.QueryString["idDomicilio"].ToString());
                 DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
                 listaDetalles = negocioDetalles.getDetalleTransaccionListXId(IdTransaccion);
 
@@ -42,7 +43,14 @@ namespace ArticleManager_Web
                 dgvArticulosComprados.DataSource = listaDetalles;
                 dgvArticulosComprados.DataBind();
 
+                btnCambiarEstado.Text = "CAMBIAR ESTADO";
+
             }
+
+        }
+
+        protected void btnCambiarEstado_Click(object sender, EventArgs e)
+        {
 
         }
     }

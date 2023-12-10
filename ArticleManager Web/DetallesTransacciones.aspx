@@ -86,6 +86,8 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title mb-2"><b>Direccion</b></h5>
+                    <%if (IdDomicilio != 2)
+                        { %>
                     <p class="card-text mb-1"><b>Pais:</b> <%=Direccion.Pais%></p>
                     <p class="card-text mb-1"><b>Provincia: </b><%=Direccion.Provincia %></p>
                     <p class="card-text mb-1"><b>Ciudad: </b><%=Direccion.Ciudad%></p>
@@ -93,6 +95,13 @@
                     <p class="card-text mb-1"><b>Numero: </b><%=Direccion.Numero%></p>
                     <p class="card-text mb-1"><b>Piso: </b><%=Direccion.Piso%></p>
                     <p class="card-text mb-0"><b>Departamento: </b><%=Direccion.Departamento%></p>
+                    <%}
+                    else { %>
+                    <br /> 
+                      <p class="card-text mb-1">EL CLIENTE RETIRA POR EL LOCAL.</p>
+                    
+                    
+                    <%}%>
                 </div>
                 <div class="card-footer text-body-secondary">
                 </div>
@@ -106,7 +115,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-text mb-2"><b>Usuario ID: </b><%=Usuario.IdUsuario %></h5>
-                    <p class="card-text mb-1"><b>Nombre: </b> <%=Usuario.Nombre%></p>
+                    <p class="card-text mb-1"><b>Nombre: </b><%=Usuario.Nombre%></p>
                     <p class="card-text mb-1"><b>Apellido: </b><%=Usuario.Apellido %></p>
                     <p class="card-text mb-0"><b>Email: </b><%=Usuario.Email%></p>
                 </div>
@@ -115,7 +124,7 @@
             </div>
         </div>
     </div>
-
+    <asp:Button ID="btnCambiarEstado" OnClick="btnCambiarEstado_Click" runat="server" />
 
 
 

@@ -27,7 +27,7 @@ namespace ArticleManager_Web
                     Transacciones = negocio.traerListado();
                     foreach (Transaccion aux in Transacciones)
                     {
-                        if (aux.Estado == EstadoEnvio.ENVIADO)
+                        if (aux.Estado == EstadoEnvio.EN_PROCESO)
                             TransaccionesEnviadas.Add(aux);
                     }
                     dgvPedidosEnviados.DataSource = TransaccionesEnviadas;
@@ -45,8 +45,10 @@ namespace ArticleManager_Web
         {
             try
             {
-                var id = dgvPedidosEnviados.SelectedRow.Cells[0].Text;
-                Response.Redirect("DetallesTransacciones.aspx?idTransaccion=" + id, false);
+                var idTransaccion = dgvPedidosEnviados.SelectedRow.Cells[0].Text;
+                var idUsuario = dgvPedidosEnviados.SelectedRow.Cells[1].Text;
+                var idDomicilio = dgvPedidosEnviados.SelectedRow.Cells[3].Text;
+                Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idDomicilio={idDomicilio}", false);
             }
             catch (Exception)
             {

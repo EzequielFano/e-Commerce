@@ -143,7 +143,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="ddlOpcionesEnvio" class="form-label">Tipo de Entrega*</label>
-                                    <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
+                                    <asp:DropDownList ID="ddlOpcionesEnvio" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AutoPostBack="true" AppendDataBoundItems="true" OnSelectedIndexChanged="ddlOpcionesEnvio_SelectedIndexChanged">
                                         <asp:ListItem Text="-- Selecciona una opción --" Value="" />
                                         <asp:ListItem Text="Entrega a domicilio" Value="1" />
                                         <asp:ListItem Text="Retiro en local" Value="2" />

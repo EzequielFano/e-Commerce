@@ -99,7 +99,6 @@
     <Content Include="ManipularArticulo.aspx" />
     <Content Include="Pago.aspx" />
     <Content Include="Pedidos.aspx" />
-    <Content Include="PedidosEnLocal.aspx" />
     <Content Include="PedidosEnviados.aspx" />
     <Content Include="PedidosRecibidos.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
@@ -225,13 +224,6 @@
     </Compile>
     <Compile Include="Pedidos.aspx.designer.cs">
       <DependentUpon>Pedidos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="PedidosEnLocal.aspx.cs">
-      <DependentUpon>PedidosEnLocal.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PedidosEnLocal.aspx.designer.cs">
-      <DependentUpon>PedidosEnLocal.aspx</DependentUpon>
     </Compile>
     <Compile Include="PedidosEnviados.aspx.cs">
       <DependentUpon>PedidosEnviados.aspx</DependentUpon>

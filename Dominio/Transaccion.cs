@@ -15,8 +15,7 @@ namespace Dominio
     public enum EstadoEnvio
     {
         INICIADO = 1,
-        ENVIADO = 2,
-        RETIRO_EN_LOCAL = 3,
+        EN_PROCESO = 3,
         RECIBIDO = 4
     }
     public class Transaccion
@@ -29,5 +28,6 @@ namespace Dominio
         public int NroSeguimiento { get; set; }
         public EstadoEnvio Estado { get; set; }
         public TipoPago TipoPago { get; set; }
+        public int RetiroEnLocal { get; set; }
     }
 }
