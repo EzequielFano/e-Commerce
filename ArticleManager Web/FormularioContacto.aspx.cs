@@ -43,13 +43,14 @@ namespace ArticleManager_Web
         protected void btnEnviar_Click(object sender, EventArgs e)
         {
             EmailService emailService = new EmailService();
-            emailService.EmailConsulta(txtNombreConsulta.Text, txtEmailConsulta.Text, txtConsulta.Text);
             if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
             {
+                emailService.EmailAlUsuario(txtNombreConsulta.Text, txtEmailConsulta.Text, txtConsulta.Text);
                 Response.Redirect("DetallesTransacciones.aspx", false);
             }
             else
             {
+                emailService.EmailConsulta(txtNombreConsulta.Text, txtEmailConsulta.Text, txtConsulta.Text);
                 Response.Redirect("Articulos.aspx", false);
             }
         }

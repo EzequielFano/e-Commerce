@@ -37,15 +37,15 @@
         }
 
         .nav-tabs {
-            background-color: black; /* Fondo oscuro */
+            background-color: black;
         }
 
         .nav-link.grilla {
-            color: #8a2be2 !important; /* Letras violetas */
+            color: #8a2be2 !important;
         }
             .nav-link.active {
-                background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
-                color: #fff !important; /* Letras blancas para la pestaña activa */
+                background-color: #8a2be2 !important;
+                color: #fff !important; 
             }
         #myTabs {
             display: flex;
@@ -55,7 +55,7 @@
             margin: 0 auto;
         }
         .nav-link {
-            padding: 8px 12px; /* Ajusta el espaciado interno de cada enlace según tus necesidades */
+            padding: 8px 12px; 
         }
     </style>
 </asp:Content>
