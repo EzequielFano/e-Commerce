@@ -27,10 +27,13 @@ namespace ArticleManager_Web
 
             if (!IsPostBack)
             {
-                IdTransaccion = int.Parse(Request.QueryString["idTransaccion"].ToString());
-                IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
-                OpcionEnvio = int.Parse(Request.QueryString["idOpcionEnvio"].ToString());
-                estado = (EstadoEnvio)Enum.Parse(typeof(EstadoEnvio), Request.QueryString["EstadoEnvio"].ToString());
+                if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
+                {
+                    IdTransaccion = int.Parse(Request.QueryString["idTransaccion"].ToString());
+                    IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
+                    OpcionEnvio = int.Parse(Request.QueryString["idOpcionEnvio"].ToString());
+                    estado = (EstadoEnvio)Enum.Parse(typeof(EstadoEnvio), Request.QueryString["EstadoEnvio"].ToString());
+                }
                 DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
                 listaDetalles = negocioDetalles.getDetalleTransaccionListXId(IdTransaccion);
 
@@ -57,6 +60,7 @@ namespace ArticleManager_Web
                 {
                     btnCambiarEstado.Text = "PEDIDO ENTREGADO";
                 }
+
 
 
             }

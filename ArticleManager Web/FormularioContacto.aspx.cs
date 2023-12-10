@@ -12,6 +12,7 @@ namespace ArticleManager_Web
     public partial class FormularioContacto : System.Web.UI.Page
     {
         public Usuario Usuario { get; set; }
+        static public int IdUsuario { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             UsuarioNegocio negocioUsuario = new UsuarioNegocio();
@@ -19,7 +20,7 @@ namespace ArticleManager_Web
             {
                 if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
                 {
-                    int IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
+                    IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
                     Usuario = new Usuario();
                     Usuario = negocioUsuario.traerUsuarioXId(IdUsuario);
                     txtNombreConsulta.Text = Usuario.Nombre;
@@ -43,6 +44,14 @@ namespace ArticleManager_Web
         {
             EmailService emailService = new EmailService();
             emailService.EmailConsulta(txtNombreConsulta.Text, txtEmailConsulta.Text, txtConsulta.Text);
+            if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
+            {
+                Response.Redirect("DetallesTransacciones.aspx", false);
+            }
+            else
+            {
+                Response.Redirect("Articulos.aspx", false);
+            }
         }
     }
 }
