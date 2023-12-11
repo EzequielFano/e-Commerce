@@ -19,7 +19,7 @@ namespace ArticleManager_Web
         static public int IdUsuario { get; set; }
         static public int OpcionEnvio { get; set; }
         static public EstadoEnvio estado { get; set; }
-        public string Ruta { get; set; }
+        static public string Ruta { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ArticulosNegocio negocioArticulos = new ArticulosNegocio();

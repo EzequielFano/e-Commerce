@@ -89,7 +89,7 @@ namespace ArticleManager_Web
                 articulo.URLImagen.URL = txtURLImagen.Text;
 
                 negocio.modificarArticulo(articulo);
-                Response.Redirect("ListadoArticulos.aspx");
+                Response.Redirect("ListadoArticulos.aspx", false);
 
             }
             else
@@ -122,7 +122,7 @@ namespace ArticleManager_Web
                 articulo.URLImagen.URL = txtURLImagen.Text;
 
                 negocio.agregarArticulo(articulo);
-                Response.Redirect("ListadoArticulos.aspx");
+                Response.Redirect("ListadoArticulos.aspx", false);
             }
         }
     }
