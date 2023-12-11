@@ -17,10 +17,15 @@ namespace ArticleManager_Web
         public bool borroCarrito { get; set; }
         public List<int> idArticulo { get; set; }
         public List<Imagen> ListaImagenes { get; set; }
-       
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
+            if (ArticulosCarrito == null)
+            {
+                ArticulosCarrito = new List<Articulo>();
+            }
             CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
 
             if (!IsPostBack)
@@ -28,7 +33,6 @@ namespace ArticleManager_Web
                 rpRepetidor.DataSource = ArticulosCarrito;
                 rpRepetidor.DataBind();
             }
-           
         }
 
         protected void btnEliminarCarrito_Click(object sender, EventArgs e)
