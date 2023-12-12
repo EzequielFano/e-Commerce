@@ -19,20 +19,29 @@ namespace ArticleManager_Web
         protected void btnCrearCuenta_Click(object sender, EventArgs e)
         {
             UsuarioNegocio negocio = new UsuarioNegocio();
-            if (txtEmail.Text != "" && txtNombre.Text != "" && txtContra.Text != "" && txtApellido.Text != "")
+            bool existEenDB = negocio.existeMailenDB(txtEmail.Text);
+            if (!existEenDB)
             {
-            Usuario usuario = new Usuario(txtEmail.Text,txtNombre.Text,txtContra.Text,false);
-            usuario.Apellido= txtApellido.Text;
-            negocio.crearUsuario(usuario);
-            Response.Redirect("Login.aspx");
+                if (txtEmail.Text != "" && txtNombre.Text != "" && txtContra.Text != "" && txtApellido.Text != "")
+                {
+                    Usuario usuario = new Usuario(txtEmail.Text, txtNombre.Text, txtContra.Text, false);
+                    usuario.Apellido = txtApellido.Text;
+                    negocio.crearUsuario(usuario);
+                    Response.Redirect("Login.aspx");
+                }
+                else
+                {
+                    Session.Add("error", "Debes ingresar todos los datos para registrarte");
+                    Session.Add("ruta", "CrearCuenta.aspx");
+                    Response.Redirect("Error.aspx", false);
+                }
             }
             else
             {
-                Session.Add("error", "Debes ingresar todos los datos para registrarte");
+                Session.Add("error", "El mail ya se encuentra registrado");
                 Session.Add("ruta", "CrearCuenta.aspx");
                 Response.Redirect("Error.aspx", false);
             }
-
 
         }
 

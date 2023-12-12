@@ -24,7 +24,7 @@ namespace ArticleManager_Web
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {             
+            {
                 session = Session["session"] != null ? (bool)Session["session"] : false;
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
@@ -85,13 +85,14 @@ namespace ArticleManager_Web
                     Session.Add("session", false);
                     Response.Redirect("Error.aspx");
                 }
+
             }
             catch (Exception ex)
             {
 
                 throw ex;
             }
-          
+
         }
 
         protected void btnCrearCuenta_Click(object sender, EventArgs e)

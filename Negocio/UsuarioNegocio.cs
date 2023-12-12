@@ -177,5 +177,34 @@ namespace Negocio
             }
             finally { datos.cerrarConexion(); }
         }
+        public bool existeMailenDB (string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidadcontada = 0;
+            try
+            {
+                datos.setearConsulta("SELECT COUNT(*) as Cantidad FROM USUARIOS WHERE Email =@Email");
+                datos.setearParametro("Email", email);
+                datos.ejecutarLectura();
+                if (datos.Lector.Read())
+                {
+                    cantidadcontada =(int)datos.Lector["Cantidad"];
+                }
+                if (cantidadcontada > 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
     }
 }
