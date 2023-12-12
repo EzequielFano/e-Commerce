@@ -14,17 +14,21 @@ namespace ArticleManager_Web
         public bool session { get; set; }
         public bool admin { get; set; }
         public int CantidadEnCarrito { get; set; }
-        public bool filtrado { get; set; }
+        static public bool filtrado { get; set; }
         public List<Articulo> ListaArticulos { get; set; }
+     
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            session = Session["session"] != null ? (bool)Session["session"] : false;
-            CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
+            if (!IsPostBack)
+            {
+                session = Session["session"] != null ? (bool)Session["session"] : false;
+                CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
+            }
         }
       
         protected void btnBuscar_Click1(object sender, EventArgs e)
         {
+      
             ArticulosNegocio negocio = new ArticulosNegocio();
             List<Articulo> lista = new List<Articulo>();
             List<Articulo> auxArticulo = negocio.TraerListadoSP();
@@ -51,6 +55,7 @@ namespace ArticleManager_Web
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
+            bool rutaReset = false;
             ArticulosNegocio negocio = new ArticulosNegocio();
             List<Articulo> lista = new List<Articulo>();
             List<Articulo> auxArticulo = negocio.TraerListadoSP();
@@ -59,7 +64,8 @@ namespace ArticleManager_Web
             ListaArticulos = lista;
             Session.Add("Filtrado", filtrado);
             Session.Add("ListaArticulos", ListaArticulos);
-            Response.Redirect("Articulos.aspx");
+            Response.Redirect("Articulos.aspx", false);
+            Session.Add("rutaReset", rutaReset);
         }        
     }
 }

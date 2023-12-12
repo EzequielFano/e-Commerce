@@ -96,7 +96,7 @@ namespace ArticleManager_Web
                 else
                 {
                     Session.Add("error", "Debe completar todos los datos necesarios");
-                    Session.Add("ruta", "ManipularArticulo.aspx");
+                    Session.Add("ruta", "ListadoArticulos.aspx");
                     Response.Redirect("Error.aspx", false);
                     return;
                 }
