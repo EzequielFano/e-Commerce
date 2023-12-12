@@ -90,6 +90,7 @@ namespace ArticleManager_Web
                     Session.Add("idArticulo", idArticulo);
                     Session.Add("CantidadEnCarrito", CantidadEnCarrito);
                     Session.Add("cantidadAComprar", cantidadAComprar);
+                    Session.Add("Filtrado", false);
                     Response.Redirect("Articulos.aspx", false);
                 }
                 else
