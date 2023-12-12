@@ -85,7 +85,6 @@
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="CrearCuenta.aspx" />
-    <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
     <Content Include="DetallesTransacciones.aspx">
       <BrowseToURL>~/ListadoDetalles.aspx</BrowseToURL>
@@ -141,13 +140,6 @@
     </Compile>
     <Compile Include="CrearCuenta.aspx.designer.cs">
       <DependentUpon>CrearCuenta.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Default.aspx.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Default.aspx.designer.cs">
-      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="Detalles.aspx.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
