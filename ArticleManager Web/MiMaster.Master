@@ -66,9 +66,32 @@
                             <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin) && session)
                                 {  %>
 
+                            <style>
+                                /* Estilo para el menú desplegable cuando está abierto */
+                                .nav-item.dropdown:hover .dropdown-menu {
+                                    background-color: #343a40; /* Cambia el color de fondo según tus preferencias */
+                                }
+
+                                /* Estilo para los enlaces dentro del menú desplegable */
+                                .nav-item.dropdown .dropdown-menu a {
+                                    color: #ffffff; /* Cambia el color del texto a blanco por defecto */
+                                    transition: color 0.3s; /* Agrega transición para un cambio suave de color */
+                                }
+
+                                    /* Cambia el color del texto al pasar el puntero sobre los enlaces dentro del menú desplegable */
+                                    .nav-item.dropdown .dropdown-menu a:hover {
+                                        color: #000000; /* Cambia el color del texto a negro al pasar el puntero */
+                                    }
+
+                                /* Evita que el fondo del menú desplegable aparezca blanco cuando no está en modo hover */
+                                .nav-item.dropdown .dropdown-menu {
+                                    background-color: #343a40; !important;
+                                }
+                            </style>
+
+                            <!-- Tu código HTML -->
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Back Office
-                                </a>
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Back Office</a>
                                 <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="ListadoArticulos.aspx">Listado de articulos</a></li>
                                     <li><a class="dropdown-item" href="ManipularArticulo.aspx">Agregar articulos</a></li>
@@ -82,6 +105,7 @@
                                     <li><a class="dropdown-item" href="ListadoUsuarios.aspx">Administrar usuarios</a></li>
                                 </ul>
                             </li>
+
                             <%} %>
                         </ul>
                     </div>

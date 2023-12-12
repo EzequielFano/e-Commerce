@@ -16,35 +16,44 @@ namespace ArticleManager_Web
         public List<Articulo> ListaArticulos { get; set; }
         static public List<Articulo> ArticulosCarrito { get; set; }
         static public int CantidadEnCarrito { get; set; }
-        static public int cantidadAComprar { get; set ; }
+        static public int cantidadAComprar { get; set; }
         public List<Imagen> ListaImagenes { get; set; }
 
         public List<int> idArticulo { get; set; }
-        public bool filtrado { get; set; }
+        static public bool filtrado { get; set; }
         public bool session { get; set; }
+        public bool rutaReset { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
-            {              
-                filtrado = Session["Filtrado"] != null ? true : false;
-                ListaArticulos = (List<Articulo>)Session["ListaArticulos"];
+            {
+                ArticulosNegocio negocio = new ArticulosNegocio();
                 session = Session["session"] != null ? (bool)Session["session"] : false;
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
-                if (!filtrado)
+                if (Session["Filtrado"] != null)
                 {
-                    ArticulosNegocio negocio = new ArticulosNegocio();
-                    ListaArticulos = negocio.TraerListadoSP();
-                    if (!IsPostBack)
+                    filtrado = (bool)Session["Filtrado"];
+                    if (!filtrado)
                     {
+                        ListaArticulos = negocio.TraerListadoSP();
+                        rpRepetidor.DataSource = ListaArticulos;
+                        rpRepetidor.DataBind();
+                    }
+                    else
+                    {
+                        ListaArticulos = (List<Articulo>)Session["ListaArticulos"];
                         rpRepetidor.DataSource = ListaArticulos;
                         rpRepetidor.DataBind();
                     }
                 }
                 else
-                { 
+                {
+                    ListaArticulos = negocio.TraerListadoSP();
                     rpRepetidor.DataSource = ListaArticulos;
                     rpRepetidor.DataBind();
                 }
+                
+              
             }
         }
 
@@ -56,7 +65,7 @@ namespace ArticleManager_Web
                 TextBox txtCantidad = (TextBox)((Button)sender).NamingContainer.FindControl("txtCantidad");
                 cantidadAComprar = int.Parse(txtCantidad.Text);
                 ArticulosNegocio negocio = new ArticulosNegocio();
-                
+
                 List<Articulo> auxArticulo = negocio.TraerListadoCompletoxId(int.Parse(valor));
                 if (ArticulosCarrito == null)
                 {
@@ -66,7 +75,7 @@ namespace ArticleManager_Web
                 if (!negocio.revisarRepetidos(ArticulosCarrito, int.Parse(valor)) && cantidadAComprar <= auxArticulo[0].Cantidad)
                 {
                     auxArticulo[0].Cantidad = cantidadAComprar;
-                    
+
                     ArticulosCarrito.Add(auxArticulo[0]);
 
                     if (idArticulo == null)
@@ -76,11 +85,12 @@ namespace ArticleManager_Web
                     idArticulo.Add(int.Parse(valor));
                     CantidadEnCarrito++;
                     negocio.restarStock(cantidadAComprar, int.Parse(valor));
-                
-                    Session.Add("ArticulosCarrito", ArticulosCarrito);    
+
+                    Session.Add("ArticulosCarrito", ArticulosCarrito);
                     Session.Add("idArticulo", idArticulo);
                     Session.Add("CantidadEnCarrito", CantidadEnCarrito);
                     Session.Add("cantidadAComprar", cantidadAComprar);
+                    Session.Add("Filtrado", false);
                     Response.Redirect("Articulos.aspx", false);
                 }
                 else
@@ -94,7 +104,7 @@ namespace ArticleManager_Web
             catch (Exception)
             {
 
-                Session.Add("error","Error al agregar articulo al carrito");
+                Session.Add("error", "Error al agregar articulo al carrito");
                 Session.Add("ruta", "Articulos.aspx");
                 Response.Redirect("Error.aspx", false);
             }
@@ -110,7 +120,7 @@ namespace ArticleManager_Web
         {
             ArticulosNegocio negocio = new ArticulosNegocio();
             ArticulosCarrito = new List<Articulo>();
-            foreach(Articulo aux in ArticulosCarrito)
+            foreach (Articulo aux in ArticulosCarrito)
             {
                 ArticulosCarrito.Remove(aux);
                 negocio.sumarStock(aux.Cantidad, aux.IdArticulo);
@@ -118,6 +128,6 @@ namespace ArticleManager_Web
             CantidadEnCarrito = 0;
         }
 
-        
+
     }
 }

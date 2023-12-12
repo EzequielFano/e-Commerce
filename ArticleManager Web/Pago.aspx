@@ -47,6 +47,7 @@
     </style>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
+
     <div class="container">
         <div class="table-title">
             Resumen de compra
@@ -119,6 +120,7 @@
 
             return true;
         }
+
     </script>
 
     <asp:ScriptManager runat="server" ID="ScriptManager" />
@@ -151,7 +153,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="ddlOpcionesProvincias" class="form-label">Provincia*</label>
-                                    <asp:DropDownList ID="ddlProvincia" placeholder="- Opciones -" runat="server" CssClass="form-select" AutoPostBack="true"
+                                    <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="true"
                                         OnSelectedIndexChanged="ddlProvincia_SelectedIndexChanged">
                                     </asp:DropDownList>
                                 </div>
@@ -185,7 +187,7 @@
                                 <br>
                                 <br>
                                 <asp:Button Text="Confirmar pedido" CssClass="btn btn-success" ID="btnPagar" runat="server" OnClick="btnPagar_Click" />
-                                <asp:Button Text="Volver" CssClass="btn btn-danger" ID="btnVolverPago" runat="server" OnClick="btnVolverPago_Click"/>
+                                <asp:Button Text="Volver" CssClass="btn btn-danger" ID="btnVolverPago" runat="server" OnClick="btnVolverPago_Click" />
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
@@ -200,5 +202,5 @@
 
 
 
-   
+
 </asp:Content>

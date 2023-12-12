@@ -42,14 +42,14 @@ namespace ArticleManager_Web
                     {
                         btnAccion.Text = "Agregar articulo";
                     }
-                        ddlCategoria.DataSource = categoria.listar();
-                        ddlCategoria.DataTextField = "Descripcion";
-                        ddlCategoria.DataValueField = "Id";
-                        ddlCategoria.DataBind();
-                        ddlMarca.DataSource = marca.listar();
-                        ddlMarca.DataTextField = "Descripcion";
-                        ddlMarca.DataValueField = "Id";
-                        ddlMarca.DataBind();
+                    ddlCategoria.DataSource = categoria.listar();
+                    ddlCategoria.DataTextField = "Descripcion";
+                    ddlCategoria.DataValueField = "Id";
+                    ddlCategoria.DataBind();
+                    ddlMarca.DataSource = marca.listar();
+                    ddlMarca.DataTextField = "Descripcion";
+                    ddlMarca.DataValueField = "Id";
+                    ddlMarca.DataBind();
 
                 }
 
@@ -68,28 +68,39 @@ namespace ArticleManager_Web
         {
             if (Request.QueryString["id"] != null)
             {
-
-                int id = int.Parse(Request.QueryString["id"].ToString());
-                ArticulosNegocio negocio = new ArticulosNegocio();
-                articulo.IdArticulo = id;
-                articulo.CodigoArticulo = txtCodigo.Text;
-                articulo.NombreArticulo = txtNombre.Text;
-                articulo.Precio = float.Parse(txtPrecio.Text);
-                articulo.Cantidad = int.Parse(txtCantidad.Text);
-                articulo.Descripcion = txtDescripcion.Text;
-                articulo.Marca = new Marca();
-                articulo.Marca.Id = int.Parse(ddlMarca.SelectedItem.Value);
-                articulo.Categoria = new Categoria();
-                articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedItem.Value);
-                articulo.URLImagen = new Imagen();
-                if (txtURLImagen.Text == null)
+                if (txtCodigo.Text.Length > 0 && txtNombre.Text.Length > 0 && txtPrecio.Text.Length > 0 && txtCantidad.Text.Length > 0 && txtDescripcion.Text.Length > 0)
                 {
-                    articulo.URLImagen.URL = " ";
-                }
-                articulo.URLImagen.URL = txtURLImagen.Text;
+                    int id = int.Parse(Request.QueryString["id"].ToString());
+                    ArticulosNegocio negocio = new ArticulosNegocio();
+                    articulo.IdArticulo = id;
+                    articulo.CodigoArticulo = txtCodigo.Text;
+                    articulo.NombreArticulo = txtNombre.Text;
+                    articulo.Precio = float.Parse(txtPrecio.Text);
+                    articulo.Cantidad = int.Parse(txtCantidad.Text);
+                    articulo.Descripcion = txtDescripcion.Text;
+                    articulo.Marca = new Marca();
+                    articulo.Marca.Id = int.Parse(ddlMarca.SelectedItem.Value);
+                    articulo.Categoria = new Categoria();
+                    articulo.Categoria.Id = int.Parse(ddlCategoria.SelectedItem.Value);
+                    articulo.URLImagen = new Imagen();
+                    if (txtURLImagen.Text == null)
+                    {
+                        articulo.URLImagen.URL = " ";
+                    }
+                    articulo.URLImagen.URL = txtURLImagen.Text;
 
-                negocio.modificarArticulo(articulo);
-                Response.Redirect("ListadoArticulos.aspx");
+                    negocio.modificarArticulo(articulo);
+                    Response.Redirect("ListadoArticulos.aspx", false);
+
+                }
+                else
+                {
+                    Session.Add("error", "Debe completar todos los datos necesarios");
+                    Session.Add("ruta", "ListadoArticulos.aspx");
+                    Response.Redirect("Error.aspx", false);
+                    return;
+                }
+
 
             }
             else
@@ -122,7 +133,7 @@ namespace ArticleManager_Web
                 articulo.URLImagen.URL = txtURLImagen.Text;
 
                 negocio.agregarArticulo(articulo);
-                Response.Redirect("ListadoArticulos.aspx");
+                Response.Redirect("ListadoArticulos.aspx", false);
             }
         }
     }

@@ -33,20 +33,39 @@ namespace ArticleManager_Web
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
                 ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
+                if (ArticulosComprados == null)
+                {
+                    ArticulosComprados = new List<Articulo>();
+                }
                 Usuario = (Usuario)Session["usuario"];
                 PrecioTotal = 0;
-                foreach (Articulo articulo in ArticulosComprados)
+                if (ArticulosComprados.Count() > 0 && ArticulosCarrito.Count() > 0)
                 {
-                    PrecioTotal += (articulo.Precio * articulo.Cantidad);
-                }
-                dgvArticulosComprados.DataSource = ArticulosComprados;
-                dgvArticulosComprados.DataBind();
-                ddlProvincia.DataSource = negocio.listarProvincias();
-                ddlProvincia.DataTextField = "Nombre";
-                ddlProvincia.DataValueField = "IdProvincia";
-                ddlProvincia.DataBind();
 
+                    foreach (Articulo articulo in ArticulosComprados)
+                    {
+                        PrecioTotal += (articulo.Precio * articulo.Cantidad);
+                    }
+                    dgvArticulosComprados.DataSource = ArticulosComprados;
+                    dgvArticulosComprados.DataBind();
+                    ddlProvincia.DataSource = negocio.listarProvincias();
+                    ddlProvincia.DataTextField = "Nombre";
+                    ddlProvincia.DataValueField = "IdProvincia";
+                    ddlProvincia.DataBind();
+                    ddlProvincia_SelectedIndexChanged(sender, e);
+
+
+
+                }
+                else
+                {
+                    Session.Add("error", "Primero debes agregar articulos a tu carrito");
+                    Session.Add("ruta", "Carrito.aspx");
+                    Response.Redirect("Error.aspx", false);
+                }
             }
+
+
 
         }
 

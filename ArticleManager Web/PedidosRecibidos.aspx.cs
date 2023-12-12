@@ -51,6 +51,7 @@ namespace ArticleManager_Web
                 var idOpcionEnvio = dgvPedidosRecibidos.SelectedRow.Cells[3].Text;
                 var EstadoEnvio = dgvPedidosRecibidos.SelectedRow.Cells[7].Text;
                 Response.Redirect($"DetallesTransacciones.aspx?idTransaccion={idTransaccion}&idUsuario={idUsuario}&idOpcionEnvio={idOpcionEnvio}&EstadoEnvio={EstadoEnvio}", false);
+                Session.Add("ruta", "PedidosRecibidos.aspx");
             }
             catch (Exception)
             {

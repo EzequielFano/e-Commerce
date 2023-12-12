@@ -21,7 +21,7 @@
         <div class="col-6 mb-3">
             <label for="inputNombre" class="form-label">Nombre:</label>
             <div class="input-group">
-                <span class="input-group-text">ID </span>
+                <span class="input-group-text">ID </span>                
                 <asp:TextBox type="text" placeholder="Nombre" CssClass="form-control" ID="txtNombre" runat="server" />
                 <asp:TextBox type="text" placeholder="Codigo" CssClass="form-control" ID="txtCodigo" runat="server" />
             </div>
