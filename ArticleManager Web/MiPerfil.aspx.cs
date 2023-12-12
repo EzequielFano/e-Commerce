@@ -11,8 +11,15 @@ namespace ArticleManager_Web
 {
     public partial class MiPerfil : System.Web.UI.Page
     {
+<<<<<<< HEAD
         static public Usuario usuario { get; set; }
         public bool edit { get; set; }
+=======
+
+        static public Usuario usuario { get; set; }
+        public bool edit { get; set; }
+
+>>>>>>> d57a13bc7b2550f70177f9b802c5b15658f4ded1
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -23,7 +30,7 @@ namespace ArticleManager_Web
             lblNombreYApellidoPerfil.Text = usuario.Nombre + " " + usuario.Apellido;
             lblIdPerfil.Text=usuario.IdUsuario.ToString();
             lblEmailPerfil.Text=usuario.Email;
-            if(usuario.TipoUsuario.ToString() == "0")
+            if(usuario.TipoUsuario== TipoUsuario.Cliente)
             {
                 lblTipoUsuarioPerfil.Text = "Cliente";
             }
@@ -32,6 +39,15 @@ namespace ArticleManager_Web
                 lblTipoUsuarioPerfil.Text = "Administrador";
             }
            
+        }
+        protected void btnEditarPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MiPerfilEditable.aspx", false);
+        }
+
+        protected void btnVolverPerfil_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Articulos.aspx", false);
         }
     }
 }

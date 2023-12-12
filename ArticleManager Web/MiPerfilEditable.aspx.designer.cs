@@ -11,61 +11,70 @@ namespace ArticleManager_Web
 {
 
 
-    public partial class MiPerfil
+    public partial class MiPerfilEditable
     {
 
         /// <summary>
-        /// Control lblNombreYApellidoPerfil.
+        /// Control txtNombreEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombreYApellidoPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txtNombreEditable;
 
         /// <summary>
-        /// Control lblIdPerfil.
+        /// Control txtApellidoEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txtApellidoEditable;
 
         /// <summary>
-        /// Control lblEmailPerfil.
+        /// Control txtIdPerfilEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEmailPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txtIdPerfilEditable;
 
         /// <summary>
-        /// Control lblTipoUsuarioPerfil.
+        /// Control txtEmailPerfilEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoUsuarioPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txtEmailPerfilEditable;
 
         /// <summary>
-        /// Control btnEditarPerfil.
+        /// Control txtTipoUsuarioPerfilEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEditarPerfil;
+        protected global::System.Web.UI.WebControls.TextBox txtTipoUsuarioPerfilEditable;
 
         /// <summary>
-        /// Control btnVolverPerfil.
+        /// Control btnEditarPerfilEditable.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverPerfil;
+        protected global::System.Web.UI.WebControls.Button btnEditarPerfilEditable;
+
+        /// <summary>
+        /// Control btnVolverPerfilEditable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnVolverPerfilEditable;
     }
 }
