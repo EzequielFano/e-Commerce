@@ -11,15 +11,12 @@ namespace ArticleManager_Web
 {
     public partial class MiPerfil : System.Web.UI.Page
     {
-<<<<<<< HEAD
-        static public Usuario usuario { get; set; }
-        public bool edit { get; set; }
-=======
-
         static public Usuario usuario { get; set; }
         public bool edit { get; set; }
 
->>>>>>> d57a13bc7b2550f70177f9b802c5b15658f4ded1
+    
+   
+
 
         protected void Page_Load(object sender, EventArgs e)
         {

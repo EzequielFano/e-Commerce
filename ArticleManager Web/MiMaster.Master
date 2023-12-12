@@ -60,9 +60,20 @@
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
+                            <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin) && session)
+                                {
+
+                            %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="Login.aspx">Logout</a>
+                            </li>
+                            <%}
+                                else
+                                {%>
                             <li class="nav-item">
                                 <a class="nav-link" href="Login.aspx">Login</a>
                             </li>
+                            <% } %>
                             <%if ((Session["usuario"] != null && ((Dominio.Usuario)Session["usuario"]).TipoUsuario == Dominio.TipoUsuario.Admin) && session)
                                 {  %>
 
@@ -85,7 +96,8 @@
 
                                 /* Evita que el fondo del menú desplegable aparezca blanco cuando no está en modo hover */
                                 .nav-item.dropdown .dropdown-menu {
-                                    background-color: #343a40; !important;
+                                    background-color: #343a40;
+                                    !important;
                                 }
                             </style>
 
@@ -121,7 +133,7 @@
                     <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
                 </div>
     </form>
-    <div style="margin-left:20px" class="col-1">
+    <div style="margin-left: 20px" class="col-1">
         <% if (session)
             { %>
         <div class="d-flex align-items-center">
