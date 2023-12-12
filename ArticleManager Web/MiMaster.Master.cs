@@ -55,7 +55,7 @@ namespace ArticleManager_Web
 
         protected void btnReset_Click(object sender, EventArgs e)
         {
-            bool rutaReset = false;
+            
             ArticulosNegocio negocio = new ArticulosNegocio();
             List<Articulo> lista = new List<Articulo>();
             List<Articulo> auxArticulo = negocio.TraerListadoSP();
@@ -65,7 +65,6 @@ namespace ArticleManager_Web
             Session.Add("Filtrado", filtrado);
             Session.Add("ListaArticulos", ListaArticulos);
             Response.Redirect("Articulos.aspx", false);
-            Session.Add("rutaReset", rutaReset);
         }        
     }
 }

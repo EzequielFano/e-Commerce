@@ -32,7 +32,7 @@ namespace ArticleManager_Web
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
                 if (Session["Filtrado"] != null)
                 {
-                   
+                    filtrado = (bool)Session["Filtrado"];
                     if (!filtrado)
                     {
                         ListaArticulos = negocio.TraerListadoSP();
