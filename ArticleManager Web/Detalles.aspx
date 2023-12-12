@@ -70,7 +70,7 @@
             width: 30px;
         }
     </style>
-    
+
     <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
     <div class="container">
         <div class="row">
@@ -115,9 +115,7 @@
                                      <b>
                                          <medium class="text-body-secondary">Marca: <%#Eval("Marca")%></medium></b>
                                  </p>
-                                 <label>Cantidad: </label>
-                                 <input id="lblcantidad" type="text" value="1" />
-                                 &nbsp &nbsp &nbsp                                 
+
                                  <asp:Button ID="btnVolverDesdeDetalles" Text="Volver" runat="server" CssClass="btn btn-danger" OnClick="btnVolverDesdeDetalles_Click" />
 
                              </div>
@@ -128,8 +126,4 @@
             </div>
         </div>
     </div>
-    
-    
-
-   
 </asp:Content>

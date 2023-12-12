@@ -16,28 +16,50 @@ namespace ArticleManager_Web
         public Direccion Direccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            try
+            if ((Usuario)Session["usuario"] != null)
             {
-                TransaccionNegocio negocio = new TransaccionNegocio();
-                List<Transaccion> TransaccionesEnviadas = new List<Transaccion>();
-
-                if (!IsPostBack)
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                if (usuario.TipoUsuario == TipoUsuario.Admin)
                 {
-
-                    Transacciones = negocio.traerListado();
-                    foreach (Transaccion aux in Transacciones)
+                    try
                     {
-                        if (aux.Estado == EstadoEnvio.EN_PROCESO)
-                            TransaccionesEnviadas.Add(aux);
-                    }
-                    dgvPedidosEnviados.DataSource = TransaccionesEnviadas;
-                    dgvPedidosEnviados.DataBind();
-                }
-            }
-            catch (Exception ex)
-            {
+                        TransaccionNegocio negocio = new TransaccionNegocio();
+                        List<Transaccion> TransaccionesEnviadas = new List<Transaccion>();
 
-                throw ex;
+                        if (!IsPostBack)
+                        {
+
+                            Transacciones = negocio.traerListado();
+                            foreach (Transaccion aux in Transacciones)
+                            {
+                                if (aux.Estado == EstadoEnvio.EN_PROCESO)
+                                    TransaccionesEnviadas.Add(aux);
+                            }
+                            dgvPedidosEnviados.DataSource = TransaccionesEnviadas;
+                            dgvPedidosEnviados.DataBind();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+
+                        throw ex;
+                    }
+                }
+
+                else
+                {
+                    Session.Add("error", "No tienes accesso a esta pantalla");
+                    Session.Add("ruta", "Articulos.aspx");
+                    Response.Redirect("Error.aspx");
+                }
+
+            }
+            else
+            {
+                Session.Add("error", "No tienes accesso a esta pantalla");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
             }
         }
 

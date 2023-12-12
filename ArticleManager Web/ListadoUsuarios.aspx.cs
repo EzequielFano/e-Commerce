@@ -13,15 +13,36 @@ namespace ArticleManager_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            List<Usuario> usuarios = new List<Usuario>();   
-            if (!IsPostBack)
+            if ((Usuario)Session["usuario"] != null)
             {
-                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                if (usuario.TipoUsuario == TipoUsuario.Admin)
+                {
+                    List<Usuario> usuarios = new List<Usuario>();
+                    if (!IsPostBack)
+                    {
+                        UsuarioNegocio negocio = new UsuarioNegocio();
 
-                usuarios = negocio.listarUsuarios();
-                dgvUsuarios.DataSource = usuarios;
-                dgvUsuarios.DataBind();
+                        usuarios = negocio.listarUsuarios();
+                        dgvUsuarios.DataSource = usuarios;
+                        dgvUsuarios.DataBind();
 
+                    }
+                }
+                else
+                {
+                    Session.Add("error", "No tienes accesso a esta pantalla");
+                    Session.Add("ruta", "Articulos.aspx");
+                    Response.Redirect("Error.aspx");
+                }
+
+            }
+            else
+            {
+                Session.Add("error", "No tienes accesso a esta pantalla");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
             }
         }
 

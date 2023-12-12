@@ -14,46 +14,67 @@ namespace ArticleManager_Web
         List<Articulo> articulos = new List<Articulo>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if ((Usuario)Session["usuario"] != null)
             {
-                ArticulosNegocio negocio = new ArticulosNegocio();
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                if (usuario.TipoUsuario == TipoUsuario.Admin && usuario != null)
+                {
+                    if (!IsPostBack)
+                    {
+                        ArticulosNegocio negocio = new ArticulosNegocio();
 
-                articulos = negocio.TraerListadoCompletoSP();
-                dgvArticulos.DataSource = articulos;
-                dgvArticulos.DataBind();
+                        articulos = negocio.TraerListadoCompletoSP();
+                        dgvArticulos.DataSource = articulos;
+                        dgvArticulos.DataBind();
+
+                    }
+
+                }
+                else
+                {
+                    Session.Add("error", "No tienes accesso a esta pantalla");
+                    Session.Add("ruta", "Articulos.aspx");
+                    Response.Redirect("Error.aspx");
+                }
 
             }
-
-        }
-
-        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
+            else
             {
-                var id = dgvArticulos.SelectedRow.Cells[0].Text;
-                Response.Redirect("ManipularArticulo.aspx?id=" + id, false);
-            }
-            catch (Exception)
-            {
-
-                Session.Add("error", "error inesperado");
-                Session.Add("ruta", "ListadoArticulos.aspx");
+                Session.Add("error", "No tienes accesso a esta pantalla");
+                Session.Add("ruta", "Articulos.aspx");
                 Response.Redirect("Error.aspx");
             }
-
         }
 
+            protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                try
+                {
+                    var id = dgvArticulos.SelectedRow.Cells[0].Text;
+                    Response.Redirect("ManipularArticulo.aspx?id=" + id, false);
+                }
+                catch (Exception)
+                {
 
-        protected void chkStatus_CheckedChanged(object sender, EventArgs e)
-        {
-            ArticulosNegocio negocio = new ArticulosNegocio();
-            CheckBox chkStatus = (CheckBox)sender;
-            bool newStatus = chkStatus.Checked;
-            GridViewRow row = (GridViewRow)chkStatus.NamingContainer;
-          
-            int idArticulo = Convert.ToInt32(dgvArticulos.DataKeys[row.RowIndex].Value);
-            negocio.UpdateStatus(newStatus, idArticulo);
-            Response.Redirect("ListadoArticulos.aspx");
+                    Session.Add("error", "error inesperado");
+                    Session.Add("ruta", "ListadoArticulos.aspx");
+                    Response.Redirect("Error.aspx");
+                }
+
+            }
+
+
+            protected void chkStatus_CheckedChanged(object sender, EventArgs e)
+            {
+                ArticulosNegocio negocio = new ArticulosNegocio();
+                CheckBox chkStatus = (CheckBox)sender;
+                bool newStatus = chkStatus.Checked;
+                GridViewRow row = (GridViewRow)chkStatus.NamingContainer;
+
+                int idArticulo = Convert.ToInt32(dgvArticulos.DataKeys[row.RowIndex].Value);
+                negocio.UpdateStatus(newStatus, idArticulo);
+                Response.Redirect("ListadoArticulos.aspx");
+            }
         }
     }
-}

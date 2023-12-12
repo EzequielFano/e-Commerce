@@ -19,46 +19,68 @@ namespace ArticleManager_Web
             CategoriaNegocio categoria = new CategoriaNegocio();
             MarcaNegocio marca = new MarcaNegocio();
             ArticulosNegocio negocio = new ArticulosNegocio();
-            try
+            if ((Usuario)Session["usuario"] != null)
             {
-                if (!IsPostBack)
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                if (usuario.TipoUsuario == TipoUsuario.Admin)
                 {
-                    if (Request.QueryString["id"] != null)
+
+                    try
                     {
-                        btnAccion.Text = "Editar articulo";
-                        int id = int.Parse(Request.QueryString["id"].ToString());
-                        List<Articulo> modificacion = negocio.TraerListadoCompletoxId(id);
-                        txtCodigo.Text = modificacion[0].CodigoArticulo.ToString();
-                        txtNombre.Text = modificacion[0].NombreArticulo.ToString();
-                        txtPrecio.Text = modificacion[0].Precio.ToString();
-                        txtDescripcion.Text = modificacion[0].Descripcion.ToString();
-                        txtCantidad.Text = modificacion[0].Cantidad.ToString();
-                        txtURLImagen.Text = modificacion[0].URLImagen.URL.ToString();
-                        ddlCategoria.SelectedValue = modificacion[0].Categoria.Id.ToString();
-                        ddlMarca.SelectedValue = modificacion[0].Marca.Id.ToString();
+                        if (!IsPostBack)
+                        {
+                            if (Request.QueryString["id"] != null)
+                            {
+                                btnAccion.Text = "Editar articulo";
+                                int id = int.Parse(Request.QueryString["id"].ToString());
+                                List<Articulo> modificacion = negocio.TraerListadoCompletoxId(id);
+                                txtCodigo.Text = modificacion[0].CodigoArticulo.ToString();
+                                txtNombre.Text = modificacion[0].NombreArticulo.ToString();
+                                txtPrecio.Text = modificacion[0].Precio.ToString();
+                                txtDescripcion.Text = modificacion[0].Descripcion.ToString();
+                                txtCantidad.Text = modificacion[0].Cantidad.ToString();
+                                txtURLImagen.Text = modificacion[0].URLImagen.URL.ToString();
+                                ddlCategoria.SelectedValue = modificacion[0].Categoria.Id.ToString();
+                                ddlMarca.SelectedValue = modificacion[0].Marca.Id.ToString();
+
+                            }
+                            else
+                            {
+                                btnAccion.Text = "Agregar articulo";
+                            }
+                            ddlCategoria.DataSource = categoria.listar();
+                            ddlCategoria.DataTextField = "Descripcion";
+                            ddlCategoria.DataValueField = "Id";
+                            ddlCategoria.DataBind();
+                            ddlMarca.DataSource = marca.listar();
+                            ddlMarca.DataTextField = "Descripcion";
+                            ddlMarca.DataValueField = "Id";
+                            ddlMarca.DataBind();
+
+                        }
 
                     }
-                    else
+                    catch (Exception)
                     {
-                        btnAccion.Text = "Agregar articulo";
-                    }
-                    ddlCategoria.DataSource = categoria.listar();
-                    ddlCategoria.DataTextField = "Descripcion";
-                    ddlCategoria.DataValueField = "Id";
-                    ddlCategoria.DataBind();
-                    ddlMarca.DataSource = marca.listar();
-                    ddlMarca.DataTextField = "Descripcion";
-                    ddlMarca.DataValueField = "Id";
-                    ddlMarca.DataBind();
 
+                        Session.Add("error", "Error inesperado al cargar los articulos");
+                        Session.Add("ruta", "ManipularArticulo.aspx");
+                        Response.Redirect("Error.aspx");
+                    }
+                }
+                else
+                {
+                    Session.Add("error", "No tienes accesso a esta pantalla");
+                    Session.Add("ruta", "Articulos.aspx");
+                    Response.Redirect("Error.aspx");
                 }
 
             }
-            catch (Exception)
+            else
             {
-
-                Session.Add("error", "Error inesperado al cargar los articulos");
-                Session.Add("ruta", "ManipularArticulo.aspx");
+                Session.Add("error", "No tienes accesso a esta pantalla");
+                Session.Add("ruta", "Articulos.aspx");
                 Response.Redirect("Error.aspx");
             }
         }

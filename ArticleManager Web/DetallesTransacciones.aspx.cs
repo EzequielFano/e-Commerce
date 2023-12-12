@@ -25,47 +25,68 @@ namespace ArticleManager_Web
             ArticulosNegocio negocioArticulos = new ArticulosNegocio();
             DireccionNegocio negocioDireccion = new DireccionNegocio();
             UsuarioNegocio negocioUsuario = new UsuarioNegocio();
-            Ruta = Session["ruta"].ToString();
-            if (!IsPostBack)
+            if ((Usuario)Session["usuario"] != null)
             {
-                if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                if (usuario.TipoUsuario == TipoUsuario.Admin)
                 {
-                    IdTransaccion = int.Parse(Request.QueryString["idTransaccion"].ToString());
-                    IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
-                    OpcionEnvio = int.Parse(Request.QueryString["idOpcionEnvio"].ToString());
-                    estado = (EstadoEnvio)Enum.Parse(typeof(EstadoEnvio), Request.QueryString["EstadoEnvio"].ToString());
-                }
-                DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
-                listaDetalles = negocioDetalles.getDetalleTransaccionListXId(IdTransaccion);
+                    Ruta = Session["ruta"].ToString();
+                    if (!IsPostBack)
+                    {
+                        if (!String.IsNullOrEmpty(Request.QueryString["idUsuario"]))
+                        {
+                            IdTransaccion = int.Parse(Request.QueryString["idTransaccion"].ToString());
+                            IdUsuario = int.Parse(Request.QueryString["idUsuario"].ToString());
+                            OpcionEnvio = int.Parse(Request.QueryString["idOpcionEnvio"].ToString());
+                            estado = (EstadoEnvio)Enum.Parse(typeof(EstadoEnvio), Request.QueryString["EstadoEnvio"].ToString());
+                        }
+                        DetalleTransaccionNegocio negocioDetalles = new DetalleTransaccionNegocio();
+                        listaDetalles = negocioDetalles.getDetalleTransaccionListXId(IdTransaccion);
 
-                foreach (DetalleTransaccion aux in listaDetalles)
-                {
-                    Articulo = new Articulo();
-                    aux.Articulo = negocioArticulos.TraerListadoCompletoxId(aux.Articulo.IdArticulo)[0];
-                }
-                Direccion = new Direccion();
-                Direccion = negocioDireccion.DireccionSegunIdTransaccion(IdTransaccion);
-                Usuario = new Usuario();
-                Usuario = negocioUsuario.traerUsuarioXId(IdUsuario);
-                dgvArticulosComprados.DataSource = listaDetalles;
-                dgvArticulosComprados.DataBind();
-                if (estado == EstadoEnvio.INICIADO)
-                {
-                    btnCambiarEstado.Text = "COMENZAR TRANSACCION";
-                }
-                else if (estado == EstadoEnvio.EN_PROCESO)
-                {
-                    btnCambiarEstado.Text = "CLIENTE PAGÓ";
-                }
-                else if (estado == EstadoEnvio.PAGADO)
-                {
-                    btnCambiarEstado.Text = "PEDIDO ENTREGADO";
-                }
+                        foreach (DetalleTransaccion aux in listaDetalles)
+                        {
+                            Articulo = new Articulo();
+                            aux.Articulo = negocioArticulos.TraerListadoCompletoxId(aux.Articulo.IdArticulo)[0];
+                        }
+                        Direccion = new Direccion();
+                        Direccion = negocioDireccion.DireccionSegunIdTransaccion(IdTransaccion);
+                        Usuario = new Usuario();
+                        Usuario = negocioUsuario.traerUsuarioXId(IdUsuario);
+                        dgvArticulosComprados.DataSource = listaDetalles;
+                        dgvArticulosComprados.DataBind();
+                        if (estado == EstadoEnvio.INICIADO)
+                        {
+                            btnCambiarEstado.Text = "COMENZAR TRANSACCION";
+                        }
+                        else if (estado == EstadoEnvio.EN_PROCESO)
+                        {
+                            btnCambiarEstado.Text = "CLIENTE PAGÓ";
+                        }
+                        else if (estado == EstadoEnvio.PAGADO)
+                        {
+                            btnCambiarEstado.Text = "PEDIDO ENTREGADO";
+                        }
 
 
+
+                    }
+
+                }
+                else
+                {
+                    Session.Add("error", "No tienes accesso a esta pantalla");
+                    Session.Add("ruta", "Articulos.aspx");
+                    Response.Redirect("Error.aspx");
+                }
 
             }
-
+            else
+            {
+                Session.Add("error", "No tienes accesso a esta pantalla");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
+            }
         }
 
         protected void btnCambiarEstado_Click(object sender, EventArgs e)
@@ -93,7 +114,7 @@ namespace ArticleManager_Web
 
         protected void btnEnviarMail_Click(object sender, EventArgs e)
         {
-            Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario,false);
+            Response.Redirect("FormularioContacto.aspx?IdUsuario=" + IdUsuario, false);
         }
 
 

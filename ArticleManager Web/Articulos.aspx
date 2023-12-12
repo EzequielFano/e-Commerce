@@ -20,7 +20,7 @@
 
         <div class="container">
             <div class="d-flex  justify-content-center mt-2">
-                <h1 style="color: white; font-size: 36px; text-align: center; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Los mejores precios, al alcance de un click</h1>
+                <h1 style="color: #663399; font-size: 36px;text-align: center;font-weight: bold;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);font-family: 'Helvetica Neue', sans-serif;line-height: 1.5;">Ahorra con cada clic. ¡Bienvenido a las mejores ofertas!</h1>
 
             </div>
             <%if (!session)
