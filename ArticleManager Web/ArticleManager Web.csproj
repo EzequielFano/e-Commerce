@@ -90,7 +90,7 @@
     <Content Include="DetallesTransacciones.aspx">
       <BrowseToURL>~/ListadoDetalles.aspx</BrowseToURL>
     </Content>
-    <Content Include="Envio.aspx" />
+    <Content Include="FinDeCompra.aspx" />
     <Content Include="Error.aspx" />
     <Content Include="FormularioContacto.aspx" />
     <Content Include="Global.asax" />
@@ -163,12 +163,12 @@
     <Compile Include="DetallesTransacciones.aspx.designer.cs">
       <DependentUpon>DetallesTransacciones.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Envio.aspx.cs">
-      <DependentUpon>Envio.aspx</DependentUpon>
+    <Compile Include="FinDeCompra.aspx.cs">
+      <DependentUpon>FinDeCompra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Envio.aspx.designer.cs">
-      <DependentUpon>Envio.aspx</DependentUpon>
+    <Compile Include="FinDeCompra.aspx.designer.cs">
+      <DependentUpon>FinDeCompra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Error.aspx.cs">
       <DependentUpon>Error.aspx</DependentUpon>

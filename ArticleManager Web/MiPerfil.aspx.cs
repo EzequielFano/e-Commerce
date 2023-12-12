@@ -14,28 +14,36 @@ namespace ArticleManager_Web
         static public Usuario usuario { get; set; }
         public bool edit { get; set; }
 
-    
-   
+
+
 
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            usuario = (Usuario)Session["usuario"];
-            usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
-            lblNombreYApellidoPerfil.Text = usuario.Nombre + " " + usuario.Apellido;
-            lblIdPerfil.Text=usuario.IdUsuario.ToString();
-            lblEmailPerfil.Text=usuario.Email;
-            if(usuario.TipoUsuario== TipoUsuario.Cliente)
+            if ((Usuario)Session["usuario"] != null)
             {
-                lblTipoUsuarioPerfil.Text = "Cliente";
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                usuario = (Usuario)Session["usuario"];
+                usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
+                lblNombreYApellidoPerfil.Text = usuario.Nombre + " " + usuario.Apellido;
+                lblIdPerfil.Text = usuario.IdUsuario.ToString();
+                lblEmailPerfil.Text = usuario.Email;
+                if (usuario.TipoUsuario == TipoUsuario.Cliente)
+                {
+                    lblTipoUsuarioPerfil.Text = "Cliente";
+                }
+                else
+                {
+                    lblTipoUsuarioPerfil.Text = "Administrador";
+                }
             }
             else
             {
-                lblTipoUsuarioPerfil.Text = "Administrador";
+                Session.Add("error", "No puedes ingresar al perfil sin iniciar sesion");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
             }
-           
+
         }
         protected void btnEditarPerfil_Click(object sender, EventArgs e)
         {

@@ -15,49 +15,59 @@ namespace ArticleManager_Web
         public bool edit { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) 
+            if ((Usuario)Session["usuario"] != null)
             {
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            usuario = (Usuario)Session["usuario"];
-            usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
-            txtNombreEditable.Text = usuario.Nombre;
-            txtApellidoEditable.Text = usuario.Apellido;
-            txtIdPerfilEditable.Text = usuario.IdUsuario.ToString();
-            txtIdPerfilEditable.Enabled = false;
-            txtEmailPerfilEditable.Text = usuario.Email;
-            if (usuario.TipoUsuario == TipoUsuario.Cliente)
-            {
-                txtTipoUsuarioPerfilEditable.Text = "Cliente";
-                
+                if (!IsPostBack)
+                {
+                    UsuarioNegocio negocio = new UsuarioNegocio();
+                    usuario = (Usuario)Session["usuario"];
+                    usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
+                    txtNombreEditable.Text = usuario.Nombre;
+                    txtApellidoEditable.Text = usuario.Apellido;
+                    txtIdPerfilEditable.Text = usuario.IdUsuario.ToString();
+                    txtIdPerfilEditable.Enabled = false;
+                    txtEmailPerfilEditable.Text = usuario.Email;
+                    if (usuario.TipoUsuario == TipoUsuario.Cliente)
+                    {
+                        txtTipoUsuarioPerfilEditable.Text = "Cliente";
+
+                    }
+                    else
+                    {
+                        txtTipoUsuarioPerfilEditable.Text = "Administrador";
+                    }
+                    txtTipoUsuarioPerfilEditable.Enabled = false;
+                }
+
             }
             else
             {
-                txtTipoUsuarioPerfilEditable.Text = "Administrador";
-            }
-            txtTipoUsuarioPerfilEditable.Enabled = false;
+                Session.Add("error", "No puedes ingresar al perfil sin iniciar sesion");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
             }
         }
 
-        protected void btnVolverPerfilEditable_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("MiPerfil.aspx", false);
-        }
+            protected void btnVolverPerfilEditable_Click(object sender, EventArgs e)
+            {
+                Response.Redirect("MiPerfil.aspx", false);
+            }
 
-        protected void btnEditarPerfilEditable_Click(object sender, EventArgs e)
-        {
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            Usuario aux = new Usuario();
-            usuario = (Usuario)Session["usuario"];
-            usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
-            aux.IdUsuario = usuario.IdUsuario ;
-            aux.Nombre = txtNombreEditable.Text;
-            aux.Apellido = txtApellidoEditable.Text;
-            aux.Email = txtEmailPerfilEditable.Text;
-            aux.Password = usuario.Password;
-            aux.TipoUsuario = usuario.TipoUsuario;
-            aux.Status = usuario.Status;
-            negocio.EditarUsuario(aux);
-            Response.Redirect("MiPerfil.aspx", false);
+            protected void btnEditarPerfilEditable_Click(object sender, EventArgs e)
+            {
+                UsuarioNegocio negocio = new UsuarioNegocio();
+                Usuario aux = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
+                aux.IdUsuario = usuario.IdUsuario;
+                aux.Nombre = txtNombreEditable.Text;
+                aux.Apellido = txtApellidoEditable.Text;
+                aux.Email = txtEmailPerfilEditable.Text;
+                aux.Password = usuario.Password;
+                aux.TipoUsuario = usuario.TipoUsuario;
+                aux.Status = usuario.Status;
+                negocio.EditarUsuario(aux);
+                Response.Redirect("MiPerfil.aspx", false);
+            }
         }
     }
-}

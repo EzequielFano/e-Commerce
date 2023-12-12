@@ -168,7 +168,7 @@ namespace ArticleManager_Web
                 return;
             }
 
-            Response.Redirect("Envio.aspx");
+            Response.Redirect("FinDeCompra.aspx");
         }
 
         protected void ddlProvincia_SelectedIndexChanged(object sender, EventArgs e)
