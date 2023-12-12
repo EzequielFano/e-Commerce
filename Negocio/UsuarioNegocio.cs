@@ -109,6 +109,9 @@ namespace Negocio
                     user.Nombre = datos.Lector["Nombre"].ToString();
                     user.Apellido = datos.Lector["Apellido"].ToString();
                     user.Email = datos.Lector["Email"].ToString();
+                    user.Password = datos.Lector["Pass"].ToString();
+                    user.TipoUsuario = (TipoUsuario)datos.Lector["TipoUsuario"];
+                    user.Status = (bool)datos.Lector["Status"];
                 }
 
                 return user;
@@ -141,6 +144,38 @@ namespace Negocio
             {
                 datos.cerrarConexion();
             }
+        }
+        public bool EditarUsuario(Usuario usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuario user = new Usuario();
+            try
+            {
+                datos.setearConsulta("UPDATE USUARIOS SET Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Pass = @Pass, TipoUsuario = @TipoUsuario WHERE IdUsuario = @IdUsuario");
+                datos.setearParametro("@IdUsuario", usuario.IdUsuario);
+                datos.setearParametro("@Nombre", usuario.Nombre);
+                datos.setearParametro("@Apellido", usuario.Apellido);
+                datos.setearParametro("@Email", usuario.Email);
+                datos.setearParametro("@Pass", usuario.Password);
+                if(usuario.TipoUsuario == TipoUsuario.Cliente)
+                {
+                datos.setearParametro("@TipoUsuario", "1");
+                }
+                else
+                {
+                datos.setearParametro("@TipoUsuario", "2");
+                }
+                datos.setearParametro("Status", usuario.Status);
+                datos.ejecutarAccion();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally { datos.cerrarConexion(); }
         }
     }
 }
