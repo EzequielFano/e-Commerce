@@ -79,7 +79,7 @@
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
-                                    <li><a class="dropdown-item" href="ListadoUsuarios.aspx">Administrar usuarios</a></li>      
+                                    <li><a class="dropdown-item" href="ListadoUsuarios.aspx">Administrar usuarios</a></li>
                                 </ul>
                             </li>
                             <%} %>
@@ -97,18 +97,23 @@
                     <asp:Button ID="btnReset" runat="server" CssClass="btn btn-outline-danger" OnClick="btnReset_Click" Text="Resetear" />
                 </div>
     </form>
-    <div class="col-1">
-        <div>
-            <%if (session)
-                {%>
-
-            <a class="nav-link text-center" href="Carrito.aspx">
-                <i class="bi bi-minecart text-white col"></i>
+    <div style="margin-left:20px" class="col-1">
+        <% if (session)
+            { %>
+        <div class="d-flex align-items-center">
+            <a href="MiPerfil.aspx" class="nav-link text-center me-3" title="Perfil">
+                <i class="fas fa-user fa-lg text-white"></i>
+            </a>
+            <a class="nav-link text-center me-3" href="Carrito.aspx" title="Carrito">
+                <i class="bi bi-minecart text-white"></i>
                 <span class="badge bg-danger"><%= CantidadEnCarrito%></span>
             </a>
         </div>
-        <%} %>
+        <% } %>
     </div>
+
+
+
     </nav>
   <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
   </asp:ContentPlaceHolder>

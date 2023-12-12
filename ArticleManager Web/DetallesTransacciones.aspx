@@ -134,7 +134,7 @@
   
         <br />
        
-    <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 10%">Volver</a>
+    <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: rebeccapurple; max-width: 10%">Volver</a>
 
     <br />
     <br />
@@ -142,12 +142,12 @@
         .btn-custom {
             background-color: #8a2be2;
             color: #ffffff;
-            transition: background-color 0.3s ease; /* Transición suave */
+            transition: background-color 0.3s ease;
             max-width: 40%
         }
 
             .btn-custom:hover {
-                background-color: #a74dd1; /* Cambiar el color al pasar el ratón sobre el botón */
+                background-color: #a74dd1;
             }
     </style>
 
