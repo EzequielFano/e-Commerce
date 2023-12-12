@@ -11,7 +11,11 @@ namespace ArticleManager_Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void btnVolverFindeCompra_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Articulos.aspx", false);
         }
     }
 }
