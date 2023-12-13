@@ -24,10 +24,12 @@ namespace ArticleManager_Web
         static public List<DetalleTransaccion> Detalles { get; set; }
         static public Transaccion Transaccion { get; set; }
         static public int TipoPago { get; set; }
+        static public bool ChequeadoDireccion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             ProvinciaNegocio negocio = new ProvinciaNegocio();
-
+            DireccionNegocio negocioDireccion = new DireccionNegocio();
+            List<Direccion> direcciones = new List<Direccion>();
             if (!IsPostBack)
             {
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
@@ -38,6 +40,8 @@ namespace ArticleManager_Web
                     ArticulosComprados = new List<Articulo>();
                 }
                 Usuario = (Usuario)Session["usuario"];
+             
+                Direccion = negocioDireccion.obtenerDireccionesPorUsuario(Usuario.IdUsuario);
                 PrecioTotal = 0;
                 if (ArticulosComprados.Count() > 0 && ArticulosCarrito.Count() > 0)
                 {
@@ -48,12 +52,64 @@ namespace ArticleManager_Web
                     }
                     dgvArticulosComprados.DataSource = ArticulosComprados;
                     dgvArticulosComprados.DataBind();
+                    if (Direccion.IdDireccion != 0)
+                    {
+                        chkHayDireccion.Visible = true;
+                        lblHayDireccion.Visible = true;
+                        chkDireccion.Visible = false;
+                        lblDireccion.Visible = false;
+
+
+                        if (Direccion.Status)
+                        {
+
+                            ddlProvincia.SelectedValue = Direccion.Provincia.IdProvincia.ToString();
+                            ddlCiudad.SelectedValue = Direccion.Ciudad.IdCiudad.ToString();
+                            txtCalle.Text = Direccion.Calle.ToString();
+                            txtNumero.Text = Direccion.Numero.ToString();
+                            txtDepartamento.Text = Direccion.Departamento.ToString();
+                            txtPiso.Text = Direccion.Piso.ToString();
+                            ddlProvincia.Enabled = false;
+                            ddlCiudad.Enabled = false;
+                            txtCalle.Enabled = false;
+                            txtNumero.Enabled = false;
+                            txtDepartamento.Enabled = false;
+                            txtPiso.Enabled = false;
+                            chkDireccion.Enabled = false;
+                            chkHayDireccion.Checked = Direccion.Status;
+                            chkHayDireccion.DataBind();
+                            
+
+                        }
+                        else
+                        {
+                            ddlProvincia.Enabled = true;
+                            ddlCiudad.Enabled = true;
+                            txtCalle.Enabled = true;
+                            txtNumero.Enabled = true;
+                            txtDepartamento.Enabled = true;
+                            txtPiso.Enabled = true;
+                            chkDireccion.Enabled = true;
+                            chkHayDireccion.Checked = Direccion.Status;
+                            chkHayDireccion.DataBind();
+
+
+                        }
+
+                    }
+                    else 
+                    {
+                        chkDireccion.Visible = true;
+                        lblDireccion.Visible = true;
+                        chkHayDireccion.Visible = false;
+                        lblHayDireccion.Visible = false;
+                    }
+
                     ddlProvincia.DataSource = negocio.listarProvincias();
                     ddlProvincia.DataTextField = "Nombre";
                     ddlProvincia.DataValueField = "IdProvincia";
                     ddlProvincia.DataBind();
                     ddlProvincia_SelectedIndexChanged(sender, e);
-
 
 
                 }
@@ -148,6 +204,7 @@ namespace ArticleManager_Web
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
+
                 if (chkDireccion.Checked || RetiroEnLocal != 2)
                 {
                     negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
@@ -207,6 +264,18 @@ namespace ArticleManager_Web
                 txtPiso.Enabled = true;
                 chkDireccion.Enabled = true;
             }
+        }
+
+        protected void chkHayDireccion_CheckedChanged(object sender, EventArgs e)
+        {
+
+            DireccionNegocio negocio = new DireccionNegocio();
+            CheckBox chkStatus = (CheckBox)sender;
+            bool newStatus = chkStatus.Checked;
+            
+            negocio.UpdateStatusDireccion(newStatus, Usuario.IdUsuario);
+            Response.Redirect("Pago.aspx", false);
+     
         }
     }
 }

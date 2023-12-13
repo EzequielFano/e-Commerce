@@ -151,6 +151,16 @@
                                         <asp:ListItem Text="Retiro en local" Value="2" />
                                     </asp:DropDownList>
                                 </div>
+
+                                
+                                <div class="form-check">
+                                    <asp:CheckBox ID="chkHayDireccion" runat="server" AutoPostBack="true" Enabled="true" Checked='<%# Direccion.Status %>' OnCheckedChanged="chkHayDireccion_CheckedChanged"></asp:CheckBox>
+                                    <asp:Label Text="Usa tu direccion predeterminada" ID="lblHayDireccion" CssClass="form-check-label" runat="server" />
+                                </div>
+
+
+
+
                                 <div class="mb-3">
                                     <label for="ddlOpcionesProvincias" class="form-label">Provincia*</label>
                                     <asp:DropDownList ID="ddlProvincia" runat="server" CssClass="form-select" AutoPostBack="true"
@@ -180,9 +190,7 @@
                                 <div class="form-check">
 
                                     <asp:CheckBox ID="chkDireccion" runat="server"></asp:CheckBox>
-                                    <label class="form-check-label" for="flexCheckChecked">
-                                        Guardar esta direccion para futuras compras
-                                    </label>
+                                    <asp:Label Text="Guarda tu direccion" ID="lblDireccion" CssClass="form-check-label" runat="server" />
                                 </div>
                                 <br>
                                 <br>

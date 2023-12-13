@@ -74,7 +74,7 @@ namespace ArticleManager_Web
 
                 int idArticulo = Convert.ToInt32(dgvArticulos.DataKeys[row.RowIndex].Value);
                 negocio.UpdateStatus(newStatus, idArticulo);
-                Response.Redirect("ListadoArticulos.aspx");
+                Response.Redirect("ListadoArticulos.aspx", false);
             }
         }
     }

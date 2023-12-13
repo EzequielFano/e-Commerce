@@ -45,10 +45,10 @@
             color: #8a2be2 !important; /* Letras violetas */
         }
 
-            .nav-link.active {
-                background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
-                color: #fff !important; /* Letras blancas para la pestaña activa */
-            }
+        .nav-link.active {
+            background-color: #8a2be2 !important; /* Fondo violeta para la pestaña activa */
+            color: #fff !important; /* Letras blancas para la pestaña activa */
+        }
 
         #myTabs {
             display: flex;
@@ -100,4 +100,3 @@
         </asp:GridView>
     </div>
 </asp:Content>
-
