@@ -54,5 +54,10 @@ namespace ArticleManager_Web
         {
             Response.Redirect("Articulos.aspx", false);
         }
+
+        protected void btnMisCompras_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

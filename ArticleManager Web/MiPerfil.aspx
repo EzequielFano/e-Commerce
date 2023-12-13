@@ -87,6 +87,9 @@
                     <asp:Button Text="Editar" CssClass="btn btn-success botonmasgrande" runat="server" ID="btnEditarPerfil" OnClick="btnEditarPerfil_Click" />
                     <asp:Button Text="Volver" CssClass="btn btn-danger botonmasgrande" runat="server" ID="btnVolverPerfil" OnClick="btnVolverPerfil_Click" />
                 </div>
+                <div class="button-container11">
+                    <asp:Button Text="Mis Compras" CssClass="btn btn-outline-success buttoncolor" ID="btnMisCompras" OnClick="btnMisCompras_Click" runat="server" />
+                </div>
             </div>
         </div>
         <br />
