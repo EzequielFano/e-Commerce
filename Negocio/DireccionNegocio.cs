@@ -239,6 +239,49 @@ namespace Negocio
             }
         }
 
+
+        public void modificarDireccionDeUsuario (Direccion direccion, int IdUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("UPDATE DIRECCIONESUSUARIOS SET IdPais = @IdPais, IdProvincia = @IdProvincia, IdCiudad = @IdCiudad, Calle = @Calle, Numero = @Numero, Piso = @Piso, Departamento = @Departamento, IdUsuario =  @IdUsuario WHERE IdDomicilio = @IdDireccion");
+                datos.setearParametro("@IdDireccion", direccion.IdDireccion);
+                datos.setearParametro("@IdPais", 1);
+                datos.setearParametro("@IdProvincia", direccion.Provincia.IdProvincia);
+                datos.setearParametro("@IdCiudad", direccion.Ciudad.IdCiudad);
+                datos.setearParametro("@Calle", direccion.Calle);
+                datos.setearParametro("@Numero", direccion.Numero);
+                datos.setearParametro("@Piso", direccion.Piso);
+                datos.setearParametro("@Departamento", direccion.Departamento);
+                datos.setearParametro("@IdUsuario", IdUsuario);
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion();}
+        }
+
+        public void eliminarDireccionUsuario(int IdDireccion)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearConsulta("DELETE FROM DIRECCIONESUSUARIOS where IdDomicilio = @IdDireccion");
+                datos.setearParametro("@IdDireccion", IdDireccion);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public void UpdateStatusDireccionDelUsuario(bool status, int id)
         {
             AccesoDatos datos = new AccesoDatos();

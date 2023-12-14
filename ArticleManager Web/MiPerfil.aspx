@@ -74,29 +74,40 @@
                     <asp:Label CssClass="card-text" ID="lblEmailPerfil" runat="server" />
                 </div>
             </div>
+
+            <div class="form-group">
+                <div>
+                    <label class="card-title" for="lblTipoUsuarioPerfil">Direccion</label>
+                </div>
+
+                <div>
+                    <asp:Label CssClass="card-text" ID="lblDireccionUsuario" runat="server" />
+                    <%if (lblDireccionUsuario.Text != "No hay una direccion cargada.")
+                        {%>
+                    <asp:Button Text="Editar direccion" runat="server" ID="btnEditarDireccion" OnClick="btnEditarDireccion_Click" />
+
+                    <%} %>
+                </div>
+            </div>
             <div class="form-group">
                 <div>
                     <label class="card-title" for="lblTipoUsuarioPerfil">Tipo de Usuario</label>
                 </div>
                 <div>
                     <asp:Label CssClass="card-text" ID="lblTipoUsuarioPerfil" runat="server" />
-<<<<<<< HEAD
-                </div>
-                <div>
-                    <asp:Label CssClass="card-text" ID="lblDireccionUsuario" runat="server" />
-                    <asp:Button Text="Editar direccion" runat="server" ID="btnEditarDireccion" OnClick="btnEditarDireccion_Click" />
+
                 </div>
                 <br />
-=======
-                </div>               
->>>>>>> 03ca0e20b8e3a6247da3517b78f890123f22bb50
-                <div class="button-container11">
-                    <asp:Button Text="Editar" CssClass="btn btn-success botonmasgrande" runat="server" ID="btnEditarPerfil" OnClick="btnEditarPerfil_Click" />
-                    <asp:Button Text="Volver" CssClass="btn btn-danger botonmasgrande" runat="server" ID="btnVolverPerfil" OnClick="btnVolverPerfil_Click" />
-                </div>
-                <div class="button-container11">
-                    <asp:Button Text="Mis Compras" CssClass="btn btn-outline-success buttoncolor" ID="btnMisCompras" OnClick="btnMisCompras_Click" runat="server" />
-                </div>
+
+            </div>
+
+            <div class="button-container11">
+                <asp:Button Text="Editar" CssClass="btn btn-success botonmasgrande" runat="server" ID="btnEditarPerfil" OnClick="btnEditarPerfil_Click" />
+                <asp:Button Text="Volver" CssClass="btn btn-danger botonmasgrande" runat="server" ID="btnVolverPerfil" OnClick="btnVolverPerfil_Click" />
+            </div>
+            <div class="button-container11">
+                <asp:Button Text="Mis Compras" CssClass="btn btn-outline-success buttoncolor" ID="btnMisCompras" OnClick="btnMisCompras_Click" runat="server" />
+            </div>
             </div>
         </div>
         <br />

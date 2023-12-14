@@ -228,8 +228,7 @@ namespace Negocio
         public void modificarArticulo(Articulo articulo)
         {
             AccesoDatos datos = new AccesoDatos();
-            ImagenNegocio imagenNegocio = new ImagenNegocio();
-            Imagen imag = new Imagen();
+            
             try
             {
                 datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, IdMarca = @IdMarca, IdCategoria = @IdCategoria, Precio = @Precio , Cantidad = @Cantidad WHERE Id = @IdArticulo");

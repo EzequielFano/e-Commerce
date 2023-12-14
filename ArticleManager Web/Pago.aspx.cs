@@ -29,7 +29,7 @@ namespace ArticleManager_Web
         {
             ProvinciaNegocio negocio = new ProvinciaNegocio();
             DireccionNegocio negocioDireccion = new DireccionNegocio();
-            List<Direccion> direcciones = new List<Direccion>();
+            
             if (!IsPostBack)
             {
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];

@@ -42,15 +42,6 @@ namespace ArticleManager_Web
         protected global::System.Web.UI.WebControls.Label lblEmailPerfil;
 
         /// <summary>
-        /// Control lblTipoUsuarioPerfil.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTipoUsuarioPerfil;
-
-        /// <summary>
         /// Control lblDireccionUsuario.
         /// </summary>
         /// <remarks>
@@ -67,6 +58,15 @@ namespace ArticleManager_Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEditarDireccion;
+
+        /// <summary>
+        /// Control lblTipoUsuarioPerfil.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoUsuarioPerfil;
 
         /// <summary>
         /// Control btnEditarPerfil.

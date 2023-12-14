@@ -66,16 +66,18 @@ namespace ArticleManager_Web
             Response.Redirect("Articulos.aspx", false);
         }
 
-<<<<<<< HEAD
+
         protected void btnEditarDireccion_Click(object sender, EventArgs e)
         {
             Session.Add("DireccionUsuario", DireccionUsuario);
+            Session.Add("IdUsuario", usuario.IdUsuario);
             Response.Redirect("DireccionEditable.aspx", false);
-=======
+        }
+
         protected void btnMisCompras_Click(object sender, EventArgs e)
         {
             Response.Redirect("MisCompras.aspx", false);
->>>>>>> 03ca0e20b8e3a6247da3517b78f890123f22bb50
+
         }
     }
 }
