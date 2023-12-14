@@ -125,7 +125,7 @@
             </div>
         </div>
         <asp:Button ID="btnEnviarMail" Text="ENVIAR MAIL AL USUARIO" CssClass="btn btn-custom" OnClick="btnEnviarMail_Click" runat="server" style="margin-right: 10px;" />
-        <%if (estado.ToString() != "RECIBIDO")
+        <%if (estado.ToString() != "FINALIZADO")
             { %>
         <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
 

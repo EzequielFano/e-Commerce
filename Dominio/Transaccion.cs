@@ -17,7 +17,7 @@ namespace Dominio
         INICIADO = 1,
         EN_PROCESO = 2,
         PAGADO = 3,
-        RECIBIDO = 4
+        FINALIZADO = 4
     }
     public class Transaccion
     {

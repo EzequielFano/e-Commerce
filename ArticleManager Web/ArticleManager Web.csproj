@@ -100,6 +100,7 @@
     <Content Include="ManipularArticulo.aspx" />
     <Content Include="MiPerfil.aspx" />
     <Content Include="MiPerfilEditable.aspx" />
+    <Content Include="MisCompras.aspx" />
     <Content Include="Pago.aspx" />
     <Content Include="Pedidos.aspx" />
     <Content Include="PedidosEnviados.aspx" />
@@ -235,6 +236,13 @@
     </Compile>
     <Compile Include="MiPerfilEditable.aspx.designer.cs">
       <DependentUpon>MiPerfilEditable.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MisCompras.aspx.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MisCompras.aspx.designer.cs">
+      <DependentUpon>MisCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pago.aspx.cs">
       <DependentUpon>Pago.aspx</DependentUpon>
