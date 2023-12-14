@@ -41,7 +41,7 @@ namespace ArticleManager_Web
                 }
                 Usuario = (Usuario)Session["usuario"];
              
-                Direccion = negocioDireccion.obtenerDireccionesPorUsuario(Usuario.IdUsuario);
+                Direccion = negocioDireccion.obtenerDireccionDelUsuario(Usuario.IdUsuario);
                 PrecioTotal = 0;
                 if (ArticulosComprados.Count() > 0 && ArticulosCarrito.Count() > 0)
                 {
@@ -208,6 +208,7 @@ namespace ArticleManager_Web
                 if (chkDireccion.Checked || RetiroEnLocal != 2)
                 {
                     negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+                    negocioDireccion.generarDireccionDeUsuario(Direccion, IdTransaccion, Usuario.IdUsuario);
                 }
 
                 emailService.EmailCompra(Usuario.Email, IdTransaccion, Usuario.Nombre);
@@ -273,7 +274,7 @@ namespace ArticleManager_Web
             CheckBox chkStatus = (CheckBox)sender;
             bool newStatus = chkStatus.Checked;
             
-            negocio.UpdateStatusDireccion(newStatus, Usuario.IdUsuario);
+            negocio.UpdateStatusDireccionDelUsuario(newStatus, Usuario.IdUsuario);
             Response.Redirect("Pago.aspx", false);
      
         }

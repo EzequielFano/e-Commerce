@@ -14,7 +14,7 @@ namespace ArticleManager_Web
         static public Usuario usuario { get; set; }
         public bool edit { get; set; }
 
-
+        public Direccion DireccionUsuario { get; set; }
 
 
 
@@ -23,11 +23,22 @@ namespace ArticleManager_Web
             if ((Usuario)Session["usuario"] != null)
             {
                 UsuarioNegocio negocio = new UsuarioNegocio();
+                DireccionNegocio direccionNegocio = new DireccionNegocio();
                 usuario = (Usuario)Session["usuario"];
                 usuario = negocio.traerUsuarioXId(usuario.IdUsuario);
+                DireccionUsuario = direccionNegocio.obtenerDireccionDelUsuario(usuario.IdUsuario);
                 lblNombreYApellidoPerfil.Text = usuario.Nombre + " " + usuario.Apellido;
                 lblIdPerfil.Text = usuario.IdUsuario.ToString();
                 lblEmailPerfil.Text = usuario.Email;
+                if (DireccionUsuario.IdDireccion != 0)
+                {
+                    lblDireccionUsuario.Text = DireccionUsuario.Calle + " " + DireccionUsuario.Numero;
+                }
+                else
+                {
+                    lblDireccionUsuario.Text = "No hay una direccion cargada.";
+                }
+
                 if (usuario.TipoUsuario == TipoUsuario.Cliente)
                 {
                     lblTipoUsuarioPerfil.Text = "Cliente";
@@ -53,6 +64,12 @@ namespace ArticleManager_Web
         protected void btnVolverPerfil_Click(object sender, EventArgs e)
         {
             Response.Redirect("Articulos.aspx", false);
+        }
+
+        protected void btnEditarDireccion_Click(object sender, EventArgs e)
+        {
+            Session.Add("DireccionUsuario", DireccionUsuario);
+            Response.Redirect("DireccionEditable.aspx", false);
         }
     }
 }

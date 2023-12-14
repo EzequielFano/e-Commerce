@@ -40,7 +40,6 @@
             width: 150px;
             margin: 5px;
         }
-      
     </style>
 </asp:Content>
 
@@ -81,6 +80,10 @@
                 </div>
                 <div>
                     <asp:Label CssClass="card-text" ID="lblTipoUsuarioPerfil" runat="server" />
+                </div>
+                <div>
+                    <asp:Label CssClass="card-text" ID="lblDireccionUsuario" runat="server" />
+                    <asp:Button Text="Editar direccion" runat="server" ID="btnEditarDireccion" OnClick="btnEditarDireccion_Click" />
                 </div>
                 <br />
                 <div class="button-container11">
