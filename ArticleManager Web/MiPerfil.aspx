@@ -84,7 +84,7 @@
                     <asp:Label CssClass="card-text" ID="lblDireccionUsuario" runat="server" />
                     <%if (lblDireccionUsuario.Text != "No hay una direccion cargada.")
                         {%>
-                    <asp:Button Text="Editar direccion" runat="server" ID="btnEditarDireccion" OnClick="btnEditarDireccion_Click" />
+                    <asp:Button Text="Editar direccion" runat="server" ID="btnEditarDireccion" CssClass="btn btn-light" OnClick="btnEditarDireccion_Click" />
 
                     <%} %>
                 </div>
@@ -106,11 +106,13 @@
                 <asp:Button Text="Volver" CssClass="btn btn-danger botonmasgrande" runat="server" ID="btnVolverPerfil" OnClick="btnVolverPerfil_Click" />
             </div>
             <div class="button-container11">
-                <asp:Button Text="Mis Compras" CssClass="btn btn-outline-success buttoncolor" ID="btnMisCompras" OnClick="btnMisCompras_Click" runat="server" />
+                <asp:Button Text="Mis Compras" CssClass="btn btn-light buttoncolor" ID="btnMisCompras" OnClick="btnMisCompras_Click" runat="server" />
+                
             </div>
+            <br />
             </div>
         </div>
         <br />
         <br />
-    </div>
+   
 </asp:Content>

@@ -100,7 +100,7 @@ namespace ArticleManager_Web
 
         protected void btnVolverPerfil_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("MiPerfil.aspx", false);
         }
 
         protected void btnEliminarDireccion_Click(object sender, EventArgs e)

@@ -63,7 +63,7 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header text-center">
-                        <h3>Gestioná tu pedido</h3>
+                        <h3>TU DIRECCION</h3>
                     </div>
                     <div class="card-body">
                         <asp:UpdatePanel runat="server">
@@ -98,10 +98,11 @@
                                 <br>
                                 <br>
                                 <div>
-                                    <asp:Button Text="Confirmar edicion" CssClass="btn btn-success" ID="btnConfirmarEdicion" runat="server" OnClick="btnConfirmarEdicion_Click" />
-                                    <asp:Button Text="Eliminar direccion" CssClass="btn btn-success" ID="btnEliminarDireccion" runat="server" OnClick="btnEliminarDireccion_Click" />
+                                    <asp:Button Text="Confirmar edicion" CssClass="btn btn-warning" ID="btnConfirmarEdicion" runat="server" OnClick="btnConfirmarEdicion_Click" />
+                                    <asp:Button Text="Eliminar direccion" CssClass="btn btn-danger" ID="btnEliminarDireccion" runat="server" OnClick="btnEliminarDireccion_Click" />
                                 </div>
-                                <asp:Button Text="Volver" CssClass="btn btn-danger" ID="btnVolverPerfil" runat="server" OnClick="btnVolverPerfil_Click" />
+                                <br />
+                                <asp:Button Text="Volver" CssClass="btn btn-light buttoncolor" ID="btnVolverPerfil" runat="server" OnClick="btnVolverPerfil_Click" />
                             </ContentTemplate>
                         </asp:UpdatePanel>
                     </div>
