@@ -35,6 +35,7 @@ namespace ArticleManager_Web
                 ArticulosCarrito = (List<Articulo>)Session["ArticulosCarrito"];
                 CantidadEnCarrito = Session["CantidadEnCarrito"] != null ? (int)Session["CantidadEnCarrito"] : 0;
                 ArticulosComprados = (List<Articulo>)Session["ArticulosCarrito"];
+               
                 if (ArticulosComprados == null)
                 {
                     ArticulosComprados = new List<Articulo>();
@@ -43,6 +44,7 @@ namespace ArticleManager_Web
              
                 Direccion = negocioDireccion.obtenerDireccionDelUsuario(Usuario.IdUsuario);
                 PrecioTotal = 0;
+           
                 if (ArticulosComprados.Count() > 0 && ArticulosCarrito.Count() > 0)
                 {
 
@@ -104,6 +106,8 @@ namespace ArticleManager_Web
                         chkHayDireccion.Visible = false;
                         lblHayDireccion.Visible = false;
                     }
+                    
+                    
 
                     ddlProvincia.DataSource = negocio.listarProvincias();
                     ddlProvincia.DataTextField = "Nombre";
@@ -156,6 +160,7 @@ namespace ArticleManager_Web
 
                 if (RetiroEnLocal == 1)
                 {
+                  
 
                     if (string.IsNullOrEmpty(ddlProvincia.SelectedItem.Value))
                     {
@@ -199,18 +204,21 @@ namespace ArticleManager_Web
                         Direccion.Piso = int.Parse(txtPiso.Text);
                     }
                 }
+              
                 int IdTransaccion = negocioTransaccion.generarTransaccion(Usuario, RetiroEnLocal, DateTime.Now, TipoPago, PrecioTotal);
                 foreach (Articulo aux in ArticulosComprados)
                 {
                     negocioDetalles.generarDetallesTransaccion(aux, IdTransaccion);
                 }
 
-                if (chkDireccion.Checked || RetiroEnLocal != 2)
+                if (chkDireccion.Checked && RetiroEnLocal != 2)
                 {
-                    negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
                     negocioDireccion.generarDireccionDeUsuario(Direccion, IdTransaccion, Usuario.IdUsuario);
                 }
-
+                if (RetiroEnLocal != 2)
+                {
+                    negocioDireccion.generarDireccion(Direccion, IdTransaccion, Usuario.IdUsuario);
+                }
                 emailService.EmailCompra(Usuario.Email, IdTransaccion, Usuario.Nombre);
                 ArticulosCarrito.Clear();
                 CantidadEnCarrito = 0;
@@ -254,8 +262,16 @@ namespace ArticleManager_Web
                 txtDepartamento.Enabled = false;
                 txtPiso.Enabled = false;
                 chkDireccion.Enabled = false;
+
+                ddlProvincia.SelectedValue = "1";
+                txtCalle.Text = " ";
+                txtNumero.Text = " ";
+                txtDepartamento.Text = " ";
+                txtPiso.Text = " ";               
+                ddlProvincia_SelectedIndexChanged(sender, e);
+                chkHayDireccion.Checked = false;
             }
-            else
+            else if(!Direccion.Status)
             {
                 ddlProvincia.Enabled = true;
                 ddlCiudad.Enabled = true;

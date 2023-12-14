@@ -134,6 +134,11 @@
                     <div class="card-body">
                         <asp:UpdatePanel runat="server">
                             <ContentTemplate>
+                                <div class="form-check">
+                                    <asp:CheckBox ID="chkHayDireccion" runat="server" AutoPostBack="true" Enabled="true" Checked='<%# Direccion.Status %>' OnCheckedChanged="chkHayDireccion_CheckedChanged"></asp:CheckBox>
+                                    <asp:Label Text="Usa tu direccion predeterminada" ID="lblHayDireccion" CssClass="form-check-label" runat="server" />
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="ddlMetodoPago" class="form-label">Método de Pago*</label>
                                     <asp:DropDownList ID="ddlMetodoPago" placeholder="Seleccione tipo de envio" runat="server" CssClass="form-select" AppendDataBoundItems="true">
@@ -153,11 +158,6 @@
                                 </div>
 
                                 
-                                <div class="form-check">
-                                    <asp:CheckBox ID="chkHayDireccion" runat="server" AutoPostBack="true" Enabled="true" Checked='<%# Direccion.Status %>' OnCheckedChanged="chkHayDireccion_CheckedChanged"></asp:CheckBox>
-                                    <asp:Label Text="Usa tu direccion predeterminada" ID="lblHayDireccion" CssClass="form-check-label" runat="server" />
-                                </div>
-
 
 
 

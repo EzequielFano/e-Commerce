@@ -33,24 +33,6 @@ namespace ArticleManager_Web
         protected global::System.Web.UI.ScriptManager ScriptManager;
 
         /// <summary>
-        /// Control ddlMetodoPago.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlMetodoPago;
-
-        /// <summary>
-        /// Control ddlOpcionesEnvio.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlOpcionesEnvio;
-
-        /// <summary>
         /// Control chkHayDireccion.
         /// </summary>
         /// <remarks>
@@ -67,6 +49,24 @@ namespace ArticleManager_Web
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblHayDireccion;
+
+        /// <summary>
+        /// Control ddlMetodoPago.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMetodoPago;
+
+        /// <summary>
+        /// Control ddlOpcionesEnvio.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlOpcionesEnvio;
 
         /// <summary>
         /// Control ddlProvincia.
