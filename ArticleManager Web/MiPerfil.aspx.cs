@@ -57,7 +57,7 @@ namespace ArticleManager_Web
 
         protected void btnMisCompras_Click(object sender, EventArgs e)
         {
-
+            Response.Redirect("MisCompras.aspx", false);
         }
     }
 }

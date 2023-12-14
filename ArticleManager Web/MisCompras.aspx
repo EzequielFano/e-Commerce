@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .containerPedidos {
-            margin-top: 50px;
+            margin-top: 30px;
             margin-left: 50px;
             margin-right: 50px;
             margin-bottom: 0px;
@@ -74,15 +74,14 @@
                     <div class="col-md-4">
                         <div style="border:4px rebeccapurple solid" class="card mb-4">
                             <div class="card-header">
-                                <span class="card-title">ID: <%# Eval("IdTransaccion") %></span>
-                                <span class="card-date">Fecha de compra: <%# Eval("FechaTransaccion", "{0:dd/MM/yyyy}") %></span>
+                                <span style="font-weight:bold;" class="card-title">ID: <%# Eval("IdTransaccion") %></span>
+                                <span style="font-weight:bold;" class="card-date">Fecha de compra: <%# Eval("FechaTransaccion", "{0:dd/MM/yyyy}") %></span>
                             </div>
                             <div class="card-body">
-                                <p>Metodo de envio: <%# Eval("Direccion.IdDireccion") %></p>
+                                <p style="font-weight:bold;">Estado del pedido: <%# Eval("Estado") %></p>                                
                                 <p>Importe total: <%# Eval("Importe") %></p>
                                 <p>Numero de seguimiento: <%# Eval("NroSeguimiento") %></p>
                                 <p>Tipo de pago: <%# Eval("TipoPago") %></p>
-                                <p>Estado del pedido: <%# Eval("Estado") %></p>
                                 <div>
                                     <asp:Button Text="Ver Detalle" CssClass="btn btn-outline-success buttoncolor" runat="server" />
                                 </div>

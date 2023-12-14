@@ -32,7 +32,7 @@ namespace ArticleManager_Web
                             Transacciones = negocio.traerListado();
                             foreach (Transaccion aux in Transacciones)
                             {
-                                if (aux.Estado == EstadoEnvio.RECIBIDO)
+                                if (aux.Estado == EstadoEnvio.FINALIZADO)
                                     TransaccionesRecibidas.Add(aux);
                             }
                             dgvPedidosRecibidos.DataSource = TransaccionesRecibidas;
