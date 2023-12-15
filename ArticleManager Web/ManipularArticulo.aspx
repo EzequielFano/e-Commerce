@@ -11,7 +11,7 @@
             margin-top: 50px;
             margin-left: auto;
             margin-right: auto;
-            max-width: 120%; 
+            max-width: 120%;
         }
 
         .carousel-column {
@@ -19,7 +19,6 @@
             margin: auto;
             margin-top: 50px;
         }
-               
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -38,6 +37,7 @@
 
                 // Actualizar la URL actual
                 $('#txtURLActual').val(imageUrl);
+                $('#txtURLImagen').val(imageUrl);
 
                 // Remover el evento después de completar la actualización
                 carousel.off('slid.bs.carousel');
@@ -49,7 +49,7 @@
     </script>
 
 
-    <div style="display:flex;justify-content:space-between;" class="container">       
+    <div style="display: flex; justify-content: space-between;" class="container">
         <div class="col-md-8 mb-3">
             <div class="custom-form">
                 <div class="col-8 mb-3">
@@ -99,15 +99,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-8 mb-3">
-                    <label for="inputAddress2" class="form-label">Imagen:</label>
-                    <div class="input-group">
-                        <span class="input-group-text">URL Actual</span>
-                        <asp:TextBox type="text" CssClass="form-control" ID="txtURLActual" runat="server" ClientIDMode="Static" Style="width: 60%" />
-                    </div>
-                </div>
-                <div class="col-8 mb-3">
-                    <label for="inputAddress2" class="form-label">Imagen:</label>
+                    <label for="inputAddress2" class="form-label">Nueva imagen:</label>
                     <div class="input-group">
                         <span class="input-group-text">URL</span>
                         <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" ClientIDMode="Static" Style="width: 60%" />
@@ -125,7 +119,7 @@
             </div>
         </div>
 
-        
+
         <div class="col-md-6 mb-3 carousel-column" style="max-width: 500px; min-width: 450px;">
             <br />
             <br />
@@ -143,10 +137,18 @@
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onclick="updateImageUrl()" >
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onclick="updateImageUrl()">
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+            <br />
+            <div class="col-10 mb-3">
+                <label for="inputAddress2" class="form-label">Imagen actual:</label>
+                <div class="input-group">
+                    <span class="input-group-text">URL</span>
+                    <asp:TextBox type="text" CssClass="form-control" ID="txtURLActual" runat="server" ClientIDMode="Static" Style="width: 70%" />
+                </div>
             </div>
             <br />
         </div>

@@ -46,10 +46,10 @@ namespace ArticleManager_Web
                                 txtDescripcion.Text = modificacion[0].Descripcion.ToString();
                                 txtCantidad.Text = modificacion[0].Cantidad.ToString();
                                 txtURLActual.Text = modificacion[0].URLImagen.URL.ToString();
-                               
+                                txtURLImagen.Text = modificacion[0].URLImagen.URL.ToString();
                                 ddlCategoria.SelectedValue = modificacion[0].Categoria.Id.ToString();
                                 ddlMarca.SelectedValue = modificacion[0].Marca.Id.ToString();
-
+                                Ruta = "ListadoArticulos.aspx";
                             }
                             else
                             {
