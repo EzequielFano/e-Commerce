@@ -106,6 +106,10 @@
                         <span class="input-group-text">URL</span>
                         <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" ClientIDMode="Static" Style="width: 60%" />
                     </div>
+                    <br />
+                    <div>
+                        <asp:Button Text="Insertar nueva imagen" CssClass="btn btn-outline-light" runat="server" ID="btnNuevaImagen" OnClick="btnNuevaImagen_Click" />
+                    </div>
                 </div>
                 <br />
                 <br />

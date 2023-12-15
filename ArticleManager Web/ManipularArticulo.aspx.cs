@@ -166,5 +166,22 @@ namespace ArticleManager_Web
                 Response.Redirect("ListadoArticulos.aspx", false);
             }
         }
+
+        protected void btnNuevaImagen_Click(object sender, EventArgs e)
+        {
+            ImagenNegocio negocio = new ImagenNegocio();
+            int id = int.Parse(Request.QueryString["id"].ToString());
+            Imagen aux = new Imagen();
+            if(txtURLImagen.Text == "")
+            {
+                Session.Add("error", "Debe completar el campo URL.");
+                Session.Add("ruta", "ListadoArticulos.aspx");
+                Response.Redirect("Error.aspx", false);
+                return;
+            }
+            aux.URL = txtURLImagen.Text;
+            negocio.AgregarImgen( aux, id);
+            Response.Redirect("ListadoArticulos.aspx");
+        }
     }
 }

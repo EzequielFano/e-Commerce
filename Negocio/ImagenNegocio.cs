@@ -39,13 +39,13 @@ namespace Negocio
                 datos.cerrarConexion();
             }
         }
-        public void AgregarImgen(Imagen imagen)
+        public void AgregarImgen(Imagen imagen, int IdArticulo)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("insert into IMAGENES (IdArticulo,ImagenUrl) values (@IdArticulo,@ImagenUrl)");
-                datos.setearParametro("@IdArticulo", imagen.IdImagen);
+                datos.setearParametro("@IdArticulo", IdArticulo);
                 datos.setearParametro("@ImagenUrl", imagen.URL);
 
                 datos.ejecutarAccion();
