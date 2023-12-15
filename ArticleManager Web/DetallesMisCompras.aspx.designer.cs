@@ -11,25 +11,25 @@ namespace ArticleManager_Web
 {
 
 
-    public partial class MisCompras
+    public partial class DetallesMisCompras
     {
 
         /// <summary>
-        /// Control rptMisCompras.
+        /// Control dgvArticulosComprados.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptMisCompras;
+        protected global::System.Web.UI.WebControls.GridView dgvArticulosComprados;
 
         /// <summary>
-        /// Control btnVolverMisCompras.
+        /// Control btnVolverDetallesMisCompras.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnVolverMisCompras;
+        protected global::System.Web.UI.WebControls.Button btnVolverDetallesMisCompras;
     }
 }
