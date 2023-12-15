@@ -95,7 +95,7 @@
                     <label for="inputAddress2" class="form-label">Imagen:</label>
                     <div class="input-group">
                         <span class="input-group-text">URL</span>
-                        <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" ClientIDMode="Static" Style="width: 100%" />
+                        <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" ClientIDMode="Static" Style="width: 60%" />
                     </div>
                 </div>
                 <br />
@@ -134,7 +134,6 @@
                 </button>
             </div>
             <br />
-
         </div>
     </div>
     <% if (Request.QueryString["id"] != null)
