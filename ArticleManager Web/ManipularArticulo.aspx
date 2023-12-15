@@ -35,7 +35,7 @@
             var carousel = $('#carouselExample');
             var activeItem = carousel.find('.carousel-item.active img');
             var imageUrl = activeItem.attr('src');
-            $('#txtURLImagen').val(imageUrl);
+            $('#txtURLActual').val(imageUrl);
         }
     </script>
 
@@ -89,6 +89,13 @@
                             <label for="ddlMarca" class="form-label">Marca:</label>
                             <asp:DropDownList ID="ddlMarca" CssClass="form-select" runat="server"></asp:DropDownList>
                         </div>
+                    </div>
+                </div>
+                <div class="col-8 mb-3">
+                    <label for="inputAddress2" class="form-label">Imagen:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">URL Actual</span>
+                        <asp:TextBox type="text" CssClass="form-control" ID="txtURLActual" runat="server" ClientIDMode="Static" Style="width: 60%" />
                     </div>
                 </div>
                 <div class="col-8 mb-3">

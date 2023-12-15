@@ -225,7 +225,7 @@ namespace Negocio
             }
 
         }
-        public void modificarArticulo(Articulo articulo)
+        public void modificarArticulo(Articulo articulo, string URLNueva)
         {
             AccesoDatos datos = new AccesoDatos();
             
@@ -242,9 +242,10 @@ namespace Negocio
                 datos.setearParametro("@Cantidad", articulo.Cantidad);
                 datos.ejecutarAccion();
 
-                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrl WHERE IdArticulo = @Id");
-                datos.setearParametro("@Id", articulo.IdArticulo);
+                datos.setearConsulta("UPDATE IMAGENES SET ImagenUrl = @ImagenUrlNueva WHERE ImagenUrl = @ImagenUrl;");
                 datos.setearParametro("@ImagenUrl", articulo.URLImagen.URL);
+                datos.setearParametro("@ImagenUrlNueva", URLNueva);
+               
                 datos.ejecutarAccion();
 
 

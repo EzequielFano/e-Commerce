@@ -45,13 +45,16 @@ namespace ArticleManager_Web
                                 txtPrecio.Text = modificacion[0].Precio.ToString();
                                 txtDescripcion.Text = modificacion[0].Descripcion.ToString();
                                 txtCantidad.Text = modificacion[0].Cantidad.ToString();
-                                txtURLImagen.Text = modificacion[0].URLImagen.URL.ToString();
+                                txtURLActual.Text = modificacion[0].URLImagen.URL.ToString();
+                                
                                 ddlCategoria.SelectedValue = modificacion[0].Categoria.Id.ToString();
                                 ddlMarca.SelectedValue = modificacion[0].Marca.Id.ToString();
 
                             }
                             else
                             {
+                                txtURLActual.Enabled = false;
+                                txtURLActual.Text = " - ";
                                 btnAccion.Text = "Agregar articulo";
                             }
                             ddlCategoria.DataSource = categoria.listar();
@@ -114,9 +117,9 @@ namespace ArticleManager_Web
                     {
                         articulo.URLImagen.URL = " ";
                     }
-                    articulo.URLImagen.URL = txtURLImagen.Text;
+                    articulo.URLImagen.URL = txtURLActual.Text;
 
-                    negocio.modificarArticulo(articulo);
+                    negocio.modificarArticulo(articulo, txtURLImagen.Text);
                     Response.Redirect("ListadoArticulos.aspx", false);
 
                 }
