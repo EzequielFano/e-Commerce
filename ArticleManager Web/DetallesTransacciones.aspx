@@ -127,8 +127,9 @@
         <asp:Button ID="btnEnviarMail" Text="ENVIAR MAIL AL USUARIO" CssClass="btn btn-custom" OnClick="btnEnviarMail_Click" runat="server" style="margin-right: 10px;" />
         <%if (estado.ToString() != "FINALIZADO")
             { %>
-        <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
-
+            <button type="button" class="btn btn-custom" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            CAMBIAR EL ESTADO DE ESTA TRANSACCION
+            </button>
        <%} %>
     </div>
   
@@ -151,6 +152,28 @@
             }
     </style>
 
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header card-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body card-body">
+                ¿ESTÁS SEGURO QUE QUERES CAMBIAR EL ESTADO DE LA TRANSACCION?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-close-white" data-bs-dismiss="modal">Cerrar</button>
+                <asp:Button ID="btnCambiarEstado" CssClass="btn btn-custom" OnClick="btnCambiarEstado_Click" runat="server" style="margin-left: 10px;" />
+            </div>
+        </div>
+    </div>
+</div>
 
 
 </asp:Content>

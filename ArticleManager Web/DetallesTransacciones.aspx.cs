@@ -57,7 +57,7 @@ namespace ArticleManager_Web
                         dgvArticulosComprados.DataBind();
                         if (estado == EstadoEnvio.INICIADO)
                         {
-                            btnCambiarEstado.Text = "COMENZAR TRANSACCION";
+                            btnCambiarEstado.Text = "SI, SEGURO";
                         }
                         else if (estado == EstadoEnvio.EN_PROCESO)
                         {

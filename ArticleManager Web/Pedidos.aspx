@@ -32,6 +32,7 @@
         .table tbody tr:nth-of-type(odd) {
             background-color: #f8f9fa;
         }
+
         .oculto {
             display: none;
         }
@@ -43,10 +44,12 @@
         .nav-link.grilla {
             color: #8a2be2 !important;
         }
-            .nav-link.active {
-                background-color: #8a2be2 !important;
-                color: #fff !important; 
-            }
+
+        .nav-link.active {
+            background-color: #8a2be2 !important;
+            color: #fff !important;
+        }
+
         #myTabs {
             display: flex;
             justify-content: center;
@@ -54,29 +57,30 @@
             max-width: 30%;
             margin: 0 auto;
         }
+
         .nav-link {
-            padding: 8px 12px; 
+            padding: 8px 12px;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-    <br />    
-        <ul class="nav nav-tabs" id="myTabs">
-            <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link grilla" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link grilla" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link grilla" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
-            </li>
-        </ul>
-     <div class="containerPedidos">
+    <br />
+    <ul class="nav nav-tabs" id="myTabs">
+        <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="Pedidos.aspx" onclick="toggleActive(0)">Iniciados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link grilla" href="PedidosEnviados.aspx" onclick="toggleActive(1)">En proceso</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link grilla" href="PedidosPagados.aspx" onclick="toggleActive(1)">Pagados</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link grilla" href="PedidosRecibidos.aspx" onclick="toggleActive(3)">Finalizados</a>
+        </li>
+    </ul>
+    <div class="containerPedidos">
         <div class="table-title">
             PEDIDOS INICIADOS
         </div>

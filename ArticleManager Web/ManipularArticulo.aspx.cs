@@ -12,6 +12,8 @@ namespace ArticleManager_Web
     public partial class ManipularArticulo : System.Web.UI.Page
     {
         Articulo articulo = new Articulo();
+
+        public List<Imagen> ListaImagenes = new List<Imagen>();
         public string Ruta { get; set; }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -19,6 +21,7 @@ namespace ArticleManager_Web
             CategoriaNegocio categoria = new CategoriaNegocio();
             MarcaNegocio marca = new MarcaNegocio();
             ArticulosNegocio negocio = new ArticulosNegocio();
+
             if ((Usuario)Session["usuario"] != null)
             {
                 Usuario usuario = new Usuario();
@@ -35,6 +38,8 @@ namespace ArticleManager_Web
                                 btnAccion.Text = "Editar articulo";
                                 int id = int.Parse(Request.QueryString["id"].ToString());
                                 List<Articulo> modificacion = negocio.TraerListadoCompletoxId(id);
+
+                                ListaImagenes = negocio.verImagenesArticulo(id);
                                 txtCodigo.Text = modificacion[0].CodigoArticulo.ToString();
                                 txtNombre.Text = modificacion[0].NombreArticulo.ToString();
                                 txtPrecio.Text = modificacion[0].Precio.ToString();

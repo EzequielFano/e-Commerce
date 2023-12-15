@@ -11,62 +11,137 @@
             margin-top: 50px;
             margin-left: auto;
             margin-right: auto;
-            max-width: 600px; /* Ajusta según sea necesario */
+            max-width: 120%; /* Ajusta según sea necesario */
+        }
+
+        .carousel-column {
+            max-width: 500px; /* Tamaño deseado para la columna del carrusel */
+            margin: auto;
+            margin-top: 50px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container custom-form">
 
-        <div class="col-6 mb-3">
-            <label for="inputNombre" class="form-label">Nombre:</label>
-            <div class="input-group">
-                <span class="input-group-text">ID </span>                
-                <asp:TextBox type="text" placeholder="Nombre" CssClass="form-control" ID="txtNombre" runat="server" />
-                <asp:TextBox type="text" placeholder="Codigo" CssClass="form-control" ID="txtCodigo" runat="server" />
+    <script type="text/javascript">
+        function updateImageUrl() {
+            var carousel = $('#carouselExample');
+            var activeItem = carousel.find('.carousel-item.active img');
+            var imageUrl = activeItem.attr('src');
+            $('#txtURLImagen').val(imageUrl);
+        }
+    </script>
+
+    <div class="container">
+
+        <!-- Columna del formulario -->
+        <div class="col-md-8 mb-3">
+            <div class="custom-form">
+                <div class="col-8 mb-3">
+                    <label for="inputNombre" class="form-label">Nombre:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">ID </span>
+                        <asp:TextBox type="text" placeholder="Nombre" CssClass="form-control" ID="txtNombre" runat="server" />
+                        <asp:TextBox type="text" placeholder="Codigo" CssClass="form-control" ID="txtCodigo" runat="server" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 mb-3">
+                        <div class="form-group">
+                            <label for="txtPrecio" class="form-label">Precio:</label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                <asp:TextBox type="text" placeholder="Ingresar precio..." CssClass="form-control" ID="txtPrecio" runat="server" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3 mb-3">
+                        <div class="form-group">
+                            <label for="txtCantidad" class="form-label">Cantidad:</label>
+                            <asp:TextBox type="text" placeholder="Ingresar cantidad..." CssClass="form-control" ID="txtCantidad" runat="server" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-8 mb-3">
+                    <label for="inputAddress" class="form-label">Descripcion:</label>
+                    <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" Columns="50"></asp:TextBox>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="form-group">
+                            <label for="ddlCategoria" class="form-label">Categoria:</label>
+                            <asp:DropDownList ID="ddlCategoria" PlaceHolder="Seleccionar.." CssClass="form-select" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <div class="form-group">
+                            <label for="ddlMarca" class="form-label">Marca:</label>
+                            <asp:DropDownList ID="ddlMarca" CssClass="form-select" runat="server"></asp:DropDownList>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8 mb-3">
+                    <label for="inputAddress2" class="form-label">Imagen:</label>
+                    <div class="input-group">
+                        <span class="input-group-text">URL</span>
+                        <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" ClientIDMode="Static" Style="width: 100%" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div class="col-12 mb-3">
+                    <asp:Button CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
+                </div>
+
+                <div>
+                </div>
             </div>
-        </div>
-        <div class="col-3 mb-3">
-            <label for="inputAddress2" class="form-label">Precio:</label>
-            <div class="input-group">
-                <span class="input-group-text">$</span>
-                <asp:TextBox type="text" placeholder="Ingresar precio..." CssClass="form-control" ID="txtPrecio" runat="server" />
-            </div>
-        </div>
-        <div class="col-3 mb-3">
-            <label for="inputAddress2" class="form-label">Cantidad:</label>
-            <asp:TextBox type="text" placeholder="Ingresar precio.." CssClass="form-control" ID="txtCantidad" runat="server" />
-        </div>
-        <div class="col-6 mb-3">
-            <label for="inputAddress" class="form-label">Descripcion:</label>
-            <asp:TextBox ID="txtDescripcion" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="6" Columns="50"></asp:TextBox>
         </div>
 
-        <div class="col-md-3 mb-3">
-            <label for="inputStatee" class="form-label">Categoria</label>
-            <asp:DropDownList ID="ddlCategoria" PlaceHolder="Seleccionar.." CssClass="form-select" runat="server"></asp:DropDownList>
-        </div>
-        <div class="col-md-3 mb-3">
-            <label for="inputState" class="form-label">Marca</label>
-            <asp:DropDownList ID="ddlMarca" CssClass="form-select" runat="server"></asp:DropDownList>
-        </div>
-        <div class="col-6 mb-3">
-            <label for="inputAddress2" class="form-label">Imagen:</label>
-            <div class="input-group">
-                <span class="input-group-text">URL</span>
-                <asp:TextBox type="text" CssClass="form-control" ID="txtURLImagen" runat="server" />
+        <!-- Columna del carrusel -->
+        <div class="col-md-6 mb-3 carousel-column" style="max-width: 500px; min-width: 450px;">
+            <br />
+            <br />
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <% for (int i = 0; i < ListaImagenes.Count(); i++)
+                        { %>
+                    <div class="carousel-item<% if (i == 0)
+                        { %> active<% } %>">
+                        <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%= i + 1 %>">
+                    </div>
+                    <% } %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onclick="updateImageUrl()">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-        </div>
-        <div class="col-12 mb-3">
-            <asp:Button CssClass="btn btn-success" ID="btnAccion" OnClick="btnAccion_Click" runat="server" />
-        </div>
-        <div>
-            <%if (Request.QueryString["id"] != null)
-                { %>
             <br />
-            <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 10%">Volver</a>
-            <br />
-            <%} %>
+
         </div>
     </div>
+    <% if (Request.QueryString["id"] != null)
+        { %>
+    <br />
+    <a href="<%=Ruta %>" class="btn btn-outline-light" style="display: block; margin: 0 auto; text-align: center; color: violet; max-width: 30%">Volver</a>
+    <br />
+    <%} %>
+    <br />
 </asp:Content>
