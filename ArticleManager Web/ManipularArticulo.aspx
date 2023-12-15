@@ -129,13 +129,23 @@
             <br />
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
+                    <%if (Request.QueryString["id"] != null)
+                        {  %>
                     <% for (int i = 0; i < ListaImagenes.Count(); i++)
                         { %>
                     <div class="carousel-item<% if (i == 0)
                         { %> active<% } %>">
                         <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%=i + 1%>">
                     </div>
-                    <% } %>
+                    <% }
+                        }
+                        else
+                        { %>
+                    <div class="carousel-item active">
+                        <img src="https://redthread.uoregon.edu/files/original/affd16fd5264cab9197da4cd1a996f820e601ee4.png" class="d-block w-100" alt="...">
+                    </div>
+                   
+                    <%} %>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -151,7 +161,7 @@
                 <label for="inputAddress2" class="form-label">Imagen actual:</label>
                 <div class="input-group">
                     <span class="input-group-text">URL</span>
-                    <asp:TextBox type="text" CssClass="form-control" ID="txtURLActual" runat="server" ClientIDMode="Static" Style="width: 70%" />
+                    <asp:TextBox type="text" CssClass="form-control" ID="txtURLActual" runat="server" ClientIDMode="Static" Style="max-width: 1%" />
                 </div>
             </div>
             <br />

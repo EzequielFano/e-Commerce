@@ -35,6 +35,7 @@ namespace ArticleManager_Web
                         {
                             if (Request.QueryString["id"] != null)
                             {
+                                btnNuevaImagen.Visible = true;
                                 btnAccion.Text = "Editar articulo";
                                 int id = int.Parse(Request.QueryString["id"].ToString());
                                 List<Articulo> modificacion = negocio.TraerListadoCompletoxId(id);
@@ -53,6 +54,8 @@ namespace ArticleManager_Web
                             }
                             else
                             {
+                                
+                                btnNuevaImagen.Visible = false;
                                 txtURLActual.Enabled = false;
                                 txtURLActual.Text = " - ";
                                 btnAccion.Text = "Agregar articulo";
