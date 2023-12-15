@@ -29,11 +29,25 @@
     <script type="text/javascript">
         function updateImageUrl() {
             var carousel = $('#carouselExample');
-            var activeItem = carousel.find('.carousel-item.active img');
-            var imageUrl = activeItem.attr('src');
-            $('#txtURLActual').val(imageUrl);
+
+            // Añadir un evento de escucha para cuando la transición del carrusel se complete
+            carousel.on('slid.bs.carousel', function () {
+                // Obtener la URL de la imagen después de que se haya completado la transición
+                var activeItem = carousel.find('.carousel-item.active img');
+                var imageUrl = activeItem.attr('src');
+
+                // Actualizar la URL actual
+                $('#txtURLActual').val(imageUrl);
+
+                // Remover el evento después de completar la actualización
+                carousel.off('slid.bs.carousel');
+            });
+
+            // Realizar la transición del carrusel
+            carousel.carousel('next');
         }
     </script>
+
 
     <div style="display:flex;justify-content:space-between;" class="container">       
         <div class="col-md-8 mb-3">
@@ -121,7 +135,7 @@
                         { %>
                     <div class="carousel-item<% if (i == 0)
                         { %> active<% } %>">
-                        <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%= i + 1 %>">
+                        <img src="<%= ListaImagenes[i].URL %>" class="d-block w-100 carousel-img" alt="Imagen <%=i + 1%>">
                     </div>
                     <% } %>
                 </div>
@@ -129,7 +143,7 @@
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onclick="updateImageUrl()">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next" onclick="updateImageUrl()" >
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
