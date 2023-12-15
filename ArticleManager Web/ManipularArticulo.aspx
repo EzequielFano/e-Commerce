@@ -11,19 +11,15 @@
             margin-top: 50px;
             margin-left: auto;
             margin-right: auto;
-            max-width: 120%; /* Ajusta según sea necesario */
+            max-width: 120%; 
         }
 
         .carousel-column {
-            max-width: 500px; /* Tamaño deseado para la columna del carrusel */
+            max-width: 500px;
             margin: auto;
             margin-top: 50px;
         }
-
-        .container {
-            display: flex;
-            justify-content: space-between;
-        }
+               
     </style>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -39,9 +35,7 @@
         }
     </script>
 
-    <div class="container">
-
-        <!-- Columna del formulario -->
+    <div style="display:flex;justify-content:space-between;" class="container">       
         <div class="col-md-8 mb-3">
             <div class="custom-form">
                 <div class="col-8 mb-3">
@@ -117,7 +111,7 @@
             </div>
         </div>
 
-        <!-- Columna del carrusel -->
+        
         <div class="col-md-6 mb-3 carousel-column" style="max-width: 500px; min-width: 450px;">
             <br />
             <br />

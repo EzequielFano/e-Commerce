@@ -61,6 +61,24 @@
         .nav-link {
             padding: 8px 12px;
         }
+
+        .buttoncolor1, .buttoncolor1:hover {
+            color: rebeccapurple;
+            border: 2px solid rebeccapurple;
+            background-color: black;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+
+        .buttoncolor {
+            color: rebeccapurple;
+            border: 2px solid;
+            border-color: rebeccapurple;
+            background-color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -72,24 +90,29 @@
             <asp:Repeater ID="rptMisCompras" runat="server" OnItemDataBound="rptMisCompras_ItemDataBound">
                 <ItemTemplate>
                     <div class="col-md-4">
-                        <div style="border:4px rebeccapurple solid" class="card mb-4">
+                        <div style="border: 4px rebeccapurple solid" class="card mb-4">
                             <div class="card-header">
-                                <span style="font-weight:bold;" class="card-title">ID: <%# Eval("IdTransaccion") %></span>
-                                <span style="font-weight:bold;" class="card-date">Fecha de compra: <%# Eval("FechaTransaccion", "{0:dd/MM/yyyy}") %></span>
+                                <span style="font-weight: bold;" class="card-title">ID: <%# Eval("IdTransaccion") %></span>
+                                <span style="font-weight: bold;" class="card-date">Fecha de compra: <%# Eval("FechaTransaccion", "{0:dd/MM/yyyy}") %></span>
                             </div>
                             <div class="card-body">
-                                <p style="font-weight:bold;">Estado del pedido: <%# Eval("Estado") %></p>                                
+                                <p style="font-weight: bold;">Estado del pedido: <%# Eval("Estado") %></p>
                                 <p>Importe total: <%# Eval("Importe") %></p>
                                 <p>Numero de seguimiento: <%# Eval("NroSeguimiento") %></p>
                                 <p>Tipo de pago: <%# Eval("TipoPago") %></p>
                                 <div>
-                                    <asp:Button Text="Ver Detalle" CssClass="btn btn-outline-success buttoncolor" runat="server" />
+                                    <a href="DetallesMisCompras.aspx?idTransaccion=<%#Eval("IdTransaccion")%>" class="buttoncolor1">Ver Detalles</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </ItemTemplate>
             </asp:Repeater>
+        </div>
+        <div>
+            <asp:Button Text="Volver" ID="btnVolverMisCompras" CssClass="btn btn-outline-success buttoncolor" OnClick="btnVolverMisCompras_Click" runat="server" />
+            <br>
+            <br>
         </div>
     </div>
 

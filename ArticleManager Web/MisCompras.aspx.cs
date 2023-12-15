@@ -19,7 +19,7 @@ namespace ArticleManager_Web
         {
             try
             {
-               
+
                 if (!IsPostBack)
                 {
                     BindComprasData();
@@ -34,27 +34,41 @@ namespace ArticleManager_Web
         }
         private void BindComprasData()
         {
-            TransaccionNegocio negocio = new TransaccionNegocio();
-            List<Transaccion> Transacciones = new List<Transaccion>();
-            DireccionNegocio negocioDireccion = new DireccionNegocio();
-            Usuario usuario = new Usuario();
-            usuario = (Usuario)Session["usuario"];
-            TransaccionesMiCompra = negocio.traerListado();
-            foreach (Transaccion aux in TransaccionesMiCompra)
+            if ((Usuario)Session["usuario"] != null)
             {
-                if (aux.User.IdUsuario == usuario.IdUsuario)
+                TransaccionNegocio negocio = new TransaccionNegocio();
+                List<Transaccion> Transacciones = new List<Transaccion>();
+                DireccionNegocio negocioDireccion = new DireccionNegocio();
+                Usuario usuario = new Usuario();
+                usuario = (Usuario)Session["usuario"];
+                TransaccionesMiCompra = negocio.traerListado();
+                foreach (Transaccion aux in TransaccionesMiCompra)
                 {
-                    Transacciones.Add(aux);
-                    //aux.Direccion = negocioDireccion.DireccionSegunIdTransaccion(aux.IdTransaccion);
+                    if (aux.User.IdUsuario == usuario.IdUsuario)
+                    {
+                        Transacciones.Add(aux);
+                        //aux.Direccion = negocioDireccion.DireccionSegunIdTransaccion(aux.IdTransaccion);
+                    }
                 }
+
+                rptMisCompras.DataSource = Transacciones;
+                rptMisCompras.DataBind();
+            }
+            else
+            {
+                Session.Add("error", "Debes loguearte para ver tus compras");
+                Session.Add("ruta", "Articulos.aspx");
+                Response.Redirect("Error.aspx");
+            }
+        }
+            protected void rptMisCompras_ItemDataBound(object sender, RepeaterItemEventArgs e)
+            {
+
             }
 
-            rptMisCompras.DataSource = Transacciones;
-            rptMisCompras.DataBind();
-        }
-        protected void rptMisCompras_ItemDataBound(object sender, RepeaterItemEventArgs e)
+        protected void btnVolverMisCompras_Click(object sender, EventArgs e)
         {
+            Response.Redirect("MiPerfil.aspx", false);
         }
-
     }
-}
+    }

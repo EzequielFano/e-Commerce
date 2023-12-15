@@ -87,6 +87,7 @@
     <Content Include="CrearCuenta.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Detalles.aspx" />
+    <Content Include="DetallesMisCompras.aspx" />
     <Content Include="DetallesTransacciones.aspx">
       <BrowseToURL>~/ListadoDetalles.aspx</BrowseToURL>
     </Content>
@@ -157,6 +158,13 @@
     </Compile>
     <Compile Include="Detalles.aspx.designer.cs">
       <DependentUpon>Detalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DetallesMisCompras.aspx.cs">
+      <DependentUpon>DetallesMisCompras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DetallesMisCompras.aspx.designer.cs">
+      <DependentUpon>DetallesMisCompras.aspx</DependentUpon>
     </Compile>
     <Compile Include="DetallesTransacciones.aspx.cs">
       <DependentUpon>DetallesTransacciones.aspx</DependentUpon>
